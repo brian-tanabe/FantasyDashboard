@@ -20,4 +20,10 @@ public class WebPage {
     public static final String NUMBER_FIRE_REMAINING_SEASON_TIGHT_END_PROJECTIONS_URL = String.format("%s/%s", NUMBER_FIRE_REMAINING_YEAR_PROJECTIONS_URL, "te");
     public static final String NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL = String.format("%s/%s", NUMBER_FIRE_REMAINING_YEAR_PROJECTIONS_URL, "k");
     public static final String NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL = String.format("%s/%s", NUMBER_FIRE_REMAINING_YEAR_PROJECTIONS_URL, "d");
+
+    public static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:32.0) Gecko/20100101 Firefox/32.0";
+
+    public static String getEspnLoginUrl(String username, String password){
+        return String.format("https://r.espn.go.com/members/login?count=0&SUBMIT=1&language=en&affiliateName=espn&regFormId=espn&username=%s&password=%s&appRedirect=https://r.espn.go.com/members/index", username, password);
+    }
 }
