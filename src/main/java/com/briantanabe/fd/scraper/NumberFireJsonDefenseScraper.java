@@ -1,6 +1,7 @@
 package com.briantanabe.fd.scraper;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,6 +39,17 @@ public class NumberFireJsonDefenseScraper extends NumberFireJsonPositionScraper 
     }
 
     private void extractRankingAndFirePointsFromJson(JSONObject jsonObject){
+        JSONObject projectionsJsonObject = jsonObject.getJSONObject("projections");
+        JSONArray projectionsJsonArray = projectionsJsonObject.getJSONArray("projections");
+        for(int index = 0; index < projectionsJsonArray.length(); index++){
+            JSONObject teamJsonObject = projectionsJsonArray.getJSONObject(index);
+            int id = teamJsonObject.getInt("player_id");
+            int rank = teamJsonObject.getInt("pos_rank");
+            double firePoints = teamJsonObject.getDouble("fp");
 
+            NumberFireRanking ranking = idToRankingMap.get(id);
+            ranking.setRanking(rank);
+            ranking.setFirePoints(firePoints);
+        }
     }
 }

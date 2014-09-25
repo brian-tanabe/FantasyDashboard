@@ -3,8 +3,6 @@ package com.briantanabe.fd.tests.web;
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scraper.NumberFireJsonDefenseScraper;
 import com.briantanabe.fd.scraper.NumberFireScraper;
-import static com.briantanabe.fd.web.WebPage.*;
-import com.briantanabe.fd.web.WebRequest;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,11 +11,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.fail;
+import static junit.framework.TestCase.*;
 
 /**
  * Created by Brian on 9/24/14.
@@ -38,35 +33,40 @@ public class NumberFireScraperTests {
 
     @Test
     public void shouldBeAbleToFindThirtyTwoTeams(){
-        try {
-            assertEquals("NumberFireScraper did not find 32 teams", 32, scraper.getPlayerRankings().size());
-        } catch(Exception ex){
-            fail("FAILED to download NumberFire's HTML");
-        }
+        assertEquals("NumberFireScraper did not find 32 teams", 32, scraper.getPlayerRankings().size());
     }
 
     @Test
     public void shouldContainTheDenverBroncos(){
-        NumberFireRanking broncos = null;
-        for(NumberFireRanking defense : scraper.getPlayerRankings()){
-            if(defense.getName().contains("Denver")){
-                broncos = defense;
-            }
-        }
+        NumberFireRanking broncos = findTeamByTeamName("Denver", scraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
     }
 
     @Test
     public void broncosShouldBeRankedTwentyFourth(){
-        NumberFireRanking broncos = null;
-        for(NumberFireRanking defense : scraper.getPlayerRankings()){
-            if(defense.getName().contains("Denver")){
-                broncos = defense;
-            }
-        }
+        NumberFireRanking broncos = findTeamByTeamName("Denver", scraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
         assertEquals("Failed to parse the correct ranking", 24, broncos.getRanking());
+    }
+
+    @Test
+    public void broncosShouldHaveNinetyThreeAndFiftyFourFirePoints(){
+        NumberFireRanking broncos = findTeamByTeamName("Denver", scraper.getPlayerRankings());
+
+        assertNotNull("Failed to find the Broncos", broncos);
+        assertEquals("Failed to parse the Bronco's FirePoints correctly", 93.54, broncos.getFirePoints());
+    }
+
+    private NumberFireRanking findTeamByTeamName(String teamName, ArrayList<NumberFireRanking> teams){
+        NumberFireRanking teamToFind = null;
+        for(NumberFireRanking defense : teams){
+            if(defense.getName().contains(teamName)){
+                teamToFind = defense;
+            }
+        }
+
+        return teamToFind;
     }
 }
