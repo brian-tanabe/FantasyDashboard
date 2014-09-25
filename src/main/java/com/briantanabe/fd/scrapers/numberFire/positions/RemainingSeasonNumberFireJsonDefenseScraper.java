@@ -1,8 +1,11 @@
-package com.briantanabe.fd.scraper;
+package com.briantanabe.fd.scrapers.numberFire.positions;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -10,18 +13,33 @@ import java.util.LinkedHashMap;
 /**
  * Created by Brian on 9/24/14.
  */
-public class NumberFireJsonDefenseScraper extends NumberFireJsonPositionScraper {
+public class RemainingSeasonNumberFireJsonDefenseScraper extends NumberFirePositionScraper {
     private LinkedHashMap<Integer, NumberFireRanking> idToRankingMap = new LinkedHashMap<Integer, NumberFireRanking>(32);
 
     @Override
-    public ArrayList<NumberFireRanking> getPlayerRankingsFromJsonString(String jsonString) {
-        JSONObject jsonObject = new JSONObject(jsonString);
+    public ArrayList<NumberFireRanking> getPlayerRankings(Document document) {
+        Elements scriptElements = document.select("script[type=text/javascript]");
+        String projectionJavascriptString = findProjectionJavascript(scriptElements);
+        JSONObject jsonObject = new JSONObject(projectionJavascriptString);
 
         extractNumberFireIdsAndTeamNamesFromJson(jsonObject);
         extractRankingAndFirePointsFromJson(jsonObject);
 
 
         return new ArrayList<NumberFireRanking>(idToRankingMap.values());
+    }
+
+    private String findProjectionJavascript(Elements scriptElements){
+        for(Element script : scriptElements){
+            if(script.html().contains("NF_DATA"))
+                return extractJustTheJsonFromJavascript(script.html());
+        }
+
+        return "";
+    }
+
+    private String extractJustTheJsonFromJavascript(String javascriptJson){
+        return javascriptJson.substring(javascriptJson.indexOf("NF_DATA = ") + "NF_DATA = ".length(), javascriptJson.indexOf("};") + "}:".length());
     }
 
     private void extractNumberFireIdsAndTeamNamesFromJson(JSONObject jsonObject){
