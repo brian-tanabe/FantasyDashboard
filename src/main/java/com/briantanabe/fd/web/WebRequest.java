@@ -6,6 +6,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,10 +24,8 @@ public class WebRequest {
         client = HttpClientBuilder.create().build();
     }
 
-    public String getPage(String url) throws ClientProtocolException, IOException {
-        HttpGet request = new HttpGet(url);
-        request.addHeader("User-agent", USER_AGENT);
-        HttpResponse response = client.execute(request);
+    public String getPage(String url) throws IOException {
+        HttpResponse response = getPageResponse(url);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
         StringBuffer stringBuffer = new StringBuffer();
@@ -35,5 +35,20 @@ public class WebRequest {
         }
 
         return stringBuffer.toString();
+    }
+
+    public int getPageResponseCode(String url) throws IOException {
+        HttpResponse response = getPageResponse(url);
+        return response.getStatusLine().getStatusCode();
+    }
+
+    public Document getPageAsDocument(String url) throws IOException {
+        return Jsoup.parse(getPage(url));
+    }
+
+    private HttpResponse getPageResponse(String url) throws IOException {
+        HttpGet request = new HttpGet(url);
+        request.addHeader("User-agent", USER_AGENT);
+        return client.execute(request);
     }
 }

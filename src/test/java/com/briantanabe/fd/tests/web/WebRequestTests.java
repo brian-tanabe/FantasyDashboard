@@ -1,4 +1,4 @@
-package com.briantanabe.fd.tests;
+package com.briantanabe.fd.tests.web;
 
 import com.briantanabe.fd.web.WebRequest;
 import org.junit.Test;
