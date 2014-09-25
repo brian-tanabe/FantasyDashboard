@@ -17,48 +17,48 @@ import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.fail;
 
 /**
- * Created by Brian on 9/24/14.
+ * Created by BTanabe on 9/25/2014.
  */
-public class NumberFireDefenseRemainingSeasonScraperTests {
+public class NumberFireQuarterbackRemainingSeasonScraperTests {
     private static NumberFireScraper remainingSeasonScraper;
 
     @BeforeClass
     public static void setup(){
         try {
-            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonDefProjections.html")));
+            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonQbProjections.html")));
             remainingSeasonScraper = new NumberFireScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonDefenseScraper());
             remainingSeasonScraper.scrape();
         } catch(Exception ex){
-            fail("FAILED to open nfRemainingSeasonDefProjections");
+            fail("FAILED to open nfRemainingSeasonQbProjections");
         }
     }
 
     @Test
-    public void shouldBeAbleToFindThirtyTwoTeamsInRemainingSeasonProjections(){
-        assertEquals("NumberFireScraper did not find 32 teams", 32, remainingSeasonScraper.getPlayerRankings().size());
+    public void shouldBeAbleToFindSeventyFivePlayersInRemainingSeasonProjections(){
+        assertEquals("NumberFireScraper did not find 75 teams", 75, remainingSeasonScraper.getPlayerRankings().size());
     }
 
     @Test
     public void shouldContainTheDenverBroncosInRemainingSeasonProjections(){
-        NumberFireRanking broncos = findPlayerByPlayerName("Denver", remainingSeasonScraper.getPlayerRankings());
+        NumberFireRanking broncos = findPlayerByPlayerName("Jay Cutler", remainingSeasonScraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
     }
 
 
     @Test
-    public void broncosShouldBeRankedTwentyFourthInRemainingSeasonProjections(){
-        NumberFireRanking broncos = findPlayerByPlayerName("Denver", remainingSeasonScraper.getPlayerRankings());
+    public void broncosShouldBeRankedEighthInRemainingSeasonProjections(){
+        NumberFireRanking broncos = findPlayerByPlayerName("Jay Cutler", remainingSeasonScraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
-        assertEquals("Failed to parse the correct ranking", 24, broncos.getRanking());
+        assertEquals("Failed to parse the correct ranking", 8, broncos.getRanking());
     }
 
     @Test
     public void broncosShouldHaveNinetyThreeAndFiftyFourFirePointsInRemainingSeasonProjections(){
-        NumberFireRanking broncos = findPlayerByPlayerName("Denver", remainingSeasonScraper.getPlayerRankings());
+        NumberFireRanking broncos = findPlayerByPlayerName("Jay Cutler", remainingSeasonScraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
-        assertEquals("Failed to parse the Bronco's FirePoints correctly", 93.54, broncos.getFirePoints());
+        assertEquals("Failed to parse the Bronco's FirePoints correctly", 226.04, broncos.getFirePoints());
     }
 }

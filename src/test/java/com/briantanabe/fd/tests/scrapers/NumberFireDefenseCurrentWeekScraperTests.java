@@ -3,7 +3,6 @@ package com.briantanabe.fd.tests.scrapers;
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlDefenseScraper;
-import junit.framework.Assert;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,9 +10,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static com.briantanabe.fd.tests.scrapers.PlayerFinder.findPlayerByPlayerName;
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -41,36 +40,25 @@ public class NumberFireDefenseCurrentWeekScraperTests {
 
     @Test
     public void shouldContainTheDenverBroncosInCurrentWeekProjections(){
-        NumberFireRanking broncos = findTeamByTeamName("Denver", currentWeekScraper.getPlayerRankings());
+        NumberFireRanking broncos = findPlayerByPlayerName("Denver", currentWeekScraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
     }
 
     @Test
     public void broncosShouldBeRankedTwentySeventhInCurrentWeekProjections(){
-        NumberFireRanking broncos = findTeamByTeamName("Denver", currentWeekScraper.getPlayerRankings());
+        NumberFireRanking broncos = findPlayerByPlayerName("Denver", currentWeekScraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
-        Assert.assertEquals("Failed to parse the correct ranking", 27, broncos.getRanking());
+        assertEquals("Failed to parse the correct ranking", 27, broncos.getRanking());
     }
 
 
     @Test
     public void broncosShouldHaveZeroFirePointsInCurrentWeekProjections(){
-        NumberFireRanking broncos = findTeamByTeamName("Denver", currentWeekScraper.getPlayerRankings());
+        NumberFireRanking broncos = findPlayerByPlayerName("Denver", currentWeekScraper.getPlayerRankings());
 
         assertNotNull("Failed to find the Broncos", broncos);
-        Assert.assertEquals("Failed to parse the Bronco's FirePoints correctly", 0.0, broncos.getFirePoints());
-    }
-
-    private NumberFireRanking findTeamByTeamName(String teamName, ArrayList<NumberFireRanking> teams){
-        NumberFireRanking teamToFind = null;
-        for(NumberFireRanking defense : teams){
-            if(defense.getName().contains(teamName)){
-                teamToFind = defense;
-            }
-        }
-
-        return teamToFind;
+        assertEquals("Failed to parse the Bronco's FirePoints correctly", 0.0, broncos.getFirePoints());
     }
 }
