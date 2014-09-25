@@ -2,7 +2,7 @@ package com.briantanabe.fd.tests.scrapers;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
-import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlDefenseScraper;
+import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,7 +26,7 @@ public class NumberFireDefenseCurrentWeekScraperTests {
     public static void setup(){
         try {
             Document numberFireCurrentWeekProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfCurrentWeekDefProjections.html")));
-            currentWeekScraper = new NumberFireScraper(numberFireCurrentWeekProjectionsDocument, new CurrentWeekNumberFireHtmlDefenseScraper());
+            currentWeekScraper = new NumberFireScraper(numberFireCurrentWeekProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
             currentWeekScraper.scrape();
         } catch(Exception ex){
             fail("FAILED to open nfRemainingSeasonDefProjections");

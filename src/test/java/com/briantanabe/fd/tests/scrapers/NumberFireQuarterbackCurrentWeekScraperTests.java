@@ -2,7 +2,7 @@ package com.briantanabe.fd.tests.scrapers;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
-import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlDefenseScraper;
+import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
@@ -25,7 +25,7 @@ public class NumberFireQuarterbackCurrentWeekScraperTests {
     public static void setup(){
         try {
             Document numberFireCurrentWeekProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfCurrentWeekQbProjections.html")));
-            remainingSeasonScraper = new NumberFireScraper(numberFireCurrentWeekProjectionsDocument, new CurrentWeekNumberFireHtmlDefenseScraper());
+            remainingSeasonScraper = new NumberFireScraper(numberFireCurrentWeekProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
             remainingSeasonScraper.scrape();
         } catch(Exception ex){
             fail("FAILED to open nfCurrentSeasonQbProjections");

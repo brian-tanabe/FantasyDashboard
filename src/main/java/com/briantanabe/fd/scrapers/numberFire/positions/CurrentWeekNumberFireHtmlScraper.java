@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by Brian on 9/25/14.
  */
-public class CurrentWeekNumberFireHtmlDefenseScraper extends NumberFirePositionScraper {
+public class CurrentWeekNumberFireHtmlScraper extends NumberFirePositionScraper {
 
     @Override
     public ArrayList<NumberFireRanking> getPlayerRankings(Document document) {
