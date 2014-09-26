@@ -1,7 +1,7 @@
 package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
-import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
+import com.briantanabe.fd.scrapers.numberFire.NumberFirePageScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.RemainingSeasonNumberFireJsonScraper;
 import junit.framework.TestCase;
 import org.jsoup.nodes.Document;
@@ -25,12 +25,12 @@ public class NumberFireRemainingSeasonRunningBackScraperTests {
     private static final int ESPN_PLAYER_ID = 11307;
     private static final int NUMBER_FIRE_ID = 204;
 
-    private static NumberFireScraper remainingSeasonScraper;
+    private static NumberFirePageScraper remainingSeasonScraper;
 
     @BeforeClass
     public static void setup(){
         Document numberFireRemainingYearProjectionsDocument = getDocumentFromFileHtml("./src/test/resources/WebPages/nfRemainingSeasonRbProjections.html");
-        remainingSeasonScraper = new NumberFireScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
+        remainingSeasonScraper = new NumberFirePageScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
         remainingSeasonScraper.scrape();
     }
 

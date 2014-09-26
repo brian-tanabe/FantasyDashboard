@@ -1,7 +1,7 @@
 package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
-import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
+import com.briantanabe.fd.scrapers.numberFire.NumberFirePageScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
 import junit.framework.TestCase;
 import org.jsoup.nodes.Document;
@@ -24,12 +24,12 @@ public class NumberFireCurrentWeekKickerScraperTests {
     private static final double PLAYER_FIRE_POINTS = 9.47;
     private static final int NUMBER_FIRE_ID = 2820;
 
-    private static NumberFireScraper currentWeekScraper;
+    private static NumberFirePageScraper currentWeekScraper;
 
     @BeforeClass
     public static void setup(){
         Document numberFireProjectionsDocument = getDocumentFromFileHtml("./src/test/resources/WebPages/nfCurrentWeekKProjections.html");
-        currentWeekScraper = new NumberFireScraper(numberFireProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
+        currentWeekScraper = new NumberFirePageScraper(numberFireProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
         currentWeekScraper.scrape();
     }
 

@@ -1,29 +1,22 @@
 package com.briantanabe.fd.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
-import com.briantanabe.fd.scrapers.numberFire.positions.NumberFirePositionScraper;
-import org.jsoup.nodes.Document;
+import com.briantanabe.fd.web.WebRequest;
 
 import java.util.ArrayList;
 
 /**
- * Created by Brian on 9/24/14.
+ * Created by BTanabe on 9/26/2014.
  */
 public class NumberFireScraper {
-    private Document document;
-    private NumberFirePositionScraper scraper;
-    ArrayList<NumberFireRanking> players;
+    private WebRequest webRequest;
 
-    public NumberFireScraper(Document playerProjectionsPageDocument, NumberFirePositionScraper scraper){
-        this.document = playerProjectionsPageDocument;
-        this.scraper = scraper;
+    public NumberFireScraper(WebRequest webRequest){
+        this.webRequest = webRequest;
     }
 
-    public void scrape(){
-        players = scraper.getPlayerRankings(document);
-    }
-
-    public ArrayList<NumberFireRanking> getPlayerRankings(){
+    public ArrayList<NumberFireRanking> scrape(){
+        ArrayList<NumberFireRanking> players = new ArrayList<NumberFireRanking>(2000);
         return players;
     }
 }
