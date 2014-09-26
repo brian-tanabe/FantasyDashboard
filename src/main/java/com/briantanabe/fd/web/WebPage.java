@@ -30,6 +30,6 @@ public class WebPage {
     }
 
     public static String getEspnPlayersPageFromLeagueId(int leagueId){
-        return String.format("http://games.espn.go.com/ffl/freeagency?leagueId=%d", leagueId);
+        return String.format("http://games.espn.go.com/ffl/freeagency?leagueId=%d#&avail=-1", leagueId);
     }
 }

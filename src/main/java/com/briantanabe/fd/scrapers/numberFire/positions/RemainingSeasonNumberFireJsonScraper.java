@@ -50,8 +50,7 @@ public class RemainingSeasonNumberFireJsonScraper extends NumberFirePositionScra
             int id = jsonElement.getInt("id");
             String teamName = jsonElement.getString("name");
 
-            NumberFireRanking ranking = new NumberFireRanking();
-            ranking.setName(teamName);
+            NumberFireRanking ranking = new NumberFireRanking(teamName);
             idToRankingMap.put(id, ranking);
         }
     }

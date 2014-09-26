@@ -1,6 +1,6 @@
 package com.briantanabe.fd.unitTests.scrapers;
 
-import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import com.briantanabe.fd.fantasy.player.NflPlayer;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class PlayerFinder {
 
-    public static NumberFireRanking findPlayerByPlayerName(String name, ArrayList<NumberFireRanking> players){
-        NumberFireRanking playerToFind = null;
-        for(NumberFireRanking player : players){
+    public static <T extends NflPlayer> T findPlayerByPlayerName(String name, ArrayList<T> players){
+        T playerToFind = null;
+        for(T player : players){
             if(player.getName().contains(name))
                 playerToFind = player;
         }
