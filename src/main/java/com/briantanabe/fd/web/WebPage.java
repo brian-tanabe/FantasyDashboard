@@ -21,6 +21,8 @@ public class WebPage {
     public static final String NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL = String.format("%s/%s", NUMBER_FIRE_REMAINING_YEAR_PROJECTIONS_URL, "k");
     public static final String NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL = String.format("%s/%s", NUMBER_FIRE_REMAINING_YEAR_PROJECTIONS_URL, "d");
 
+    public static final String ESPN_FANTASY_HOME_PAGE_URL = "http://games.espn.go.com/frontpage/football";
+
     public static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:32.0) Gecko/20100101 Firefox/32.0";
 
     public static String getEspnLoginUrl(String username, String password){

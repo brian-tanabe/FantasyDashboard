@@ -3,9 +3,11 @@ package com.briantanabe.fd.tests.web;
 import com.briantanabe.fd.web.SecureWebRequest;
 import com.briantanabe.fd.web.auth.EspnCredentialProvider;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.Test;
 
-
+import static com.briantanabe.fd.web.WebPage.ESPN_FANTASY_HOME_PAGE_URL;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -26,10 +28,11 @@ public class EspnWebRequestTests {
     public void shouldBeAbleToFindLogoutButtonOnEspnsHomePageIfLoggedIn(){
         try {
             SecureWebRequest secureWebRequest = new SecureWebRequest().login(new EspnCredentialProvider());
-            Document espnHomePage = secureWebRequest.getPageAsDocument("http://www.espn.com");
+            Document espnHomePage = secureWebRequest.getPageAsDocument(ESPN_FANTASY_HOME_PAGE_URL);
+            Elements teamLinks = espnHomePage.select("a.clubhouse-link");
 
-            fail("NOT SURE HOW TO DETERMINE IF YOU'RE LOGGED IN...");
-            System.out.println("");
+            assertTrue("Did not find any links", teamLinks.size() > 0);
+            assertTrue("Did not find any links to team homepages", teamLinks.select("a[href^=http://games.espn.go.com/ffl/clubhouse?").size() > 0);
         } catch(Exception ex){
             fail("Failed to log into ESPN");
         }

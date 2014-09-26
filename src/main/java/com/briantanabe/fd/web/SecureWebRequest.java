@@ -1,52 +1,52 @@
 package com.briantanabe.fd.web;
 
 import com.briantanabe.fd.web.auth.CredentialProviderI;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.CookieHandler;
-import java.net.CookieManager;
 
-import static com.briantanabe.fd.web.WebPage.*;
+import static com.briantanabe.fd.web.WebPage.USER_AGENT;
 
 /**
  * Created by BTanabe on 9/25/2014.
  */
 public class SecureWebRequest extends WebRequest {
+    private HttpContext localContext = new BasicHttpContext();
+    private CookieStore cookieStore = new BasicCookieStore();
     private HttpClient client = HttpClientBuilder.create().build();
-    private String cookies;
+
+    public SecureWebRequest(){
+        localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+    }
 
     public SecureWebRequest login(CredentialProviderI credentialProvider) throws IOException {
-        cookies = getLoginCookiesFromServer(credentialProvider);
+        getLoginCookiesFromServer(credentialProvider);
         return this;
     }
 
-    private String getLoginCookiesFromServer(CredentialProviderI credentialProvider) throws IOException {
+    private void getLoginCookiesFromServer(CredentialProviderI credentialProvider) throws IOException {
         HttpPost post = new HttpPost(credentialProvider.getLoginUrl());
 
         post.setHeader("Host", "r.espn.go.com");
         post.setHeader("User-Agent", USER_AGENT);
         post.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         post.setHeader("Accept-Language", "en-US,en;q=0.8");
-        post.setHeader("Cookie", cookies);
         post.setHeader("Connection", "keep-alive");
         post.setHeader("Accept-Encoding", "gzip,deflate");
 
-        HttpResponse response = client.execute(post);
-
-        return response.getFirstHeader("Set-Cookie") == null ? "" : response.getFirstHeader("Set-Cookie").toString();
+        client.execute(post, localContext);
+        post.releaseConnection();
     }
 
     public Document getPageAsDocument(String url) throws IOException {
@@ -54,18 +54,11 @@ public class SecureWebRequest extends WebRequest {
         request.setHeader("User-Agent", USER_AGENT);
         request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         request.setHeader("Accept-Language", "en-US,en;q=0.8");
-        request.setHeader("Cookie", cookies);
 
-        HttpResponse response = client.execute(request);
-        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        HttpResponse response = client.execute(request, localContext);
+        Document pageDocument = Jsoup.parse(response.getEntity().getContent(), "UTF8", url);
+        request.releaseConnection();
 
-        StringBuffer result = new StringBuffer();
-        String pageHtml = "";
-        while ((pageHtml = rd.readLine()) != null) {
-            result.append(pageHtml);
-        }
-
-
-        return Jsoup.parse(result.toString());
+        return pageDocument;
     }
 }

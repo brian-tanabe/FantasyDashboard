@@ -1,4 +1,4 @@
-package com.briantanabe.fd.tests.scrapers;
+package com.briantanabe.fd.tests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;

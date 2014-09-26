@@ -1,11 +1,11 @@
 package com.briantanabe.fd.tests.web;
 
+import com.briantanabe.fd.web.WebRequest;
+import org.junit.Test;
+
 import static com.briantanabe.fd.web.WebPage.*;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
-
-import com.briantanabe.fd.web.WebRequest;
-import org.junit.Test;
 
 /**
  * Created by Brian on 9/24/14.
@@ -118,6 +118,15 @@ public class WebPageTests {
             assertEquals("Incorrect response code for remaining season nF DEF page", 200, webRequest.getPageResponseCode(NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL));
         } catch (Exception ex){
             fail("FAILED to reach remaining season nF DEF page");
+        }
+    }
+
+    @Test
+    public void shouldBeABleToReachEspnFantasyHomePage(){
+        try {
+            assertEquals("Incorrect response code for ESPN fantasy home page", 200, webRequest.getPageResponseCode(ESPN_FANTASY_HOME_PAGE_URL));
+        } catch(Exception ex){
+            fail("FAILED to reach ESPN's fantasy home page");
         }
     }
 }

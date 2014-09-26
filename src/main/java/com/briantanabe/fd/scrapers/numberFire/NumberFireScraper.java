@@ -3,8 +3,6 @@ package com.briantanabe.fd.scrapers.numberFire;
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.positions.NumberFirePositionScraper;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
