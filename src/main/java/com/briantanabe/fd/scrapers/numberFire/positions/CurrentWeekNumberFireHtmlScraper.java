@@ -22,7 +22,9 @@ public class CurrentWeekNumberFireHtmlScraper extends NumberFirePositionScraper 
             String teamName = teamElement.select("a[href^=/nfl/players/]").text();
             String firePoints = teamElement.select("td[class$=col-fp]").text();
 
-            NumberFireRanking numberFireRanking = new NumberFireRanking(teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
+            int espnPlayerId = -1;
+
+            NumberFireRanking numberFireRanking = new NumberFireRanking(espnPlayerId, teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
             playerRankings.add(numberFireRanking);
         }
 

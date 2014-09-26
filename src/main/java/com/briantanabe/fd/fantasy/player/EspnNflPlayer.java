@@ -4,22 +4,18 @@ package com.briantanabe.fd.fantasy.player;
  * Created by BTanabe on 9/26/2014.
  */
 public class EspnNflPlayer extends NflPlayer {
-    private int id;
+    private int leagueId;
     private int owner;
 
-    public EspnNflPlayer(int espnId, String name, int owner){
-        super(name);
-        this.id = espnId;
+    public EspnNflPlayer(int leagueId, int espnId, String name, int owner){
+        super(espnId, name);
+        this.leagueId = leagueId;
         this.owner = owner;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getLeagueId(){ return leagueId; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setLeagueId(int leagueId){ this.leagueId = leagueId; }
 
     public int getOwner() {
         return owner;

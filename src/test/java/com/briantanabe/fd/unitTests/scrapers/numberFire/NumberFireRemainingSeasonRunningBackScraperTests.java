@@ -20,6 +20,7 @@ public class NumberFireRemainingSeasonRunningBackScraperTests {
     private static final int NUMBER_OF_PLAYERS = 138;
     private static final int PLAYER_RANKING = 6;
     private static final double PLAYER_FIRE_POINTS = 178.15;
+    private static final int ESPN_PLAYER_ID = 11307;
 
     private static NumberFireScraper remainingSeasonScraper;
 
@@ -57,5 +58,13 @@ public class NumberFireRemainingSeasonRunningBackScraperTests {
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's FirePoints correctly", PLAYER_NAME), PLAYER_FIRE_POINTS, player.getFirePoints());
+    }
+
+    @Test
+    public void shouldBeAbleToParseEspnPlayerIdProperly(){
+        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+
+        Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
+        TestCase.assertEquals(String.format("Failed to parse %s's ESPN player ID correctly", PLAYER_NAME), ESPN_PLAYER_ID, player.getEspnPlayerId());
     }
 }

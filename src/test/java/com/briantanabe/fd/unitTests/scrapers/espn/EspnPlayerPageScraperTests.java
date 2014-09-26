@@ -16,10 +16,11 @@ import static org.junit.Assert.assertNotNull;
  * Created by BTanabe on 9/26/2014.
  */
 public class EspnPlayerPageScraperTests {
+    private static final int TEST_ESPN_LEAGUE_ID = 84978;
 
     @Test
     public void testCanFindFortyPlayers(){
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         assertEquals("Did not find 40 players on page one", 40, players.size());
@@ -29,7 +30,7 @@ public class EspnPlayerPageScraperTests {
     public void testCanFindTheFirstPlayerOnPageOne(){
         String playerToTest = "Adrian Peterson";
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
@@ -41,12 +42,12 @@ public class EspnPlayerPageScraperTests {
         String playerToTest = "Adrian Peterson";
         int espnId = 10452;
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
-        assertEquals(String.format("%s's ESPN ID was not parsed correctly", playerToTest), espnId, player.getId());
+        assertEquals(String.format("%s's ESPN ID was not parsed correctly", playerToTest), espnId, player.getEspnPlayerId());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class EspnPlayerPageScraperTests {
         String playerToTest = "Adrian Peterson";
         int teamId = 11;
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
@@ -66,7 +67,7 @@ public class EspnPlayerPageScraperTests {
     public void testCanFindTheLastPlayerOnPageOne(){
         String playerToTest = "C.J. Spiller";
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
@@ -78,12 +79,12 @@ public class EspnPlayerPageScraperTests {
         String playerToTest = "C.J. Spiller";
         int espnId = 13203;
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
-        assertEquals(String.format("%s's ESPN ID was not parsed correctly", playerToTest), espnId, player.getId());
+        assertEquals(String.format("%s's ESPN ID was not parsed correctly", playerToTest), espnId, player.getEspnPlayerId());
     }
 
     @Test
@@ -91,7 +92,7 @@ public class EspnPlayerPageScraperTests {
         String playerToTest = "C.J. Spiller";
         int teamId = 11;
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageOneAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
@@ -104,7 +105,7 @@ public class EspnPlayerPageScraperTests {
         String playerToTest = "Ray Rice";
         int teamId = -1;
 
-        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper(TEST_ESPN_LEAGUE_ID);
         ArrayList<EspnNflPlayer> players = scraper.scrape(getAllPlayersProjectionPageTwoAsDocument());
 
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);

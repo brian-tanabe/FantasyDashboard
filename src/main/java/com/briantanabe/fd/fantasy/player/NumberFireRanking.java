@@ -7,12 +7,12 @@ public class NumberFireRanking extends NflPlayer {
     private int ranking;
     private double firePoints;
 
-    public NumberFireRanking(String name){
-        super(name);
+    public NumberFireRanking(int espnPlayerId, String name){
+        super(espnPlayerId, name);
     }
 
-    public NumberFireRanking(String name, int ranking, double firePoints){
-        super(name);
+    public NumberFireRanking(int espnPlayerId, String name, int ranking, double firePoints){
+        super(espnPlayerId, name);
         this.ranking = ranking;
         this.firePoints = firePoints;
     }

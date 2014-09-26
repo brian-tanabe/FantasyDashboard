@@ -13,6 +13,11 @@ import java.util.regex.Pattern;
  * Created by BTanabe on 9/26/2014.
  */
 public class EspnPlayerPageScraper {
+    private int leagueId;
+
+    public EspnPlayerPageScraper(int leagueId){
+        this.leagueId = leagueId;
+    }
 
     public ArrayList<EspnNflPlayer> scrape(Document document){
         Elements playerElements = findAllPlayerElementsInDocument(document);
@@ -24,7 +29,7 @@ public class EspnPlayerPageScraper {
             String name = playerIdAndNameElement.text();
             int teamId = getOwnersTeamIdFromElement(playerElement.select("td[style$=text-align: center;]").get(0));
 
-            players.add(new EspnNflPlayer(Integer.parseInt(playerId), name, teamId));
+            players.add(new EspnNflPlayer(leagueId, Integer.parseInt(playerId), name, teamId));
         }
 
         return players;
