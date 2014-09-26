@@ -5,6 +5,7 @@ package com.briantanabe.fd.fantasy.player;
  */
 public class NflPlayer {
     private int espnPlayerId;
+    private int numberFireId;
     private String name;
 
     public NflPlayer(int espnPlayerId, String name){
@@ -14,6 +15,10 @@ public class NflPlayer {
 
     public int getEspnPlayerId(){
         return espnPlayerId;
+    }
+
+    public int getNumberFireId(){
+        return numberFireId;
     }
 
     public String getName(){

@@ -1,6 +1,7 @@
 package com.briantanabe.fd.scrapers.numberFire.positions;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonRanking;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;
@@ -14,7 +15,7 @@ import java.util.LinkedHashMap;
  * Created by Brian on 9/24/14.
  */
 public class RemainingSeasonNumberFireJsonScraper extends NumberFirePositionScraper {
-    private LinkedHashMap<Integer, NumberFireRanking> idToRankingMap = new LinkedHashMap<Integer, NumberFireRanking>(32);
+    private LinkedHashMap<Integer, NumberFireRemainingSeasonRanking> idToRankingMap = new LinkedHashMap<Integer, NumberFireRemainingSeasonRanking>();
 
     @Override
     public ArrayList<NumberFireRanking> getPlayerRankings(Document document) {
@@ -48,11 +49,10 @@ public class RemainingSeasonNumberFireJsonScraper extends NumberFirePositionScra
         for(String jsonElementName : playersJsonObject.getNames(playersJsonObject)){
             JSONObject jsonElement = playersJsonObject.getJSONObject(jsonElementName);
             int id = jsonElement.getInt("id");
-            String teamName = jsonElement.getString("name");
+            String playerName = jsonElement.getString("name");
             int espnPlayerId = jsonElement.getInt("espn_id");
-            int numberFireId = jsonElement.getInt("id");
 
-            NumberFireRanking ranking = new NumberFireRanking(numberFireId, espnPlayerId, teamName);
+            NumberFireRemainingSeasonRanking ranking = new NumberFireRemainingSeasonRanking(id, espnPlayerId, playerName);
             idToRankingMap.put(id, ranking);
         }
     }

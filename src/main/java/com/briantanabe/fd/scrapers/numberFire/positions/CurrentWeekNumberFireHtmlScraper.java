@@ -1,5 +1,6 @@
 package com.briantanabe.fd.scrapers.numberFire.positions;
 
+import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekRanking;
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,11 +22,9 @@ public class CurrentWeekNumberFireHtmlScraper extends NumberFirePositionScraper 
             String ranking = teamElement.select("td.sep").get(1).text();
             String teamName = teamElement.select("a[href^=/nfl/players/]").text();
             String firePoints = teamElement.select("td[class$=col-fp]").text();
-            String numberFireRankingString = teamElement.select("a[href^=/nfl/players/]").attr("rel");
+            String numberFireIdString = teamElement.select("a[href^=/nfl/players/]").attr("rel");
 
-            int espnPlayerId = -1;
-
-            NumberFireRanking numberFireRanking = new NumberFireRanking(Integer.parseInt(numberFireRankingString), espnPlayerId, teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
+            NumberFireCurrentWeekRanking numberFireRanking = new NumberFireCurrentWeekRanking(Integer.parseInt(numberFireIdString), teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
             playerRankings.add(numberFireRanking);
         }
 
