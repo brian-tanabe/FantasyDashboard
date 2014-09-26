@@ -9,11 +9,11 @@ import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml
  */
 public class EspnPlayersPageFixture {
 
-    public Document getAllPlayersPageOneAsDocument(){
+    public static Document getAllPlayersPageOneAsDocument(){
         return getDocumentFromFileHtml("./src/test/resources/WebPages/espn/espnPlayersPageOne.html");
     }
 
-    public Document getAllPlayersPageTwoAsDocument(){
+    public static Document getAllPlayersPageTwoAsDocument(){
         return getDocumentFromFileHtml("./src/test/resources/WebPages/espn/espnPlayersPageTwo.html");
     }
 }
