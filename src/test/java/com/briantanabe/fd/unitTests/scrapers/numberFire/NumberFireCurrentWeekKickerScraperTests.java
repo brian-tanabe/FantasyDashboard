@@ -4,19 +4,15 @@ import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
 import junit.framework.TestCase;
-import org.apache.commons.io.FileUtils;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.File;
-
+import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml;
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.fail;
 
 /**
  * Created by BTanabe on 9/25/2014.
@@ -31,13 +27,9 @@ public class NumberFireCurrentWeekKickerScraperTests {
 
     @BeforeClass
     public static void setup(){
-        try {
-            Document numberFireProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfCurrentWeekKProjections.html")));
-            currentWeekScraper = new NumberFireScraper(numberFireProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
-            currentWeekScraper.scrape();
-        } catch(Exception ex){
-            fail("FAILED to open nfCurrentWeekKProjections");
-        }
+        Document numberFireProjectionsDocument = getDocumentFromFileHtml("./src/test/resources/WebPages/nfCurrentWeekKProjections.html");
+        currentWeekScraper = new NumberFireScraper(numberFireProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
+        currentWeekScraper.scrape();
     }
 
     @Test

@@ -25,7 +25,7 @@ public class EspnWebRequestTests {
     }
 
     @Test
-    public void shouldBeAbleToFindLogoutButtonOnEspnsHomePageIfLoggedIn(){
+    public void shouldBeAbleToFindFantasyTeamLinksIfLoggedInToEspn(){
         try {
             SecureWebRequest secureWebRequest = new SecureWebRequest().login(new EspnCredentialProvider());
             Document espnHomePage = secureWebRequest.getPageAsDocument(ESPN_FANTASY_HOME_PAGE_URL);
