@@ -22,6 +22,7 @@ public class NumberFireCurrentWeekTightEndScraperTests {
     private static final int NUMBER_OF_PLAYERS = 94;
     private static final int PLAYER_RANKING = 98;
     private static final double PLAYER_FIRE_POINTS = 6.45;
+    private static final int NUMBER_FIRE_ID = 1102;
 
     private static NumberFireScraper currentWeekScraper;
 
@@ -59,5 +60,14 @@ public class NumberFireCurrentWeekTightEndScraperTests {
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's FirePoints correctly", PLAYER_NAME), PLAYER_FIRE_POINTS, player.getFirePoints());
+    }
+
+
+    @Test
+    public void playerShouldHaveTheProperNumberFireId(){
+        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
+
+        Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
+        TestCase.assertEquals(String.format("Failed to parse %s's numberFireId correctly", PLAYER_NAME), NUMBER_FIRE_ID, player.getNumberFireId());
     }
 }

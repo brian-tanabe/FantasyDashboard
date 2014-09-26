@@ -8,7 +8,7 @@ public class NumberFireRanking extends NflPlayer {
     private double firePoints;
 
     protected NumberFireRanking(int numberFireId, int espnPlayerId, String name, int ranking, double firePoints){
-        super(espnPlayerId, name);
+        super(espnPlayerId, numberFireId, name);
         this.ranking = ranking;
         this.firePoints = firePoints;
     }

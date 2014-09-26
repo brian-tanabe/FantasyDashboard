@@ -8,7 +8,7 @@ public class EspnNflPlayer extends NflPlayer {
     private int owner;
 
     public EspnNflPlayer(int leagueId, int espnId, String name, int owner){
-        super(espnId, name);
+        super(espnId, - 1, name);
         this.leagueId = leagueId;
         this.owner = owner;
     }

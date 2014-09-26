@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml;
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Brian on 9/24/14.
@@ -21,6 +23,7 @@ public class NumberFireRemainingSeasonDefenseScraperTests {
     private static final int PLAYER_RANKING = 24;
     private static final double PLAYER_FIRE_POINTS = 93.54;
     private static final int ESPN_PLAYER_ID = 60007;
+    private static final int NUMBER_FIRE_ID = 2901;
 
     private static NumberFireScraper remainingSeasonScraper;
 
@@ -42,7 +45,6 @@ public class NumberFireRemainingSeasonDefenseScraperTests {
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
     }
-
 
     @Test
     public void broncosShouldBeRankedTwentyFourthInRemainingSeasonProjections(){
@@ -66,5 +68,13 @@ public class NumberFireRemainingSeasonDefenseScraperTests {
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's ESPN player ID correctly", PLAYER_NAME), ESPN_PLAYER_ID, player.getEspnPlayerId());
+    }
+
+    @Test
+    public void playerShouldHaveTheProperNumberFireId(){
+        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+
+        assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
+        assertEquals(String.format("Failed to parse %s's numberFireId correctly", PLAYER_NAME), NUMBER_FIRE_ID, player.getNumberFireId());
     }
 }

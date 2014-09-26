@@ -8,8 +8,9 @@ public class NflPlayer {
     private int numberFireId;
     private String name;
 
-    public NflPlayer(int espnPlayerId, String name){
+    public NflPlayer(int espnPlayerId, int numberFireId, String name){
         this.espnPlayerId = espnPlayerId;
+        this.numberFireId = numberFireId;
         this.name = name;
     }
 
