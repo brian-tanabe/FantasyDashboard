@@ -1,4 +1,4 @@
-package com.briantanabe.fd.tests.scrapers.numberFire;
+package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
@@ -13,46 +13,45 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static com.briantanabe.fd.tests.scrapers.PlayerFinder.findPlayerByPlayerName;
+import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.fail;
 
 /**
- * Created by Brian on 9/24/14.
+ * Created by BTanabe on 9/25/2014.
  */
-public class NumberFireRemainingSeasonDefenseScraperTests {
-    private static final String PLAYER_NAME = "Denver";
-    private static final int NUMBER_OF_PLAYERS = 32;
-    private static final int PLAYER_RANKING = 24;
-    private static final double PLAYER_FIRE_POINTS = 93.54;
+public class NumberFireRemainingSeasonQuarterbackScraperTests {
+    private static final String PLAYER_NAME = "Jay Cutler";
+    private static final int NUMBER_OF_PLAYERS = 75;
+    private static final int PLAYER_RANKING = 8;
+    private static final double PLAYER_FIRE_POINTS = 226.04;
 
     private static NumberFireScraper remainingSeasonScraper;
 
     @BeforeClass
     public static void setup(){
         try {
-            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonDefProjections.html")));
+            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonQbProjections.html")));
             remainingSeasonScraper = new NumberFireScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
             remainingSeasonScraper.scrape();
         } catch(Exception ex){
-            fail("FAILED to open nfRemainingSeasonDefProjections");
+            fail("FAILED to open nfRemainingSeasonQbProjections");
         }
     }
 
     @Test
-    public void shouldBeAbleToFindThirtyTwoTeamsInRemainingSeasonProjections(){
-        TestCase.assertEquals(String.format("NumberFireScraper did not find %d teams", NUMBER_OF_PLAYERS), NUMBER_OF_PLAYERS, remainingSeasonScraper.getPlayerRankings().size());
+    public void shouldBeAbleToFindSeventyFivePlayersInRemainingSeasonProjections(){
+        Assert.assertEquals(String.format("Did not find %d quarterbacks", NUMBER_OF_PLAYERS), NUMBER_OF_PLAYERS, remainingSeasonScraper.getPlayerRankings().size());
     }
 
     @Test
     public void shouldContainTheDenverBroncosInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
-        Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
+        Assert.assertNotNull(String.format("Failed to find the %s", PLAYER_NAME), player);
     }
 
-
     @Test
-    public void broncosShouldBeRankedTwentyFourthInRemainingSeasonProjections(){
+    public void broncosShouldBeRankedEighthInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);

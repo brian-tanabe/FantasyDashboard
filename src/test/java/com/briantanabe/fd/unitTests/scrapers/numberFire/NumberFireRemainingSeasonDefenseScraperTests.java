@@ -1,4 +1,4 @@
-package com.briantanabe.fd.tests.scrapers.numberFire;
+package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
@@ -13,48 +13,46 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static com.briantanabe.fd.tests.scrapers.PlayerFinder.findPlayerByPlayerName;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.fail;
 
 /**
- * Created by BTanabe on 9/25/2014.
+ * Created by Brian on 9/24/14.
  */
-public class NumberFireRemainingSeasonTightEndScraperTests {
-    private static final String PLAYER_NAME = "Julius Thomas";
-    private static final int NUMBER_OF_PLAYERS = 94;
-    private static final int PLAYER_RANKING = 3;
-    private static final double PLAYER_FIRE_POINTS = 117.43;
+public class NumberFireRemainingSeasonDefenseScraperTests {
+    private static final String PLAYER_NAME = "Denver";
+    private static final int NUMBER_OF_PLAYERS = 32;
+    private static final int PLAYER_RANKING = 24;
+    private static final double PLAYER_FIRE_POINTS = 93.54;
 
     private static NumberFireScraper remainingSeasonScraper;
 
     @BeforeClass
     public static void setup(){
         try {
-            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonTeProjections.html")));
+            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonDefProjections.html")));
             remainingSeasonScraper = new NumberFireScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
             remainingSeasonScraper.scrape();
         } catch(Exception ex){
-            fail("FAILED to open nfRemainingSeasonTeProjections");
+            fail("FAILED to open nfRemainingSeasonDefProjections");
         }
     }
 
     @Test
-    public void shouldBeAbleToFindNinetyFourPlayersInRemainingSeasonProjections(){
-        assertEquals(String.format("NumberFireScraper did not find %d players", NUMBER_OF_PLAYERS), NUMBER_OF_PLAYERS, remainingSeasonScraper.getPlayerRankings().size());
+    public void shouldBeAbleToFindThirtyTwoTeamsInRemainingSeasonProjections(){
+        TestCase.assertEquals(String.format("NumberFireScraper did not find %d teams", NUMBER_OF_PLAYERS), NUMBER_OF_PLAYERS, remainingSeasonScraper.getPlayerRankings().size());
     }
 
     @Test
-    public void shouldContainJuliusThomasInRemainingSeasonProjections(){
+    public void shouldContainTheDenverBroncosInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
-        assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
+        Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
     }
 
 
     @Test
-    public void juliusThomasShouldBeRankedThirdInRemainingSeasonProjections(){
+    public void broncosShouldBeRankedTwentyFourthInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
@@ -62,7 +60,7 @@ public class NumberFireRemainingSeasonTightEndScraperTests {
     }
 
     @Test
-    public void juliusThomasShouldHaveOneHundredSeventeenAndFourtyThreeFirePointsInRemainingSeasonProjections(){
+    public void broncosShouldHaveNinetyThreeAndFiftyFourFirePointsInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);

@@ -1,4 +1,4 @@
-package com.briantanabe.fd.tests.scrapers.espn;
+package com.briantanabe.fd.unitTests.scrapers.espn;
 
 import com.briantanabe.fd.fixtures.EspnFantasyHomePageFixture;
 import com.briantanabe.fd.scrapers.espn.EspnTeamPageLinkScraper;

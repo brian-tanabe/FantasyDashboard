@@ -1,4 +1,4 @@
-package com.briantanabe.fd.tests.scrapers.numberFire;
+package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.NumberFireScraper;
@@ -13,48 +13,46 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static com.briantanabe.fd.tests.scrapers.PlayerFinder.findPlayerByPlayerName;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.fail;
 
 /**
  * Created by BTanabe on 9/25/2014.
  */
-public class NumberFireRemainingSeasonKickerScraperTests {
-    private static final String PLAYER_NAME = "Robbie Gould";
-    private static final int NUMBER_OF_PLAYERS = 32;
-    private static final int PLAYER_RANKING = 4;
-    private static final double PLAYER_FIRE_POINTS = 106.68;
+public class NumberFireRemainingSeasonWideReceiverScraperTests {
+    private static final String PLAYER_NAME = "Emmanuel Sanders";
+    private static final int NUMBER_OF_PLAYERS = 178;
+    private static final int PLAYER_RANKING = 15;
+    private static final double PLAYER_FIRE_POINTS = 116.45;
 
     private static NumberFireScraper remainingSeasonScraper;
 
     @BeforeClass
     public static void setup(){
         try {
-            Document numberFireProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonKProjections.html")));
-            remainingSeasonScraper = new NumberFireScraper(numberFireProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
+            Document numberFireRemainingYearProjectionsDocument = Jsoup.parse(FileUtils.readFileToString(new File("./src/test/resources/WebPages/nfRemainingSeasonWrProjections.html")));
+            remainingSeasonScraper = new NumberFireScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
             remainingSeasonScraper.scrape();
         } catch(Exception ex){
-            fail("FAILED to open nfRemainingSeasonKProjections");
+            fail("FAILED to open nfRemainingSeasonWrProjections");
         }
     }
 
     @Test
-    public void shouldBeAbleToFindThirtyTwoPlayersInRemainingSeasonProjections(){
-        assertEquals(String.format("NumberFireScraper did not find %d players", NUMBER_OF_PLAYERS), NUMBER_OF_PLAYERS, remainingSeasonScraper.getPlayerRankings().size());
+    public void shouldBeAbleToFindOneHundredSeventyEightPlayersInRemainingSeasonProjections(){
+        Assert.assertEquals(String.format("Did not find %d wide receivers", NUMBER_OF_PLAYERS), NUMBER_OF_PLAYERS, remainingSeasonScraper.getPlayerRankings().size());
     }
 
     @Test
-    public void shouldContainRobbieGouldInRemainingSeasonProjections(){
+    public void shouldContainEmmanuelSandersInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
-        assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
+        Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
     }
 
 
     @Test
-    public void robbieGouldShouldBeRankedFourthInRemainingSeasonProjections(){
+    public void emmanuelSandersShouldBeRankedFifteenthInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
@@ -62,7 +60,7 @@ public class NumberFireRemainingSeasonKickerScraperTests {
     }
 
     @Test
-    public void robbieGouldShouldHaveOneHundredSixAndSixtyEightFirePointsInRemainingSeasonProjections(){
+    public void emmanuelSandersShouldHaveOneHundredSixteenAndFourtyFiveFirePointsInRemainingSeasonProjections(){
         NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
