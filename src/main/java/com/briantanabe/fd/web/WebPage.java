@@ -28,4 +28,8 @@ public class WebPage {
     public static String getEspnLoginUrl(String username, String password){
         return String.format("https://r.espn.go.com/members/login?count=0&SUBMIT=1&language=en&affiliateName=espn&regFormId=espn&username=%s&password=%s&appRedirect=https://r.espn.go.com/members/index", username, password);
     }
+
+    public static String getEspnPlayersPageFromLeagueId(int leagueId){
+        return String.format("http://games.espn.go.com/ffl/freeagency?leagueId=%d", leagueId);
+    }
 }

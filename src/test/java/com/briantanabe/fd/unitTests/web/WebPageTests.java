@@ -1,6 +1,8 @@
 package com.briantanabe.fd.unitTests.web;
 
+import com.briantanabe.fd.web.SecureWebRequest;
 import com.briantanabe.fd.web.WebRequest;
+import com.briantanabe.fd.web.auth.EspnCredentialProvider;
 import org.junit.Test;
 
 import static com.briantanabe.fd.web.WebPage.*;
@@ -127,6 +129,17 @@ public class WebPageTests {
             assertEquals("Incorrect response code for ESPN fantasy home page", 200, webRequest.getPageResponseCode(ESPN_FANTASY_HOME_PAGE_URL));
         } catch(Exception ex){
             fail("FAILED to reach ESPN's fantasy home page");
+        }
+    }
+
+    @Test
+    public void shouldBeAbleToReachEspnPlayersPageFromLakeForestLeague(){
+        try {
+            SecureWebRequest secureWebRequest = new SecureWebRequest();
+            secureWebRequest.login(new EspnCredentialProvider());
+            assertEquals("Incorrect response code for ESPN players page for leagueId=693999", 200, secureWebRequest.getPageResponseCode(getEspnPlayersPageFromLeagueId(693999)));
+        } catch(Exception ex){
+            fail("FAILED to reach ESPN's player's page");
         }
     }
 }

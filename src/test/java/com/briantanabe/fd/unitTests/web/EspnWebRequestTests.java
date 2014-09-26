@@ -37,4 +37,18 @@ public class EspnWebRequestTests {
             fail("Failed to log into ESPN");
         }
     }
+
+    @Test
+    public void shouldBeAbleToDownloadPlayerPageHtml(){
+        try {
+            SecureWebRequest secureWebRequest = new SecureWebRequest().login(new EspnCredentialProvider());
+            Document espnHomePage = secureWebRequest.getPageAsDocument(ESPN_FANTASY_HOME_PAGE_URL);
+            Elements teamLinks = espnHomePage.select("a.clubhouse-link");
+
+            assertTrue("Did not find any links", teamLinks.size() > 0);
+            assertTrue("Did not find any links to team homepages", teamLinks.select("a[href^=http://games.espn.go.com/ffl/clubhouse?").size() > 0);
+        } catch(Exception ex){
+            fail("Failed to log into ESPN");
+        }
+    }
 }
