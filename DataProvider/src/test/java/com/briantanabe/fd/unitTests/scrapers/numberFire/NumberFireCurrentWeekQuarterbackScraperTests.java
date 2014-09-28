@@ -1,6 +1,6 @@
 package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
-import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import com.briantanabe.fd.fantasy.player.NumberFireProjection;
 import com.briantanabe.fd.scrapers.numberFire.NumberFirePageScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
 import junit.framework.TestCase;
@@ -39,14 +39,14 @@ public class NumberFireCurrentWeekQuarterbackScraperTests {
 
     @Test
     public void shouldContainJayCutlerInCurrentWeekProjections(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
 
         assertNotNull(String.format("Failed to find the %s", PLAYER_NAME), player);
     }
 
     @Test
     public void jayCutlerShouldBeRankedFourthInCurrentWeekProjections(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
 
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals("Failed to parse the correct ranking", PLAYER_RANKING, player.getRanking());
@@ -55,7 +55,7 @@ public class NumberFireCurrentWeekQuarterbackScraperTests {
 
     @Test
     public void jayCutlerShouldHaveNineteenAndTwoFirePointsInCurrentWeekProjections(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
 
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's FirePoints correctly", PLAYER_NAME), PLAYER_FIRE_POINTS, player.getFirePoints());
@@ -63,7 +63,7 @@ public class NumberFireCurrentWeekQuarterbackScraperTests {
 
     @Test
     public void playerShouldHaveTheProperNumberFireId(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
 
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's numberFireId correctly", PLAYER_NAME), NUMBER_FIRE_ID, player.getNumberFireId());

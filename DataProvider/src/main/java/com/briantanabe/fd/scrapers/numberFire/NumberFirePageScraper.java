@@ -1,6 +1,6 @@
 package com.briantanabe.fd.scrapers.numberFire;
 
-import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import com.briantanabe.fd.fantasy.player.NumberFireProjection;
 import com.briantanabe.fd.scrapers.numberFire.positions.NumberFirePositionScraperI;
 import org.jsoup.nodes.Document;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class NumberFirePageScraper {
     private Document document;
     private NumberFirePositionScraperI scraper;
-    private ArrayList<NumberFireRanking> players;
+    private ArrayList<NumberFireProjection> players;
 
     public NumberFirePageScraper(Document playerProjectionsPageDocument, NumberFirePositionScraperI scraper){
         this.document = playerProjectionsPageDocument;
@@ -23,7 +23,7 @@ public class NumberFirePageScraper {
         players = scraper.getPlayerRankings(document);
     }
 
-    public ArrayList<NumberFireRanking> getPlayerRankings(){
+    public ArrayList<NumberFireProjection> getPlayerRankings(){
         return players;
     }
 }

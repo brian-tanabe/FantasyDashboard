@@ -1,6 +1,6 @@
 package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
-import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import com.briantanabe.fd.fantasy.player.NumberFireProjection;
 import com.briantanabe.fd.scrapers.numberFire.NumberFirePageScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.RemainingSeasonNumberFireJsonScraper;
 import junit.framework.TestCase;
@@ -41,7 +41,7 @@ public class NumberFireRemainingSeasonWideReceiverScraperTests {
 
     @Test
     public void shouldContainEmmanuelSandersInRemainingSeasonProjections(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
     }
@@ -49,7 +49,7 @@ public class NumberFireRemainingSeasonWideReceiverScraperTests {
 
     @Test
     public void emmanuelSandersShouldBeRankedFifteenthInRemainingSeasonProjections(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals("Failed to parse the correct ranking", PLAYER_RANKING, player.getRanking());
@@ -57,7 +57,7 @@ public class NumberFireRemainingSeasonWideReceiverScraperTests {
 
     @Test
     public void emmanuelSandersShouldHaveOneHundredSixteenAndFourtyFiveFirePointsInRemainingSeasonProjections(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's FirePoints correctly", PLAYER_NAME), PLAYER_FIRE_POINTS, player.getFirePoints());
@@ -65,7 +65,7 @@ public class NumberFireRemainingSeasonWideReceiverScraperTests {
 
     @Test
     public void shouldBeAbleToParseEspnPlayerIdProperly(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         Assert.assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         TestCase.assertEquals(String.format("Failed to parse %s's ESPN player ID correctly", PLAYER_NAME), ESPN_PLAYER_ID, player.getEspnPlayerId());
@@ -73,7 +73,7 @@ public class NumberFireRemainingSeasonWideReceiverScraperTests {
 
     @Test
     public void playerShouldHaveTheProperNumberFireId(){
-        NumberFireRanking player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
+        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, remainingSeasonScraper.getPlayerRankings());
 
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         assertEquals(String.format("Failed to parse %s's numberFireId correctly", PLAYER_NAME), NUMBER_FIRE_ID, player.getNumberFireId());

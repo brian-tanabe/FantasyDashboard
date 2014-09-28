@@ -1,7 +1,7 @@
 package com.briantanabe.fd.scrapers.numberFire.positions;
 
-import com.briantanabe.fd.fantasy.player.NumberFireRanking;
-import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonRanking;
+import com.briantanabe.fd.fantasy.player.NumberFireProjection;
+import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;
@@ -15,10 +15,10 @@ import java.util.LinkedHashMap;
  * Created by Brian on 9/24/14.
  */
 public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionScraperI {
-    private LinkedHashMap<Integer, NumberFireRemainingSeasonRanking> idToRankingMap = new LinkedHashMap<Integer, NumberFireRemainingSeasonRanking>();
+    private LinkedHashMap<Integer, NumberFireRemainingSeasonProjection> idToRankingMap = new LinkedHashMap<Integer, NumberFireRemainingSeasonProjection>();
 
     @Override
-    public ArrayList<NumberFireRanking> getPlayerRankings(Document document) {
+    public ArrayList<NumberFireProjection> getPlayerRankings(Document document) {
         Elements scriptElements = document.select("script[type=text/javascript]");
         String projectionJavascriptString = findProjectionJavascript(scriptElements);
         JSONObject jsonObject = new JSONObject(projectionJavascriptString);
@@ -26,8 +26,7 @@ public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionS
         extractNumberFireIdsAndTeamNamesFromJson(jsonObject);
         extractRankingAndFirePointsFromJson(jsonObject);
 
-
-        return new ArrayList<NumberFireRanking>(idToRankingMap.values());
+        return new ArrayList<NumberFireProjection>(idToRankingMap.values());
     }
 
     private String findProjectionJavascript(Elements scriptElements){
@@ -52,7 +51,7 @@ public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionS
             String playerName = jsonElement.getString("name");
             int espnPlayerId = jsonElement.getInt("espn_id");
 
-            NumberFireRemainingSeasonRanking ranking = new NumberFireRemainingSeasonRanking(id, espnPlayerId, playerName);
+            NumberFireRemainingSeasonProjection ranking = new NumberFireRemainingSeasonProjection(id, espnPlayerId, playerName);
             idToRankingMap.put(id, ranking);
         }
     }
@@ -66,7 +65,7 @@ public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionS
             int rank = teamJsonObject.getInt("pos_rank");
             double firePoints = teamJsonObject.getDouble("fp");
 
-            NumberFireRanking ranking = idToRankingMap.get(id);
+            NumberFireProjection ranking = idToRankingMap.get(id);
             ranking.setRanking(rank);
             ranking.setFirePoints(firePoints);
         }

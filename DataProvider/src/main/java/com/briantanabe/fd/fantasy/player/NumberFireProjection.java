@@ -3,11 +3,11 @@ package com.briantanabe.fd.fantasy.player;
 /**
  * Created by Brian on 9/24/14.
  */
-public class NumberFireRanking extends NflPlayer {
+public class NumberFireProjection extends NflPlayer {
     private int ranking;
     private double firePoints;
 
-    protected NumberFireRanking(int numberFireId, int espnPlayerId, String name, int ranking, double firePoints){
+    protected NumberFireProjection(int numberFireId, int espnPlayerId, String name, int ranking, double firePoints){
         super(espnPlayerId, numberFireId, name);
         this.ranking = ranking;
         this.firePoints = firePoints;

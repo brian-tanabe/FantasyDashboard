@@ -1,7 +1,7 @@
 package com.briantanabe.fd.scrapers.numberFire.positions;
 
-import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekRanking;
-import com.briantanabe.fd.fantasy.player.NumberFireRanking;
+import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
+import com.briantanabe.fd.fantasy.player.NumberFireProjection;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScraperI {
 
     @Override
-    public ArrayList<NumberFireRanking> getPlayerRankings(Document document) {
-        ArrayList<NumberFireRanking> playerRankings = new ArrayList<NumberFireRanking>(32);
+    public ArrayList<NumberFireProjection> getPlayerRankings(Document document) {
+        ArrayList<NumberFireProjection> playerRankings = new ArrayList<NumberFireProjection>(32);
 
         Elements teamTrElements = document.select("tbody#projection-data");
         for(Element teamElement : teamTrElements.select("tr")){
@@ -24,7 +24,7 @@ public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScrap
             String firePoints = teamElement.select("td[class$=col-fp]").text();
             String numberFireIdString = teamElement.select("a[href^=/nfl/players/]").attr("rel");
 
-            NumberFireCurrentWeekRanking numberFireRanking = new NumberFireCurrentWeekRanking(Integer.parseInt(numberFireIdString), teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
+            NumberFireCurrentWeekProjection numberFireRanking = new NumberFireCurrentWeekProjection(Integer.parseInt(numberFireIdString), teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
             playerRankings.add(numberFireRanking);
         }
 
