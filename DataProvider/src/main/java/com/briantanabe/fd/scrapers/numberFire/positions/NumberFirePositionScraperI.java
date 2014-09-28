@@ -9,5 +9,5 @@ import java.util.ArrayList;
  * Created by Brian on 9/24/14.
  */
 public interface NumberFirePositionScraperI {
-    public ArrayList<NumberFireProjection> getPlayerRankings(Document document);
+    public <T extends NumberFireProjection> ArrayList<T> getPlayerRankings(Document document);
 }

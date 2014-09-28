@@ -9,10 +9,10 @@ import java.util.ArrayList;
 /**
  * Created by Brian on 9/24/14.
  */
-public class NumberFirePageScraper {
+public class NumberFirePageScraper <T extends NumberFireProjection> {
     private Document document;
     private NumberFirePositionScraperI scraper;
-    private ArrayList<NumberFireProjection> players;
+    private ArrayList<T> players;
 
     public NumberFirePageScraper(Document playerProjectionsPageDocument, NumberFirePositionScraperI scraper){
         this.document = playerProjectionsPageDocument;
@@ -23,7 +23,7 @@ public class NumberFirePageScraper {
         players = scraper.getPlayerRankings(document);
     }
 
-    public ArrayList<NumberFireProjection> getPlayerRankings(){
+    public ArrayList<T> getPlayerRankings(){
         return players;
     }
 }

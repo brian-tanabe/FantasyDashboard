@@ -1,11 +1,13 @@
 package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
-import com.briantanabe.fd.fantasy.player.NumberFireProjection;
+import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
 import com.briantanabe.fd.scrapers.numberFire.NumberFirePageScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
 import org.jsoup.nodes.Document;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml;
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
@@ -23,12 +25,14 @@ public class NumberFireCurrentWeekDefenseScraperTests {
     private static final int NUMBER_FIRE_ID = 2901;
 
     private static NumberFirePageScraper currentWeekScraper;
+    private static NumberFireCurrentWeekProjection player;
 
     @BeforeClass
     public static void setup(){
         Document numberFireCurrentWeekProjectionsDocument = getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/nfCurrentWeekDefProjections.html");
         currentWeekScraper = new NumberFirePageScraper(numberFireCurrentWeekProjectionsDocument, new CurrentWeekNumberFireHtmlScraper());
         currentWeekScraper.scrape();
+        player = findPlayerByPlayerName(PLAYER_NAME, (ArrayList<NumberFireCurrentWeekProjection>) currentWeekScraper.getPlayerRankings());
     }
 
     @Test
@@ -38,15 +42,11 @@ public class NumberFireCurrentWeekDefenseScraperTests {
 
     @Test
     public void shouldContainTheDenverBroncosInCurrentWeekProjections(){
-        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
-
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
     }
 
     @Test
     public void broncosShouldBeRankedTwentySeventhInCurrentWeekProjections(){
-        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
-
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         assertEquals("Failed to parse the correct ranking", PLAYER_RANKING, player.getRanking());
     }
@@ -54,16 +54,12 @@ public class NumberFireCurrentWeekDefenseScraperTests {
 
     @Test
     public void broncosShouldHaveZeroFirePointsInCurrentWeekProjections(){
-        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
-
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         assertEquals(String.format("Failed to parse %s's FirePoints correctly", PLAYER_NAME), PLAYER_FIRE_POINTS, player.getFirePoints());
     }
 
     @Test
     public void playerShouldHaveTheProperNumberFireId(){
-        NumberFireProjection player = findPlayerByPlayerName(PLAYER_NAME, currentWeekScraper.getPlayerRankings());
-
         assertNotNull(String.format("Failed to find %s", PLAYER_NAME), player);
         assertEquals(String.format("Failed to parse %s's numberFireId correctly", PLAYER_NAME), NUMBER_FIRE_ID, player.getNumberFireId());
     }
