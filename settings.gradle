@@ -1,2 +1,4 @@
 rootProject.name = 'FantasyDashboard'
 
+include 'FantasyDatabaseUpdater'
+
