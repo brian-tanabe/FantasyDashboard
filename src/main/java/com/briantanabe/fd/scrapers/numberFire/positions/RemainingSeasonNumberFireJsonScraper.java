@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by Brian on 9/24/14.
  */
-public class RemainingSeasonNumberFireJsonScraper extends NumberFirePositionScraper {
+public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionScraperI {
     private LinkedHashMap<Integer, NumberFireRemainingSeasonRanking> idToRankingMap = new LinkedHashMap<Integer, NumberFireRemainingSeasonRanking>();
 
     @Override

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Brian on 9/25/14.
  */
-public class CurrentWeekNumberFireHtmlScraper extends NumberFirePositionScraper {
+public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScraperI {
 
     @Override
     public ArrayList<NumberFireRanking> getPlayerRankings(Document document) {

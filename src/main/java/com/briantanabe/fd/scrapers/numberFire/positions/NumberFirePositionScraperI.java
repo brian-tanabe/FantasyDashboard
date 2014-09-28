@@ -8,6 +8,6 @@ import java.util.ArrayList;
 /**
  * Created by Brian on 9/24/14.
  */
-public abstract class NumberFirePositionScraper {
-    public abstract ArrayList<NumberFireRanking> getPlayerRankings(Document document);
+public interface NumberFirePositionScraperI {
+    public ArrayList<NumberFireRanking> getPlayerRankings(Document document);
 }

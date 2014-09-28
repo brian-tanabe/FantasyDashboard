@@ -2,7 +2,7 @@ package com.briantanabe.fd.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRanking;
 import com.briantanabe.fd.scrapers.numberFire.positions.CurrentWeekNumberFireHtmlScraper;
-import com.briantanabe.fd.scrapers.numberFire.positions.NumberFirePositionScraper;
+import com.briantanabe.fd.scrapers.numberFire.positions.NumberFirePositionScraperI;
 import com.briantanabe.fd.scrapers.numberFire.positions.RemainingSeasonNumberFireJsonScraper;
 import com.briantanabe.fd.web.WebPage;
 import com.briantanabe.fd.web.WebRequest;
@@ -38,7 +38,7 @@ public class NumberFireScraper {
         return mergeCurrentWeekProjectionsAndRemainingSeasonProjections(currentWeekProjections, remainingSeasonProjections);
     }
 
-    private ArrayList<NumberFireRanking> getPlayerProjections(Document page, NumberFirePositionScraper positionScraper){
+    private ArrayList<NumberFireRanking> getPlayerProjections(Document page, NumberFirePositionScraperI positionScraper){
         NumberFirePageScraper scraper = new NumberFirePageScraper(page, positionScraper);
         scraper.scrape();
         return scraper.getPlayerRankings();
@@ -47,7 +47,7 @@ public class NumberFireScraper {
     private ArrayList<NumberFireRanking> mergeCurrentWeekProjectionsAndRemainingSeasonProjections(ArrayList<NumberFireRanking> currentWeekProjections, ArrayList<NumberFireRanking> remainingSeasonProjections){
         NumberFireRanking[] currentWeekProjectionsArray = currentWeekProjections.toArray(new NumberFireRanking[currentWeekProjections.size()]);
 
-        // Favor remaining season projections becuase they contain the ESPN & Yahoo player IDs
+        // Favor remaining season projections because they contain the ESPN & Yahoo player IDs
         for(NumberFireRanking teamRemainingSeasonProjection : remainingSeasonProjections){
             int index = Arrays.binarySearch(currentWeekProjectionsArray, teamRemainingSeasonProjection.getNumberFireId(), new Comparator<Object>() {
                 public int compare(Object lhs, Object rhs) {
