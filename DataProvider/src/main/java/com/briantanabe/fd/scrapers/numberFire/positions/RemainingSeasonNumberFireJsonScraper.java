@@ -17,7 +17,6 @@ import java.util.LinkedHashMap;
 public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionScraperI {
     private LinkedHashMap<Integer, NumberFireRemainingSeasonProjection> idToRankingMap = new LinkedHashMap<Integer, NumberFireRemainingSeasonProjection>();
 
-    @Override
     public ArrayList<NumberFireProjection> getPlayerRankings(Document document) {
         Elements scriptElements = document.select("script[type=text/javascript]");
         String projectionJavascriptString = findProjectionJavascript(scriptElements);
