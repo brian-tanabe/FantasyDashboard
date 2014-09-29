@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml;
+import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
@@ -55,5 +57,23 @@ public class EspnLeaguePlayerOwnershipProviderTests {
     @Test
     public void shouldBeAbleToFindSevenHundredPlayers(){
         assertEquals("Did not find the proper number of players", 1535, players.size());
+    }
+
+    @Test
+    public void shouldBeAbleToFindTheLastPlayerListed(){
+        final String playerName = "Nic Jacobs";
+
+        EspnNflPlayer player = findPlayerByPlayerName(playerName, players);
+        assertNotNull(player);
+    }
+
+    @Test
+    public void shouldBeAbleToFindPeytonManningWhoIsOwned(){
+
+    }
+
+    @Test
+    public void shouldBeAbleToFindPlayersForAllTeams(){
+
     }
 }
