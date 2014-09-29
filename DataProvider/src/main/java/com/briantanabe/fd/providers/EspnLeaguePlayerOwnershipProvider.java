@@ -4,9 +4,11 @@ import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.scrapers.espn.EspnPlayerPageScraper;
 import com.briantanabe.fd.web.SecureWebRequest;
 import com.briantanabe.fd.web.auth.EspnCredentialProvider;
+import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,8 +32,16 @@ public class EspnLeaguePlayerOwnershipProvider {
     public void scrapeForOwnershipInfo(int leagueId) throws IOException {
         String nextPageLink = getEspnPlayersPageFromLeagueId(leagueId);
         Document playerPageDocument = null;
+
+        int count = 1;
+
         do {
             playerPageDocument = webRequest.getPageAsDocument(nextPageLink);
+
+            String fileName = String.format("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage%d.html", count++);
+            System.out.println(nextPageLink);
+            FileUtils.writeStringToFile(new File(fileName), playerPageDocument.toString());
+
             ownershipInfo.addAll(getAllPlayerOwnershipInformationOnPage(playerPageDocument, leagueId));
         } while((nextPageLink = getLinkToNextPage(playerPageDocument)) != null);
     }

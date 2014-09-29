@@ -30,8 +30,7 @@ public class WebPage {
     }
 
     public static String getEspnPlayersPageFromLeagueId(int leagueId){
-        return String.format("http://games.espn.go.com/ffl/tools/projections?leagueId=%d&seasonTotals=true&seasonId=2014&startIndex=0", leagueId);
-//        return String.format("http://games.espn.go.com/ffl/freeagency?leagueId=%d#&avail=-1", leagueId);
+        return String.format("http://games.espn.go.com/ffl/tools/projections?&leagueId=%d&seasonTotals=true&seasonId=2014&startIndex=0", leagueId);
     }
 
     public static String getNextEspnPlayersPageFromJavascriptAction(String javascript){
