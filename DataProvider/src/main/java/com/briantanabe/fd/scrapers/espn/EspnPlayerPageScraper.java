@@ -13,13 +13,8 @@ import java.util.regex.Pattern;
  * Created by BTanabe on 9/26/2014.
  */
 public class EspnPlayerPageScraper {
-    private int leagueId;
 
-    public EspnPlayerPageScraper(int leagueId){
-        this.leagueId = leagueId;
-    }
-
-    public ArrayList<EspnNflPlayer> scrape(Document document){
+    public ArrayList<EspnNflPlayer> scrape(int leagueId, Document document){
         Elements playerElements = findAllPlayerElementsInDocument(document);
 
         ArrayList<EspnNflPlayer> players = new ArrayList<EspnNflPlayer>(playerElements.size());

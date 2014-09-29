@@ -14,13 +14,15 @@ import static org.junit.Assert.fail;
  * Created by Brian on 9/28/14.
  */
 public class EspnLeaguePlayerOwnershipProviderTests {
+    private static final int TEST_ESPN_LEAGUE_ID = 84978;
+
     private static ArrayList<EspnNflPlayer> players;
 
     @BeforeClass
     public static void setup(){
         try {
             EspnLeaguePlayerOwnershipProvider provider = new EspnLeaguePlayerOwnershipProvider();
-            provider.scrapeForOwnershipInfo();
+            provider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
             players = provider.getPlayerOwnershipInfo();
         } catch(Exception ex){
             fail("Failed to scrape for the ESPN league ownership info");
