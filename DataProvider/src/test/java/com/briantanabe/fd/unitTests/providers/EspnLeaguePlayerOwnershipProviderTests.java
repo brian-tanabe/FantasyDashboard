@@ -3,7 +3,6 @@ package com.briantanabe.fd.unitTests.providers;
 import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.providers.EspnLeaguePlayerOwnershipProvider;
 import com.briantanabe.fd.web.SecureWebRequest;
-import com.briantanabe.fd.web.auth.EspnCredentialProvider;
 import org.jsoup.nodes.Document;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,16 +27,10 @@ public class EspnLeaguePlayerOwnershipProviderTests {
     @BeforeClass
     public static void setup(){
         try {
-//            EspnLeaguePlayerOwnershipProvider provider = new EspnLeaguePlayerOwnershipProvider(setupMockWebRequestCalls());
-//            provider.login(null);
-//            provider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
-//            players = provider.getPlayerOwnershipInfo();
-
-            EspnLeaguePlayerOwnershipProvider provider = new EspnLeaguePlayerOwnershipProvider(new SecureWebRequest());
-            provider.login(new EspnCredentialProvider());
+            EspnLeaguePlayerOwnershipProvider provider = new EspnLeaguePlayerOwnershipProvider(setupMockWebRequestCalls());
+            provider.login(null);
             provider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
             players = provider.getPlayerOwnershipInfo();
-
         } catch(Exception ex){
             fail("Failed to scrape for the ESPN league ownership info");
         }
@@ -49,13 +42,11 @@ public class EspnLeaguePlayerOwnershipProviderTests {
         when(webRequest.login(null)).thenReturn(webRequest);
 
         for(int index = 1; index < 40; index++){
-            String requestUrl = String.format("http://games.espn.go.com/ffl/tools/projections?%sleagueId=%d&seasonTotals=true&seasonId=2014&startIndex=%d", "", TEST_ESPN_LEAGUE_ID, (index - 1) * 40);
-            String requestUrlWithAmpersand = String.format("http://games.espn.go.com/ffl/tools/projections?%sleagueId=%d&seasonTotals=true&seasonId=2014&startIndex=%d", "&", TEST_ESPN_LEAGUE_ID, (index - 1) * 40);
+            String requestUrl = String.format("http://games.espn.go.com/ffl/tools/projections?&leagueId=%d&seasonTotals=true&seasonId=2014&startIndex=%d", TEST_ESPN_LEAGUE_ID, (index - 1) * 40);
             String htmlDocumentPath = String.format("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage%d.html", index);
             Document testPage = getDocumentFromFileHtml(htmlDocumentPath);
 
             when(webRequest.getPageAsDocument(requestUrl)).thenReturn(testPage);
-            when(webRequest.getPageAsDocument(requestUrlWithAmpersand)).thenReturn(testPage);
         }
 
         return webRequest;
