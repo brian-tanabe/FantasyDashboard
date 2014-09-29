@@ -8,10 +8,10 @@ import org.jsoup.nodes.Document;
 public class EspnPlayersProjectionsPageFixture {
 
     public static Document getAllPlayersProjectionPageOneAsDocument(){
-        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnPlayersSeasonProjectionPageOne.html");
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage1.html");
     }
 
     public static Document getAllPlayersProjectionPageTwoAsDocument(){
-        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnPlayersSeasonProjectionPageTwo.html");
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage2.html");
     }
 }
