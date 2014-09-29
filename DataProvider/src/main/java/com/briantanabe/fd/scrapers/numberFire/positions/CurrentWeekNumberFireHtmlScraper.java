@@ -20,11 +20,11 @@ public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScrap
         Elements teamTrElements = document.select("tbody#projection-data");
         for(Element teamElement : teamTrElements.select("tr")){
             String ranking = teamElement.select("td.sep").get(1).text();
-            String teamName = teamElement.select("a[href^=/nfl/players/]").text();
+            String name = teamElement.select("a[href^=/nfl/players/]").text();
             String firePoints = teamElement.select("td[class$=col-fp]").text();
             String numberFireIdString = teamElement.select("a[href^=/nfl/players/]").attr("rel");
 
-            NumberFireCurrentWeekProjection numberFireRanking = new NumberFireCurrentWeekProjection(Integer.parseInt(numberFireIdString), teamName, Integer.parseInt(ranking), Double.parseDouble(firePoints));
+            NumberFireCurrentWeekProjection numberFireRanking = new NumberFireCurrentWeekProjection(Integer.parseInt(numberFireIdString), name, Integer.parseInt(ranking), Double.parseDouble(firePoints));
             playerRankings.add(numberFireRanking);
         }
 
