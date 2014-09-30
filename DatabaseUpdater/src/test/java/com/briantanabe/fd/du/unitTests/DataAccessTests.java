@@ -8,7 +8,6 @@ import com.briantanabe.fd.providers.PlayerIdProvider;
 import com.briantanabe.fd.web.auth.TestableCredentialProvider;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
