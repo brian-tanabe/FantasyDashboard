@@ -53,7 +53,7 @@ public class EspnPlayerPageScraperTests {
     @Test
     public void testFirstPlayerHasProperOwnerId(){
         String playerToTest = "Adrian Peterson";
-        int teamId = 11;
+        int teamId = 7;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         ArrayList<EspnNflPlayer> players = scraper.scrape(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
@@ -90,7 +90,7 @@ public class EspnPlayerPageScraperTests {
     @Test
     public void testLastPlayerHasProperOwnerId(){
         String playerToTest = "C.J. Spiller";
-        int teamId = 11;
+        int teamId = 10;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         ArrayList<EspnNflPlayer> players = scraper.scrape(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
