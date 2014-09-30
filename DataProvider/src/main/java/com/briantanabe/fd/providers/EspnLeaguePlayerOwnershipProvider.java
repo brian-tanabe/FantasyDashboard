@@ -3,7 +3,7 @@ package com.briantanabe.fd.providers;
 import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.scrapers.espn.EspnPlayerPageScraper;
 import com.briantanabe.fd.web.SecureWebRequest;
-import com.briantanabe.fd.web.auth.EspnCredentialProvider;
+import com.briantanabe.fd.web.auth.CredentialProviderI;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -23,7 +23,7 @@ public class EspnLeaguePlayerOwnershipProvider {
         this.webRequest = webRequest;
     }
 
-    public void login(EspnCredentialProvider credentials) throws IOException {
+    public void login(CredentialProviderI credentials) throws IOException {
         webRequest.login(credentials);
     }
 

@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScraperI {
 
-    @Override
     public ArrayList<NumberFireProjection> getPlayerRankings(Document document) {
         ArrayList<NumberFireProjection> playerRankings = new ArrayList<NumberFireProjection>(32);
 

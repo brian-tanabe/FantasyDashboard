@@ -16,17 +16,17 @@ import static com.briantanabe.fd.web.WebPage.*;
 public class NumberFireRemainingSeasonProjectionsProvider {
     private ArrayList<NumberFireRemainingSeasonProjection> playerProjections = new ArrayList<NumberFireRemainingSeasonProjection>();
 
-    public void scrapeForNumberFiresRemainingSeasonProjections() throws IOException {
-        playerProjections.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_QUARTERBACK_PROJECTIONS_URL));
-        playerProjections.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_RUNNING_BACK_PROJECTIONS_URL));
-        playerProjections.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_WIDE_RECEIVER_PROJECTIONS_URL));
-        playerProjections.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_TIGHT_END_PROJECTIONS_URL));
-        playerProjections.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL));
-        playerProjections.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL));
+    public void scrapeForNumberFiresRemainingSeasonProjections(WebRequest webRequest) throws IOException {
+        playerProjections.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_QUARTERBACK_PROJECTIONS_URL));
+        playerProjections.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_RUNNING_BACK_PROJECTIONS_URL));
+        playerProjections.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_WIDE_RECEIVER_PROJECTIONS_URL));
+        playerProjections.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_TIGHT_END_PROJECTIONS_URL));
+        playerProjections.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL));
+        playerProjections.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL));
     }
 
-    private ArrayList<NumberFireRemainingSeasonProjection> getAllPlayerIds(String numberFireUrl) throws IOException {
-        NumberFirePageScraper scraper = new NumberFirePageScraper(new WebRequest().getPageAsDocument(numberFireUrl), new RemainingSeasonNumberFireJsonScraper());
+    private ArrayList<NumberFireRemainingSeasonProjection> getAllPlayerIds(WebRequest webRequest, String numberFireUrl) throws IOException {
+        NumberFirePageScraper scraper = new NumberFirePageScraper(webRequest.getPageAsDocument(numberFireUrl), new RemainingSeasonNumberFireJsonScraper());
         scraper.scrape();
         return new ArrayList<NumberFireRemainingSeasonProjection>(scraper.getPlayerRankings());
     }

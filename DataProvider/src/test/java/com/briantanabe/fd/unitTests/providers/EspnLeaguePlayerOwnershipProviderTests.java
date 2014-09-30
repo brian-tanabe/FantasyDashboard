@@ -1,22 +1,24 @@
 package com.briantanabe.fd.unitTests.providers;
 
 import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
+import com.briantanabe.fd.fixtures.MockWebRequest;
 import com.briantanabe.fd.providers.EspnLeaguePlayerOwnershipProvider;
 import com.briantanabe.fd.web.SecureWebRequest;
+import com.briantanabe.fd.web.auth.TestableCredentialProvider;
 import org.jsoup.nodes.Document;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml;
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Brian on 9/28/14.
@@ -29,8 +31,8 @@ public class EspnLeaguePlayerOwnershipProviderTests {
     @BeforeClass
     public static void setup(){
         try {
-            EspnLeaguePlayerOwnershipProvider provider = new EspnLeaguePlayerOwnershipProvider(setupMockWebRequestCalls());
-            provider.login(null);
+            EspnLeaguePlayerOwnershipProvider provider = new EspnLeaguePlayerOwnershipProvider(setupMockWebRequest());
+            provider.login(new TestableCredentialProvider());
             provider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
             players = provider.getPlayerOwnershipInfo();
         } catch(Exception ex){
@@ -38,20 +40,16 @@ public class EspnLeaguePlayerOwnershipProviderTests {
         }
     }
 
-    private static SecureWebRequest setupMockWebRequestCalls() throws IOException {
-        SecureWebRequest webRequest = mock(SecureWebRequest.class);
-
-        when(webRequest.login(null)).thenReturn(webRequest);
-
+    private static SecureWebRequest setupMockWebRequest() throws IOException {
+        Map<String, Document> urlToDocumentMap = new LinkedHashMap<String, Document>();
         for(int index = 1; index < 40; index++){
             String requestUrl = String.format("http://games.espn.go.com/ffl/tools/projections?&leagueId=%d&seasonTotals=true&seasonId=2014&startIndex=%d", TEST_ESPN_LEAGUE_ID, (index - 1) * 40);
             String htmlDocumentPath = String.format("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage%d.html", index);
             Document testPage = getDocumentFromFileHtml(htmlDocumentPath);
-
-            when(webRequest.getPageAsDocument(requestUrl)).thenReturn(testPage);
+            urlToDocumentMap.put(requestUrl, testPage);
         }
 
-        return webRequest;
+        return MockWebRequest.getMockSecureWebRequest(urlToDocumentMap);
     }
 
     @Test

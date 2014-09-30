@@ -16,17 +16,17 @@ import static com.briantanabe.fd.web.WebPage.*;
 public class PlayerIdProvider {
     private ArrayList<NflPlayer> players = new ArrayList<NflPlayer>();
 
-    public void scrapeForPlayerIds() throws IOException {
-        players.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_QUARTERBACK_PROJECTIONS_URL));
-        players.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_RUNNING_BACK_PROJECTIONS_URL));
-        players.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_WIDE_RECEIVER_PROJECTIONS_URL));
-        players.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_TIGHT_END_PROJECTIONS_URL));
-        players.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL));
-        players.addAll(getAllPlayerIds(NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL));
+    public void scrapeForPlayerIds(WebRequest webRequest) throws IOException {
+        players.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_QUARTERBACK_PROJECTIONS_URL));
+        players.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_RUNNING_BACK_PROJECTIONS_URL));
+        players.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_WIDE_RECEIVER_PROJECTIONS_URL));
+        players.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_TIGHT_END_PROJECTIONS_URL));
+        players.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL));
+        players.addAll(getAllPlayerIds(webRequest, NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL));
     }
 
-    private ArrayList<NflPlayer> getAllPlayerIds(String numberFireUrl) throws IOException {
-        NumberFirePageScraper scraper = new NumberFirePageScraper(new WebRequest().getPageAsDocument(numberFireUrl), new RemainingSeasonNumberFireJsonScraper());
+    private ArrayList<NflPlayer> getAllPlayerIds(WebRequest webRequest, String numberFireUrl) throws IOException {
+        NumberFirePageScraper scraper = new NumberFirePageScraper(webRequest.getPageAsDocument(numberFireUrl), new RemainingSeasonNumberFireJsonScraper());
         scraper.scrape();
         return new ArrayList<NflPlayer>(scraper.getPlayerRankings());
     }

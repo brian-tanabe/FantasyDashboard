@@ -1,16 +1,15 @@
 package com.briantanabe.fd.unitTests.scrapers.numberFire;
 
 import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection;
+import com.briantanabe.fd.fixtures.NumberFireRemainingSeasonProjectionFixture;
 import com.briantanabe.fd.scrapers.numberFire.NumberFirePageScraper;
 import com.briantanabe.fd.scrapers.numberFire.positions.RemainingSeasonNumberFireJsonScraper;
-import org.jsoup.nodes.Document;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static com.briantanabe.fd.fixtures.FileDocumentor.getDocumentFromFileHtml;
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -31,8 +30,7 @@ public class NumberFireRemainingSeasonDefenseScraperTests {
 
     @BeforeClass
     public static void setup(){
-        Document numberFireRemainingYearProjectionsDocument = getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/nfRemainingSeasonDefProjections.html");
-        remainingSeasonScraper = new NumberFirePageScraper(numberFireRemainingYearProjectionsDocument, new RemainingSeasonNumberFireJsonScraper());
+        remainingSeasonScraper = new NumberFirePageScraper(NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonDefenseProjectionDocument(), new RemainingSeasonNumberFireJsonScraper());
         remainingSeasonScraper.scrape();
         player = findPlayerByPlayerName(PLAYER_NAME, (ArrayList<NumberFireRemainingSeasonProjection>) remainingSeasonScraper.getPlayerRankings());
     }
