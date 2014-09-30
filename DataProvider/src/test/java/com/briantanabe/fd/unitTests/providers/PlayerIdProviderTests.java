@@ -2,20 +2,13 @@ package com.briantanabe.fd.unitTests.providers;
 
 import com.briantanabe.fd.fantasy.player.NflPlayer;
 import com.briantanabe.fd.fixtures.MockWebRequest;
-import com.briantanabe.fd.fixtures.NumberFireRemainingSeasonProjectionFixture;
 import com.briantanabe.fd.providers.PlayerIdProvider;
-import com.briantanabe.fd.web.WebRequest;
-import org.jsoup.nodes.Document;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
-import static com.briantanabe.fd.web.WebPage.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -29,24 +22,12 @@ public class PlayerIdProviderTests {
     public static void setup(){
         try {
             PlayerIdProvider idProvider = new PlayerIdProvider();
-            idProvider.scrapeForPlayerIds(getTestableWebRequest());
+            idProvider.scrapeForPlayerIds(MockWebRequest.getMockWebRequestForPlayerIdProviderTests());
             players = idProvider.getAllPlayersAsArrayList();
         } catch (Exception ex){
             ex.printStackTrace();
             fail("Failed to reach numberFire.com's projection page");
         }
-    }
-
-    private static WebRequest getTestableWebRequest() throws IOException {
-        Map<String, Document> urlToDocumentMap = new LinkedHashMap<String, Document>();
-        urlToDocumentMap.put(NUMBER_FIRE_REMAINING_SEASON_QUARTERBACK_PROJECTIONS_URL, NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonQuarterbackProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_REMAINING_SEASON_RUNNING_BACK_PROJECTIONS_URL, NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonRunningBackProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_REMAINING_SEASON_WIDE_RECEIVER_PROJECTIONS_URL, NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonWideReceiverProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_REMAINING_SEASON_TIGHT_END_PROJECTIONS_URL, NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonTightEndProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_REMAINING_SEASON_KICKER_PROJECTIONS_URL, NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonKickerProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_REMAINING_SEASON_DEFENSE_PROJECTIONS_URL, NumberFireRemainingSeasonProjectionFixture.getRemainingSeasonDefenseProjectionDocument());
-
-        return MockWebRequest.getMockWebRequest(urlToDocumentMap);
     }
 
     @Test

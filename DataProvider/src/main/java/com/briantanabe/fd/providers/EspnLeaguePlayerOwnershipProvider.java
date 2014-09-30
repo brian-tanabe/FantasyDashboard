@@ -30,9 +30,6 @@ public class EspnLeaguePlayerOwnershipProvider {
     public void scrapeForOwnershipInfo(int leagueId) throws IOException {
         String nextPageLink = getEspnPlayersPageFromLeagueId(leagueId);
         Document playerPageDocument = null;
-
-        int count = 1;
-
         do {
             playerPageDocument = webRequest.getPageAsDocument(nextPageLink);
             ownershipInfo.addAll(getAllPlayerOwnershipInformationOnPage(playerPageDocument, leagueId));

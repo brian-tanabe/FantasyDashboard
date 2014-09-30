@@ -2,20 +2,13 @@ package com.briantanabe.fd.unitTests.providers;
 
 import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
 import com.briantanabe.fd.fixtures.MockWebRequest;
-import com.briantanabe.fd.fixtures.NumberFireCurrentWeekProjectionFixture;
 import com.briantanabe.fd.providers.NumberFireCurrentWeekProjectionsProvider;
-import com.briantanabe.fd.web.WebRequest;
-import org.jsoup.nodes.Document;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
-import static com.briantanabe.fd.web.WebPage.*;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -43,7 +36,7 @@ public class NumberFireCurrentWeekProjectionsProviderTests {
     public static void setup(){
         try {
             NumberFireCurrentWeekProjectionsProvider provider = new NumberFireCurrentWeekProjectionsProvider();
-            provider.scrapeForNumberFiresCurrentWeekProjections(setupMockWebRequest());
+            provider.scrapeForNumberFiresCurrentWeekProjections(MockWebRequest.getMockWebRequestForNumberFireCurrentWeekProjectionsProvider());
             playerProjections = provider.getPlayerProjections();
 
             quarterbackProjection = findPlayerByPlayerName(quarterbackPlayerName, playerProjections);
@@ -56,18 +49,6 @@ public class NumberFireCurrentWeekProjectionsProviderTests {
             ex.printStackTrace();
             fail("Failed to scrape for all numberFire's quarterbackProjection remaining season projections");
         }
-    }
-
-    private static WebRequest setupMockWebRequest() throws IOException {
-        Map<String, Document> urlToDocumentMap = new LinkedHashMap<String, Document>();
-        urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_QUARTERBACK_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekQuarterbackProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_RUNNING_BACK_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekRunningBackProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_WIDE_RECEIVER_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekWideReceiverProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_TIGHT_END_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekTightEndProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_KICKER_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekKickerProjectionDocument());
-        urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_DEFENSE_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekDefenseProjectionDocument());
-
-        return MockWebRequest.getMockWebRequest(urlToDocumentMap);
     }
 
     @Test
