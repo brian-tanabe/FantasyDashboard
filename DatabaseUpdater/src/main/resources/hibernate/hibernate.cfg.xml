@@ -20,6 +20,10 @@
         <!-- Do not echo all executed SQL to stdout -->
         <property name="show_sql">false</property>
 
+        <!-- Attempting to turn logging down -->
+        <property name="generate_statistics">false</property>
+        <property name="use_sql_comments">false</property>
+
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
 
