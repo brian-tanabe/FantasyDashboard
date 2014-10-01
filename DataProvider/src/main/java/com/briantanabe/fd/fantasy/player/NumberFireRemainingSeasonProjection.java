@@ -5,6 +5,8 @@ package com.briantanabe.fd.fantasy.player;
  */
 public class NumberFireRemainingSeasonProjection extends NumberFireProjection {
 
+    protected NumberFireRemainingSeasonProjection(){} // for hibernate
+
     public NumberFireRemainingSeasonProjection(int numberFireId, int espnPlayerId, String name){
         super(numberFireId, espnPlayerId, name, -1, -1);
     }
