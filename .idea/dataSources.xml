@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1676921556">
+    <data-source source="LOCAL" name="java:hibernate/SessionFactory" uuid="61f7f4a5-57db-4126-8962-ca8dbd47cc0c">
+      <driver-ref>h2.embedded</driver-ref>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE</jdbc-url>
+      <user-name>sa</user-name>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.h2database/h2/1.4.181/a7b513c019283791c5e582c40350747673155551/h2-1.4.181.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+
