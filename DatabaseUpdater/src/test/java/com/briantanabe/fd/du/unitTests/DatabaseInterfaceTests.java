@@ -4,9 +4,12 @@ import com.briantanabe.fd.du.updater.DatabaseInterface;
 import com.briantanabe.fd.fantasy.player.NflPlayer;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.assertEquals;
@@ -17,6 +20,12 @@ import static junit.framework.TestCase.assertTrue;
  */
 public class DatabaseInterfaceTests {
     private static DatabaseInterface updater;
+
+    @BeforeClass
+    public static void turnLoggingOff(){
+        Logger logger = Logger.getLogger("org.hibernate");
+        logger.setLevel(Level.WARNING);
+    }
 
     @Before
     public void setup(){

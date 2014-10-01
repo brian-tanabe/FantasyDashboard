@@ -1,7 +1,5 @@
 rootProject.name = 'FantasyDashboard'
 
-include 'FantasyDatabaseUpdater'
-
 include 'DataProvider'
 
 include 'DatabaseUpdater'
