@@ -8,6 +8,8 @@ public class NflPlayer {
     private int numberFireId;
     private String name;
 
+    protected NflPlayer(){} // for hibernate
+
     public NflPlayer(int espnPlayerId, int numberFireId, String name){
         this.espnPlayerId = espnPlayerId;
         this.numberFireId = numberFireId;
@@ -24,5 +26,17 @@ public class NflPlayer {
 
     public String getName(){
         return name;
+    }
+
+    public void setEspnPlayerId(int espnPlayerId) {
+        this.espnPlayerId = espnPlayerId;
+    }
+
+    public void setNumberFireId(int numberFireId) {
+        this.numberFireId = numberFireId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

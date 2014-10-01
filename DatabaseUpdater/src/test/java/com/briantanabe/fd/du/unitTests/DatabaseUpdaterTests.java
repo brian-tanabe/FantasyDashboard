@@ -1,8 +1,9 @@
 package com.briantanabe.fd.du.unitTests;
 
+import com.briantanabe.fd.du.updater.DatabaseUpdater;
 import org.junit.Test;
 
-import static junit.framework.TestCase.fail;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by BTanabe on 9/30/2014.
@@ -14,7 +15,7 @@ public class DatabaseUpdaterTests {
     // http://www.tutorialspoint.com/hibernate/hibernate_configuration.htm
     @Test
     public void testCanReachDatabase(){
-
-        fail("Cannot reach database");
+        DatabaseUpdater databaseUpdater = DatabaseUpdater.getInstance();
+        assertTrue("Failed to isConnected to our database", databaseUpdater.isConnected());
     }
 }
