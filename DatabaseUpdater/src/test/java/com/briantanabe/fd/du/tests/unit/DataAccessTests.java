@@ -1,4 +1,4 @@
-package com.briantanabe.fd.du.unitTests;
+package com.briantanabe.fd.du.tests.unit;
 
 import com.briantanabe.fd.fixtures.MockWebRequest;
 import com.briantanabe.fd.providers.EspnLeaguePlayerOwnershipProvider;

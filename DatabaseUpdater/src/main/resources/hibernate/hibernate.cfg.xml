@@ -27,6 +27,8 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
 
+        <!-- Table-class mappings -->
         <mapping resource="./hibernate/mappings/PlayerId.hbm.xml"/>
+        <mapping resource="./hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

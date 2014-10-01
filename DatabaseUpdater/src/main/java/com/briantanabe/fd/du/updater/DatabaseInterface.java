@@ -1,5 +1,6 @@
 package com.briantanabe.fd.du.updater;
 
+import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.fantasy.player.NflPlayer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,9 +41,16 @@ public class DatabaseInterface {
         closeSession(session);
     }
 
-    public ArrayList<NflPlayer> getAllNflPlayersInDatabase(){
+    public ArrayList<NflPlayer> getAllNflPlayersFromDatabase(){
         Session session = startSession();
-        ArrayList<NflPlayer> players = new ArrayList<NflPlayer>(session.createQuery("from NflPlayer").list());
+        ArrayList<NflPlayer> players = new ArrayList<NflPlayer>(session.createQuery("from com.briantanabe.fd.fantasy.player.NflPlayer").list());
+        closeSession(session);
+        return players;
+    }
+
+    public ArrayList<EspnNflPlayer> getAllEspnNflPlayersFromDatabase(){
+        Session session = startSession();
+        ArrayList<EspnNflPlayer> players = new ArrayList<EspnNflPlayer>(session.createQuery("from com.briantanabe.fd.fantasy.player.EspnNflPlayer").list());
         closeSession(session);
         return players;
     }

@@ -7,6 +7,8 @@ public class EspnNflPlayer extends NflPlayer {
     private int leagueId;
     private int owner;
 
+    protected EspnNflPlayer(){} // for hibernate
+
     public EspnNflPlayer(int leagueId, int espnId, String name, int owner){
         super(espnId, - 1, name);
         this.leagueId = leagueId;
