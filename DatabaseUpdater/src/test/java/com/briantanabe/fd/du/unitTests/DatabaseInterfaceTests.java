@@ -11,8 +11,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.*;
 
 /**
  * Created by BTanabe on 9/30/2014.
@@ -41,7 +40,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
-    public void shouldBeAbleToAddOnePlayerIdToDatabase(){
+    public void shouldBeAbleToAddOneNflPlayerToDatabase(){
         NflPlayer playerOne = new NflPlayer(1000, 2000, "Brian Tanabe");
 
         ArrayList<NflPlayer> playersToAdd = new ArrayList<NflPlayer>();
@@ -58,7 +57,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
-    public void shouldBeAbleToAddMultiplePlayers(){
+    public void shouldBeAbleToAddMultipleNflPlayersToDatabase(){
         NflPlayer playerOne = new NflPlayer(1000, 2000, "Brian Tanabe");
         NflPlayer playerTwo = new NflPlayer(1001, 2001, "Benjamin Courtney");
         NflPlayer playerThree = new NflPlayer(1002, 2002, "Samuel Courtney");
@@ -84,5 +83,35 @@ public class DatabaseInterfaceTests {
         assertEquals("PlayerThree's name does not match", playerThree.getName(), findPlayerByPlayerName(playerThree.getName(), playersFromDatabase).getName());
         assertEquals("PlayerThree's ESPN Id does not match", playerThree.getEspnPlayerId(), findPlayerByPlayerName(playerThree.getName(), playersFromDatabase).getEspnPlayerId());
         assertEquals("PlayerThree's numberFire ID does not match", playerThree.getNumberFireId(), findPlayerByPlayerName(playerThree.getName(), playersFromDatabase).getNumberFireId());
+    }
+
+    @Test
+    public void shouldBeAbleToAddOneEspnNflPlayerToDatabase(){
+        fail("Failed to add one EspnNflPlayer (ownership info) to database");
+    }
+
+    @Test
+    public void shouldBeAbleToAddMultipleEspnNflPlayersToDatabase(){
+        fail("Failed to add multiple EspnNflPlayers (ownership info) to database");
+    }
+
+    @Test
+    public void shouldBeAbleTOAddOneNumberFireCurrentWeekProjectionToDatabase(){
+        fail("Failed to add one NumberFireCurrentWeekProjection to database");
+    }
+
+    @Test
+    public void shouldBeAbleToAddMultipleNumberFireCurrentWeekProjectionsToDatabase(){
+        fail("Failed to add multiple NumberFireCurrentWeekProjections to database");
+    }
+
+    @Test
+    public void shouldBeAbleToAddOneNumberFireRemainingSeasonProjectionToDatabase(){
+        fail("Failed to add one NumberFireRemainingSeasonProjection to database");
+    }
+
+    @Test
+    public void shouldBeAbleToAddMultipleNumberFireRemainingSeasonProjectionsToDatabase(){
+        fail("Failed to add multiple NumberFireRemainingSeasonProjections to database");
     }
 }
