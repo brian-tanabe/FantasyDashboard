@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class NflPlayerFixture {
     public static ArrayList<NflPlayer> getSampleNflPlayers(int numberOfPlayers){
-        ArrayList<NflPlayer> players = new ArrayList<>();
+        ArrayList<NflPlayer> players = new ArrayList<>(numberOfPlayers);
         for(int index = 0; index < numberOfPlayers; index++){
             players.add(new NflPlayer(1000 + index, 5000 + index, String.format("Player-%d", index)));
         }

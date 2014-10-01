@@ -3,9 +3,11 @@ package com.briantanabe.fd.du.tests.unit;
 import com.briantanabe.fd.du.log.LoggingUtility;
 import com.briantanabe.fd.du.test.fixtures.EspnNflPlayerFixture;
 import com.briantanabe.fd.du.test.fixtures.NflPlayerFixture;
+import com.briantanabe.fd.du.test.fixtures.NumberFireCurrentWeekProjectionFixture;
 import com.briantanabe.fd.du.updater.DatabaseInterface;
 import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.fantasy.player.NflPlayer;
+import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -120,12 +122,46 @@ public class DatabaseInterfaceTests {
 
     @Test
     public void shouldBeAbleToAddOneNumberFireCurrentWeekProjectionToDatabase(){
-        fail("Failed to add one NumberFireCurrentWeekProjection to database");
+        ArrayList<NumberFireCurrentWeekProjection> playersToAdd = NumberFireCurrentWeekProjectionFixture.getSampleNumberFireCurrentWeekProjections(1);
+
+        updater.insert(playersToAdd);
+
+        ArrayList<NumberFireCurrentWeekProjection> playersFromDatabase = updater.getAllNumberFireCurrentWeekProjectionsFromDatabase();
+        assertEquals("Did not find the correct number of NumberFireCurrentWeekProjections in the database", playersToAdd.size(), playersFromDatabase.size());
+
+        NumberFireCurrentWeekProjection playerOne = findPlayerByPlayerName(playersToAdd.get(0).getName(), playersFromDatabase);
+        assertEquals("PlayerOne's player_name does not match", playersToAdd.get(0).getName(), playerOne.getName());
+        assertEquals("PlayerOne's number_fire_id does not match", playersToAdd.get(0).getNumberFireId(), playerOne.getNumberFireId());
+        assertEquals("PlayerOne's number_fire_ranking does not match", playersToAdd.get(0).getRanking(), playerOne.getRanking());
+        assertEquals("PlayerOne's fire_points do not match", playersToAdd.get(0).getFirePoints(), playerOne.getFirePoints());
     }
 
     @Test
     public void shouldBeAbleToAddMultipleNumberFireCurrentWeekProjectionsToDatabase(){
-        fail("Failed to add multiple NumberFireCurrentWeekProjections to database");
+        ArrayList<NumberFireCurrentWeekProjection> playersToAdd = NumberFireCurrentWeekProjectionFixture.getSampleNumberFireCurrentWeekProjections(3);
+
+        updater.insert(playersToAdd);
+
+        ArrayList<NumberFireCurrentWeekProjection> playersFromDatabase = updater.getAllNumberFireCurrentWeekProjectionsFromDatabase();
+        assertEquals("Did not find the correct number of NumberFireCurrentWeekProjections in the database", playersToAdd.size(), playersFromDatabase.size());
+
+        NumberFireCurrentWeekProjection playerOne = findPlayerByPlayerName(playersToAdd.get(0).getName(), playersFromDatabase);
+        assertEquals("PlayerOne's player_name does not match", playersToAdd.get(0).getName(), playerOne.getName());
+        assertEquals("PlayerOne's number_fire_id does not match", playersToAdd.get(0).getNumberFireId(), playerOne.getNumberFireId());
+        assertEquals("PlayerOne's number_fire_ranking does not match", playersToAdd.get(0).getRanking(), playerOne.getRanking());
+        assertEquals("PlayerOne's fire_points do not match", playersToAdd.get(0).getFirePoints(), playerOne.getFirePoints());
+
+        NumberFireCurrentWeekProjection playerTwo = findPlayerByPlayerName(playersToAdd.get(1).getName(), playersFromDatabase);
+        assertEquals("PlayerTwo's player_name does not match", playersToAdd.get(1).getName(), playerTwo.getName());
+        assertEquals("PlayerTwo's number_fire_id does not match", playersToAdd.get(1).getNumberFireId(), playerTwo.getNumberFireId());
+        assertEquals("PlayerTwo's number_fire_ranking does not match", playersToAdd.get(1).getRanking(), playerTwo.getRanking());
+        assertEquals("PlayerTwo's fire_points do not match", playersToAdd.get(1).getFirePoints(), playerTwo.getFirePoints());
+
+        NumberFireCurrentWeekProjection playerThree = findPlayerByPlayerName(playersToAdd.get(2).getName(), playersFromDatabase);
+        assertEquals("PlayerThree's player_name does not match", playersToAdd.get(2).getName(), playerThree.getName());
+        assertEquals("PlayerThree's number_fire_id does not match", playersToAdd.get(2).getNumberFireId(), playerThree.getNumberFireId());
+        assertEquals("PlayerThree's number_fire_ranking does not match", playersToAdd.get(2).getRanking(), playerThree.getRanking());
+        assertEquals("PlayerThree's fire_points do not match", playersToAdd.get(2).getFirePoints(), playerThree.getFirePoints());
     }
 
     @Test

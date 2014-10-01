@@ -2,6 +2,7 @@ package com.briantanabe.fd.du.updater;
 
 import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.fantasy.player.NflPlayer;
+import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -51,6 +52,13 @@ public class DatabaseInterface {
     public ArrayList<EspnNflPlayer> getAllEspnNflPlayersFromDatabase(){
         Session session = startSession();
         ArrayList<EspnNflPlayer> players = new ArrayList<EspnNflPlayer>(session.createQuery("from com.briantanabe.fd.fantasy.player.EspnNflPlayer").list());
+        closeSession(session);
+        return players;
+    }
+
+    public ArrayList<NumberFireCurrentWeekProjection> getAllNumberFireCurrentWeekProjectionsFromDatabase(){
+        Session session = startSession();
+        ArrayList<NumberFireCurrentWeekProjection> players = new ArrayList<NumberFireCurrentWeekProjection>(session.createQuery("from com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection").list());
         closeSession(session);
         return players;
     }

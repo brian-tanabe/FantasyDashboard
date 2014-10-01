@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f91ac01-81af-4058-b65a-3272cf9f5d86" name="Default" comment="Stubbed out the rest of my (currently) failing tests.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/EspnNflPlayerFixture.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java" />
-      <change type="MOVED" beforePath="C:\Users\btanabe\IdeaProjects\FantasyDashboard\DatabaseUpdater\src\test\java\com\briantanabe\fd\du\unitTests\DataAccessTests.java" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DataAccessTests.java" />
-      <change type="MOVED" beforePath="C:\Users\btanabe\IdeaProjects\FantasyDashboard\DatabaseUpdater\src\test\java\com\briantanabe\fd\du\unitTests\DatabaseInterfaceTests.java" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DatabaseInterfaceTests.java" />
+    <list default="true" id="9f91ac01-81af-4058-b65a-3272cf9f5d86" name="Default" comment="Added test and then implemented the functionality needed to grab EspnNflPlayers from the database.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NumberFireCurrentWeekProjectionFixture.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/EspnNflPlayer.java" afterPath="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/EspnNflPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DatabaseInterfaceTests.java" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DatabaseInterfaceTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireCurrentWeekProjection.java" afterPath="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireCurrentWeekProjection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/NumberFireCurrentWeekProjections.hbm.xml" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/NumberFireCurrentWeekProjections.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireProjection.java" afterPath="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireProjection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/hibernate.cfg.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -36,12 +36,12 @@
       <file leaf-file-name="DatabaseInterface.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="1428">
-              <caret line="50" column="68" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="535" max-vertical-offset="1564">
+              <caret line="60" column="106" selection-start-line="60" selection-start-column="75" selection-end-line="60" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1305#1316#0" expanded="true" />
-                <element signature="e#1630#1645#0" expanded="true" />
+                <element signature="e#1379#1390#0" expanded="true" />
+                <element signature="e#1704#1719#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,75 +50,31 @@
       <file leaf-file-name="DatabaseInterfaceTests.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DatabaseInterfaceTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.10487445" vertical-offset="1499" max-vertical-offset="2176">
-              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.070901036" vertical-offset="1975" max-vertical-offset="2754">
+              <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
               <folding>
-                <element signature="e#831#832#0" expanded="true" />
-                <element signature="e#878#879#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1035#1036#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EspnLeaguePlayerOwnership.hbm.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml">
+      <file leaf-file-name="NumberFireCurrentWeekProjections.hbm.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/NumberFireCurrentWeekProjections.hbm.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <caret line="14" column="76" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+              <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hibernate.cfg.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/hibernate.cfg.xml">
+      <file leaf-file-name="NumberFireCurrentWeekProjection.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireCurrentWeekProjection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.72" vertical-offset="0" max-vertical-offset="663">
-              <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayerId.hbm.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/PlayerId.hbm.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EspnNflPlayerFixture.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/EspnNflPlayerFixture.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NflPlayerFixture.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EspnNflPlayer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/EspnNflPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-              <caret line="7" column="21" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -600,12 +556,16 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/log/LoggingUtility.java" />
         <option value="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/unitTests/DatabaseInterfaceTests.java" />
-        <option value="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java" />
         <option value="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/EspnNflPlayerFixture.java" />
-        <option value="$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java" />
         <option value="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/EspnNflPlayer.java" />
         <option value="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml" />
+        <option value="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireCurrentWeekProjection.java" />
+        <option value="$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireProjection.java" />
+        <option value="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/NumberFireCurrentWeekProjections.hbm.xml" />
         <option value="$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/hibernate.cfg.xml" />
+        <option value="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NumberFireCurrentWeekProjectionFixture.java" />
+        <option value="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java" />
+        <option value="$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java" />
         <option value="$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DatabaseInterfaceTests.java" />
       </list>
     </option>
@@ -1072,30 +1032,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseInterfaceTests">
-    <configuration default="false" name="All in DatabaseUpdater" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="DatabaseUpdater" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.com.briantanabe.fd.du.tests.unit in DatabaseUpdater">
     <configuration default="false" name="DatabaseInterfaceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1127,34 +1064,6 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="com.briantanabe.fd.du.unitTests in DatabaseUpdater" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.briantanabe.fd.du.unitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="DatabaseUpdater" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.briantanabe.fd.du.unitTests" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -1217,6 +1126,34 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="DatabaseInterfaceTests.shouldBeAbleToAddOneNumberFireCurrentWeekProjectionToDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.briantanabe.fd.du.unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="DatabaseUpdater" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.briantanabe.fd.du.tests.unit" />
+      <option name="MAIN_CLASS_NAME" value="com.briantanabe.fd.du.tests.unit.DatabaseInterfaceTests" />
+      <option name="METHOD_NAME" value="shouldBeAbleToAddOneNumberFireCurrentWeekProjectionToDatabase" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -1448,20 +1385,47 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
+    <configuration default="false" name="DatabaseInterfaceTests.shouldBeAbleToAddMultipleNumberFireCurrentWeekProjectionsToDatabase" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.briantanabe.fd.du.tests.unit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="DatabaseUpdater" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.briantanabe.fd.du.tests.unit" />
+      <option name="MAIN_CLASS_NAME" value="com.briantanabe.fd.du.tests.unit.DatabaseInterfaceTests" />
+      <option name="METHOD_NAME" value="shouldBeAbleToAddMultipleNumberFireCurrentWeekProjectionsToDatabase" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.All in DatabaseUpdater" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.com.briantanabe.fd.du.unitTests in DatabaseUpdater" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.com.briantanabe.fd.du.tests.unit in DatabaseUpdater" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddOneEspnNflPlayerToDatabase" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.com.briantanabe.fd.du.tests.unit in DatabaseUpdater" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddOneEspnNflPlayerToDatabase" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddOneNumberFireCurrentWeekProjectionToDatabase" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddMultipleNumberFireCurrentWeekProjectionsToDatabase" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddOneEspnNflPlayerToDatabase" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.com.briantanabe.fd.du.tests.unit in DatabaseUpdater" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.All in DatabaseUpdater" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.com.briantanabe.fd.du.unitTests in DatabaseUpdater" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.com.briantanabe.fd.du.tests.unit in DatabaseUpdater" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddOneNumberFireCurrentWeekProjectionToDatabase" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.DatabaseInterfaceTests.shouldBeAbleToAddOneEspnNflPlayerToDatabase" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1478,7 +1442,7 @@
       <changelist id="9f91ac01-81af-4058-b65a-3272cf9f5d86" name="Default" comment="" />
       <created>1412185020306</created>
       <updated>1412185020306</updated>
-      <workItem from="1412185022496" duration="10105000" />
+      <workItem from="1412185022496" duration="11378000" />
     </task>
     <task id="LOCAL-00001" summary="Removing the code I was trying to use to disable logging.  removed the hibernate sessionfactory name which fixed an exception.">
       <created>1412189944039</created>
@@ -1492,11 +1456,15 @@
       <created>1412193865973</created>
       <updated>1412193865973</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added test and then implemented the functionality needed to grab EspnNflPlayers from the database.">
+      <created>1412198758814</created>
+      <updated>1412198758814</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10105000" />
+    <option name="totallyTimeSpent" value="11378000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1550,7 +1518,8 @@
     <MESSAGE value="Removing the code I was trying to use to disable logging.  removed the hibernate sessionfactory name which fixed an exception." />
     <MESSAGE value="Added a static helper function to turn logging off/set the logging level." />
     <MESSAGE value="Stubbed out the rest of my (currently) failing tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stubbed out the rest of my (currently) failing tests." />
+    <MESSAGE value="Added test and then implemented the functionality needed to grab EspnNflPlayers from the database." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added test and then implemented the functionality needed to grab EspnNflPlayers from the database." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1589,75 +1558,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="1428">
-          <caret line="50" column="68" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1305#1316#0" expanded="true" />
-            <element signature="e#1630#1645#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/PlayerId.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NflPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123188406" vertical-offset="0" max-vertical-offset="690">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/EspnNflPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
           <caret line="7" column="21" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="14" column="76" selection-start-line="14" selection-start-column="76" selection-end-line="14" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.72" vertical-offset="0" max-vertical-offset="663">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/EspnNflPlayerFixture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1680,13 +1585,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NflPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17246377" vertical-offset="0" max-vertical-offset="690">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireProjection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123188406" vertical-offset="0" max-vertical-offset="690">
+          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataProvider/src/main/java/com/briantanabe/fd/fantasy/player/NumberFireCurrentWeekProjection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22173913" vertical-offset="0" max-vertical-offset="690">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/PlayerId.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32028985" vertical-offset="0" max-vertical-offset="690">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NflPlayerFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27101448" vertical-offset="0" max-vertical-offset="690">
+          <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/EspnNflPlayerFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34492755" vertical-offset="0" max-vertical-offset="690">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/test/fixtures/NumberFireCurrentWeekProjectionFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36956522" vertical-offset="0" max-vertical-offset="690">
+          <caret line="15" column="134" selection-start-line="15" selection-start-column="134" selection-end-line="15" selection-end-column="134" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/java/com/briantanabe/fd/du/updater/DatabaseInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="535" max-vertical-offset="1564">
+          <caret line="60" column="106" selection-start-line="60" selection-start-column="75" selection-end-line="60" selection-end-column="106" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1379#1390#0" expanded="true" />
+            <element signature="e#1704#1719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/hibernate.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.81804514" vertical-offset="0" max-vertical-offset="680">
+          <caret line="32" column="92" selection-start-line="32" selection-start-column="92" selection-end-line="32" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/main/resources/hibernate/mappings/NumberFireCurrentWeekProjections.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DatabaseUpdater/src/test/java/com/briantanabe/fd/du/tests/unit/DatabaseInterfaceTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.10487445" vertical-offset="1499" max-vertical-offset="2176">
-          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.070901036" vertical-offset="1975" max-vertical-offset="2754">
+          <caret line="139" column="54" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
           <folding>
-            <element signature="e#831#832#0" expanded="true" />
-            <element signature="e#878#879#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
           </folding>
         </state>
       </provider>

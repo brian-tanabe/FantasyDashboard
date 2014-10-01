@@ -5,6 +5,8 @@ package com.briantanabe.fd.fantasy.player;
  */
 public class NumberFireCurrentWeekProjection extends NumberFireProjection {
 
+    protected NumberFireCurrentWeekProjection(){} // for hibernate
+
     public NumberFireCurrentWeekProjection(int numberFireId, String name, int ranking, double firePoints){
         super(numberFireId, -1, name, ranking, firePoints);
     }
