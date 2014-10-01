@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection" table="NumberFireRemainingSeasonProjections">
+        <meta attribute="class-description">
+            This class holds numberFire's remaining season projections:
+
+            INT     number_fire_id (ID)
+            STRING  name
+            INT     number_fire_ranking
+            DOUBLE  fire_points
+        </meta>
+        <id name="numberFireId" column="number_fire_id" type="java.lang.Integer">
+            <generator class="native" />
+        </id>
+        <property name="name" column="player_name" type="java.lang.String" />
+        <property name="ranking" column="number_fire_ranking" type="java.lang.Integer" />
+        <property name="firePoints" column="fire_points" type="java.lang.Double" />
+    </class>
+</hibernate-mapping>

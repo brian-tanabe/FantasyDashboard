@@ -4,6 +4,7 @@ import com.briantanabe.fd.du.log.LoggingUtility;
 import com.briantanabe.fd.du.test.fixtures.EspnNflPlayerFixture;
 import com.briantanabe.fd.du.test.fixtures.NflPlayerFixture;
 import com.briantanabe.fd.du.test.fixtures.NumberFireCurrentWeekProjectionFixture;
+import com.briantanabe.fd.du.test.fixtures.NumberFireRemainingSeasonProjectionFixture;
 import com.briantanabe.fd.du.updater.DatabaseInterface;
 import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.fantasy.player.NflPlayer;
@@ -166,6 +167,7 @@ public class DatabaseInterfaceTests {
 
     @Test
     public void shouldBeAbleToAddOneNumberFireRemainingSeasonProjectionToDatabase(){
+        NumberFireRemainingSeasonProjectionFixture.getSampleNumberFireRemainingSeasonProjections(1);
         fail("Failed to add one NumberFireRemainingSeasonProjection to database");
     }
 
