@@ -1,11 +1,11 @@
 package com.briantanabe.fd.du.tests.unit;
 
-import com.briantanabe.fd.fixtures.MockWebRequest;
-import com.briantanabe.fd.providers.EspnLeaguePlayerOwnershipProvider;
-import com.briantanabe.fd.providers.NumberFireCurrentWeekProjectionsProvider;
-import com.briantanabe.fd.providers.NumberFireRemainingSeasonProjectionsProvider;
-import com.briantanabe.fd.providers.PlayerIdProvider;
-import com.briantanabe.fd.web.auth.TestableCredentialProvider;
+import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
+import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
+import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
+import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
+import com.briantanabe.fd.dp.providers.PlayerIdProvider;
+import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

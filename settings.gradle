@@ -4,3 +4,5 @@ include 'DataProvider'
 
 include 'DatabaseUpdater'
 
+include 'DashboardGui'
+

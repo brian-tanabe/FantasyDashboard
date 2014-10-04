@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DashboardGui/DashboardGui.iml" filepath="$PROJECT_DIR$/DashboardGui/DashboardGui.iml" />
       <module fileurl="file://$PROJECT_DIR$/DataProvider/DataProvider.iml" filepath="$PROJECT_DIR$/DataProvider/DataProvider.iml" />
       <module fileurl="file://$PROJECT_DIR$/DatabaseUpdater/DatabaseUpdater.iml" filepath="$PROJECT_DIR$/DatabaseUpdater/DatabaseUpdater.iml" />
       <module fileurl="file://$PROJECT_DIR$/FantasyDashboard.iml" filepath="$PROJECT_DIR$/FantasyDashboard.iml" />

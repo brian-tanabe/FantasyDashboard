@@ -1,6 +1,6 @@
 package com.briantanabe.fd.du.test.fixtures;
 
-import com.briantanabe.fd.fantasy.player.NflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 
 import java.util.ArrayList;
 

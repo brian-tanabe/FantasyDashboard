@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.briantanabe.fd.fantasy.player.EspnNflPlayer" table="EspnLeagueOwnership">
+    <class name="com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer" table="EspnLeagueOwnership">
         <meta attribute="class-description">
             This class contains player ownership data for each league.
         </meta>

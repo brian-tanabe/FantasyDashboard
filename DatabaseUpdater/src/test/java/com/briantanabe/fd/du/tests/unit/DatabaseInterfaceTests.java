@@ -6,10 +6,10 @@ import com.briantanabe.fd.du.test.fixtures.NflPlayerFixture;
 import com.briantanabe.fd.du.test.fixtures.NumberFireCurrentWeekProjectionFixture;
 import com.briantanabe.fd.du.test.fixtures.NumberFireRemainingSeasonProjectionFixture;
 import com.briantanabe.fd.du.updater.DatabaseInterface;
-import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
-import com.briantanabe.fd.fantasy.player.NflPlayer;
-import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
-import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection;
+import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static com.briantanabe.fd.unitTests.scrapers.PlayerFinder.findPlayerByPlayerName;
+import static com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.*;
 
 /**

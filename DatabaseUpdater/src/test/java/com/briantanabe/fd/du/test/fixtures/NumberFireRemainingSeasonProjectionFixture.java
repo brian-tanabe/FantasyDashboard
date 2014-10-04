@@ -1,6 +1,6 @@
 package com.briantanabe.fd.du.test.fixtures;
 
-import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
 
 import java.util.ArrayList;
 

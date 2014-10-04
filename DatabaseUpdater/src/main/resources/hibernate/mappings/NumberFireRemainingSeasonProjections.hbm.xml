@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection" table="NumberFireRemainingSeasonProjections">
+    <class name="com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection" table="NumberFireRemainingSeasonProjections">
         <meta attribute="class-description">
             This class holds numberFire's remaining season projections:
 

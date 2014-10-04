@@ -1,6 +1,6 @@
 package com.briantanabe.fd.du.test.fixtures;
 
-import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
 
 import java.util.ArrayList;
 

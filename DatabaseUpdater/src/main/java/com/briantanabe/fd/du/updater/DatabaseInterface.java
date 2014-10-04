@@ -1,9 +1,9 @@
 package com.briantanabe.fd.du.updater;
 
-import com.briantanabe.fd.fantasy.player.EspnNflPlayer;
-import com.briantanabe.fd.fantasy.player.NflPlayer;
-import com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection;
-import com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection;
+import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -45,28 +45,28 @@ public class DatabaseInterface {
 
     public ArrayList<NflPlayer> getAllNflPlayersFromDatabase(){
         Session session = startSession();
-        ArrayList<NflPlayer> players = new ArrayList<NflPlayer>(session.createQuery("from com.briantanabe.fd.fantasy.player.NflPlayer").list());
+        ArrayList<NflPlayer> players = new ArrayList<NflPlayer>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NflPlayer").list());
         closeSession(session);
         return players;
     }
 
     public ArrayList<EspnNflPlayer> getAllEspnNflPlayersFromDatabase(){
         Session session = startSession();
-        ArrayList<EspnNflPlayer> players = new ArrayList<EspnNflPlayer>(session.createQuery("from com.briantanabe.fd.fantasy.player.EspnNflPlayer").list());
+        ArrayList<EspnNflPlayer> players = new ArrayList<EspnNflPlayer>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer").list());
         closeSession(session);
         return players;
     }
 
     public ArrayList<NumberFireCurrentWeekProjection> getAllNumberFireCurrentWeekProjectionsFromDatabase(){
         Session session = startSession();
-        ArrayList<NumberFireCurrentWeekProjection> players = new ArrayList<NumberFireCurrentWeekProjection>(session.createQuery("from com.briantanabe.fd.fantasy.player.NumberFireCurrentWeekProjection").list());
+        ArrayList<NumberFireCurrentWeekProjection> players = new ArrayList<NumberFireCurrentWeekProjection>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection").list());
         closeSession(session);
         return players;
     }
 
     public ArrayList<NumberFireRemainingSeasonProjection> getAllNumberFireRemainingSeasonProjectionsFromDatabase(){
         Session session = startSession();
-        ArrayList<NumberFireRemainingSeasonProjection> players = new ArrayList<NumberFireRemainingSeasonProjection>(session.createQuery("from com.briantanabe.fd.fantasy.player.NumberFireRemainingSeasonProjection").list());
+        ArrayList<NumberFireRemainingSeasonProjection> players = new ArrayList<NumberFireRemainingSeasonProjection>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection").list());
         closeSession(session);
         return players;
     }
