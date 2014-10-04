@@ -10,5 +10,10 @@
 log/
 target/
 
+# Idea
+.idea/
+*.iml
+*.iws
+
 .gradle
 build/

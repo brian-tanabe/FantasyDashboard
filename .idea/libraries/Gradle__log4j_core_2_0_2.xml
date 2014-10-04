@@ -2,9 +2,11 @@
   <library name="Gradle: log4j-core-2.0.2">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.0.2/13521c5364501478e28c77a7f86b90b6ed5dbb77/log4j-core-2.0.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.0.2/13521c5364501478e28c77a7f86b90b6ed5dbb77/log4j-core-2.0.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.0.2/c5be482611e2cf5538ab55c4d93fab5220aaee29/log4j-core-2.0.2-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.0.2/c5be482611e2cf5538ab55c4d93fab5220aaee29/log4j-core-2.0.2-sources.jar!/" />
     </SOURCES>
   </library>
