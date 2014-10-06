@@ -124,7 +124,7 @@ public class WebPageTests {
     }
 
     @Test
-    public void shouldBeABleToReachEspnFantasyHomePage(){
+    public void shouldBeAbleToReachEspnFantasyHomePage(){
         try {
             assertEquals("Incorrect response code for ESPN fantasy home page", 200, webRequest.getPageResponseCode(ESPN_FANTASY_HOME_PAGE_URL));
         } catch(Exception ex){
