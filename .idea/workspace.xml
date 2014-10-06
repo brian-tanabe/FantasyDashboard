@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f91ac01-81af-4058-b65a-3272cf9f5d86" name="Default" comment="Finished writing tests and implementing code for adding and getting NumberFireCurrentWeekProjections from the database.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="9f91ac01-81af-4058-b65a-3272cf9f5d86" name="Default" comment="Finished writing tests and implementing code for adding and getting NumberFireCurrentWeekProjections from the database." />
     <ignored path="FantasyDashboard.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -1578,7 +1575,7 @@
       <workItem from="1412389946153" duration="835000" />
       <workItem from="1412390966474" duration="1760000" />
       <workItem from="1412392730254" duration="6850000" />
-      <workItem from="1412634170891" duration="160000" />
+      <workItem from="1412634170891" duration="204000" />
     </task>
     <task id="LOCAL-00001" summary="Removing the code I was trying to use to disable logging.  removed the hibernate sessionfactory name which fixed an exception.">
       <created>1412189944039</created>
@@ -1604,7 +1601,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22171000" />
+    <option name="totallyTimeSpent" value="22215000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
