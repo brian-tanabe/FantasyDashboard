@@ -19,6 +19,8 @@ public class PlayerSelectTableWidget extends Composite {
     private Button quarterbackPositionFilterButton;
     private Button runningBackPositionFilterButton;
 
+    private Table playerSearchTable;
+
     private StyledText playerSearchTextBox;
 
     public PlayerSelectTableWidget(Composite parent, int style){
@@ -36,6 +38,7 @@ public class PlayerSelectTableWidget extends Composite {
         filterBarComposite = new Composite(filterExpandBar, SWT.NONE);
         quarterbackPositionFilterButton = new Button(filterBarComposite, SWT.CHECK);
         runningBackPositionFilterButton = new Button(filterBarComposite, SWT.CHECK);
+        playerSearchTable = new Table(this, SWT.BORDER_SOLID);
     }
 
     private void configureWidget(){
@@ -78,6 +81,14 @@ public class PlayerSelectTableWidget extends Composite {
         playerSearchTextBoxFormData.width = 150;
         playerSearchTextBoxFormData.height = 20;
         playerSearchTextBox.setLayoutData(playerSearchTextBoxFormData);
+
+        // Configure playerSearchTable:
+        FormData playerSearchTableFormData = new FormData();
+        playerSearchTableFormData.right = new FormAttachment(100, -7);
+        playerSearchTableFormData.top = new FormAttachment(playerSearchTextBox, 7);
+        playerSearchTableFormData.bottom = new FormAttachment(100, -7);
+        playerSearchTableFormData.left = new FormAttachment(0, 7);
+        playerSearchTable.setLayoutData(playerSearchTableFormData);
     }
 
     private void addListeners(){
