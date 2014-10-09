@@ -21,31 +21,26 @@ public class MainGui {
     private PlayerDashWidget playerDashWidget;
     private FantasyTeamDashWidget fantasyTeamDashWidget;
 
-    public void open(){
-        Thread guiThread = new Thread(new Runnable(){
-            @Override
-            public void run() {
-                createGui();
-                configureGui();
-                addListeners();
-
-                shell.open();
-                shell.layout();
-                while(!shell.isDisposed()){
-                    if(!display.readAndDispatch())
-                        display.sleep();
-                }
-
-                display.dispose();
-            }
-        });
-        guiThread.start();
-    }
-
-    private void createGui(){
+    public void open() {
+        Display.setAppName("Fantasy Dashboard");
         display = Display.getDefault();
         shell = new Shell(display, SWT.SHELL_TRIM | SWT.DIALOG_TRIM);
 
+        createGui();
+        configureGui();
+        addListeners();
+
+        shell.open();
+        shell.layout();
+        while (!shell.isDisposed()) {
+            if (!display.readAndDispatch())
+                display.sleep();
+        }
+
+        display.dispose();
+    }
+
+    private void createGui() {
         parent = new Composite(shell, SWT.NONE);
 
         sashForm = new SashForm(parent, SWT.HORIZONTAL);
@@ -53,7 +48,7 @@ public class MainGui {
         fantasyTeamDashWidget = new FantasyTeamDashWidget(sashForm, SWT.NONE);
     }
 
-    private void configureGui(){
+    private void configureGui() {
         // Configure shell:
         shell.setText("Fantasy Dashboard");
         shell.setSize(1024, 600);
@@ -91,7 +86,7 @@ public class MainGui {
         fantasyTeamDashWidget.setLayout(new FillLayout());
     }
 
-    private void addListeners(){
+    private void addListeners() {
 
     }
 }

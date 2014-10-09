@@ -10,3 +10,5 @@ repositories {
 dependencies {
 
 }
+
+setProperty("org.gradle.jvmargs", "-XstartOnFirstThread")

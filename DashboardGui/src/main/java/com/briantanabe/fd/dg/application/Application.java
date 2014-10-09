@@ -8,20 +8,20 @@ import com.briantanabe.fd.dg.gui.MainGui;
  */
 public class Application {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try {
-            MainGui mainGui = new MainGui();
+            final MainGui mainGui = new MainGui();
 
             ActionProcessor actionProcessor = new ActionProcessor();
             Thread actionProcessorThread = new Thread(actionProcessor);
             actionProcessorThread.start();
-
-            System.out.println("Reached past gui thread");
-
-            mainGui.open();
             actionProcessor.doStuff();
 
-        } catch(Exception ex){
+            System.out.println("Reached past gui thread");
+            mainGui.open();
+
+
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

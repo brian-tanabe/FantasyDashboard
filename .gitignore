@@ -10,9 +10,16 @@
 target/
 
 # Idea
-.idea/
 *.iml
+*.ipr
 *.iws
+.idea/
+out/
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
 
 .gradle
 build/
