@@ -1,7 +1,9 @@
 package com.briantanabe.fd.du.updater;
 
+import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
+import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
+import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
 import com.briantanabe.fd.dp.providers.PlayerIdProvider;
-import com.briantanabe.fd.dp.web.SecureWebRequest;
 
 import java.io.IOException;
 
@@ -10,19 +12,20 @@ import java.io.IOException;
  */
 public class DatabaseUpdater {
     private static DatabaseInterface updater = DatabaseInterface.getInstance();
-    private SecureWebRequest espnWebRequest;
 
-    public DatabaseUpdater(SecureWebRequest espnWebRequest){
-        this.espnWebRequest = espnWebRequest;
+    public static void createPlayerIdTable(PlayerIdProvider provider) throws IOException {
+        updater.insert(provider.getAllPlayersAsArrayList());
     }
 
-    public void createDatabase() throws IOException {
-        createPlayerIdTable();
+    public static void createEspnLeaguePlayerOwnershipTable(EspnLeaguePlayerOwnershipProvider provider) throws IOException {
+        updater.insert(provider.getPlayerOwnershipInfo());
     }
 
-    private void createPlayerIdTable() throws IOException {
-        PlayerIdProvider playerIdProvider = new PlayerIdProvider();
-        playerIdProvider.scrapeForPlayerIds(espnWebRequest);
-        updater.insert(playerIdProvider.getAllPlayersAsArrayList());
+    public static void createNumberFireCurrentWeekProjectionsTable(NumberFireCurrentWeekProjectionsProvider provider) throws IOException {
+        updater.insert(provider.getPlayerProjections());
+    }
+
+    public static void createNumberFireRemainingSeasonProjectionsTable(NumberFireRemainingSeasonProjectionsProvider provider) throws IOException {
+        updater.insert(provider.getPlayerProjections());
     }
 }
