@@ -22,10 +22,6 @@ public class MainGui {
     private FantasyTeamDashWidget fantasyTeamDashWidget;
 
     public void open() {
-        Display.setAppName("Fantasy Dashboard");
-        display = Display.getDefault();
-        shell = new Shell(display, SWT.SHELL_TRIM | SWT.DIALOG_TRIM);
-
         createGui();
         configureGui();
         addListeners();
@@ -41,6 +37,8 @@ public class MainGui {
     }
 
     private void createGui() {
+        display = Display.getDefault();
+        shell = new Shell(display, SWT.SHELL_TRIM | SWT.DIALOG_TRIM);
         parent = new Composite(shell, SWT.NONE);
 
         sashForm = new SashForm(parent, SWT.HORIZONTAL);
@@ -54,6 +52,9 @@ public class MainGui {
         shell.setSize(1024, 600);
         shell.setMinimumSize(1024, 600);
         shell.setLayout(new FillLayout());
+
+        // Configure display:
+        Display.setAppName("Fantasy Dashboard");
 
         // Configure parent:
         FormData parentFormData = new FormData();
