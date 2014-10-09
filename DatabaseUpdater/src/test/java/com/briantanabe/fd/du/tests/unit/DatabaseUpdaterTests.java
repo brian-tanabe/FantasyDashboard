@@ -1,24 +1,18 @@
 package com.briantanabe.fd.du.tests.unit;
 
-import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
 import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
 import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
 import com.briantanabe.fd.dp.providers.PlayerIdProvider;
 import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
-import com.briantanabe.fd.dp.web.WebPage;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
 import com.briantanabe.fd.du.log.LoggingUtility;
 import com.briantanabe.fd.du.updater.DatabaseInterface;
 import com.briantanabe.fd.du.updater.DatabaseUpdater;
-import junit.framework.Assert;
-import org.h2.engine.Database;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -68,7 +62,7 @@ public class DatabaseUpdaterTests {
             provider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
             DatabaseUpdater.createEspnLeaguePlayerOwnershipTable(provider);
 
-            assertEquals("Did not find the correct number of rows in the EspnLeagueOwnershipInfo table", 0, provider.getPlayerOwnershipInfo().size(), databaseInterface.getAllEspnNflPlayersFromDatabase().size());
+            assertEquals("Did not find the correct number of rows in the EspnLeagueOwnershipInfo table", provider.getPlayerOwnershipInfo().size(), databaseInterface.getAllEspnNflPlayersFromDatabase().size());
         } catch(Exception ex){
             fail("Unable to create the EspnLeaguePlayerOwnership table");
             ex.printStackTrace();

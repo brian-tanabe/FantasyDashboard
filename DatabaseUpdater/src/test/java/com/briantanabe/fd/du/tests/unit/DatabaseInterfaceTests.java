@@ -1,16 +1,16 @@
 package com.briantanabe.fd.du.tests.unit;
 
+import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
 import com.briantanabe.fd.du.log.LoggingUtility;
 import com.briantanabe.fd.du.test.fixtures.EspnNflPlayerFixture;
 import com.briantanabe.fd.du.test.fixtures.NflPlayerFixture;
 import com.briantanabe.fd.du.test.fixtures.NumberFireCurrentWeekProjectionFixture;
 import com.briantanabe.fd.du.test.fixtures.NumberFireRemainingSeasonProjectionFixture;
 import com.briantanabe.fd.du.updater.DatabaseInterface;
-import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
-import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
-import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
-import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +18,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder.findPlayerByPlayerName;
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by BTanabe on 9/30/2014.
@@ -29,17 +30,20 @@ public class DatabaseInterfaceTests {
     @BeforeClass
     public static void turnLoggingOff(){
         LoggingUtility.turnLoggingOff();
+        updater = DatabaseInterface.getInstance();
     }
 
     @Before
     public void setup(){
-        updater = DatabaseInterface.getInstance();
+//        updater = DatabaseInterface.getInstance();
     }
 
-    @After
-    public void tearDown(){
-        updater.close();
+    @AfterClass
+    public static void tearDown(){
+//        updater.close();
     }
+
+
 
     @Test
     public void shouldBeAbleToReachDatabase(){

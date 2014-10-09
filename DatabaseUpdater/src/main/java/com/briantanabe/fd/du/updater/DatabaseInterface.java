@@ -81,17 +81,17 @@ public class DatabaseInterface {
 
     public static void close(){
         sessionFactory.close();
-        sessionFactory = null;
-        updater = null;
+//        sessionFactory = null;
+//        updater = null;
     }
 
-    private static Session startSession(){
+    public static Session startSession(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         return session;
     }
 
-    private static void closeSession(Session session){
+    public void closeSession(Session session){
         session.getTransaction().commit();
         session.close();
     }
