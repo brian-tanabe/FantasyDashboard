@@ -1,5 +1,9 @@
 package com.briantanabe.fd.dg.gui;
 
+import com.briantanabe.fd.ap.events.AllPlayerIdsEvent;
+import com.briantanabe.fd.ap.events.DatabaseUpdateCompleteEvent;
+import com.briantanabe.fd.ap.events.RequestAllPlayerIdsEvent;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.FillLayout;
@@ -9,10 +13,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by Brian on 10/3/2014.
  */
-public class MainGui {
+public class MainGui extends Observable implements Observer {
     private Shell shell;
     private Display display;
     private Composite parent;
@@ -89,5 +97,23 @@ public class MainGui {
 
     private void addListeners() {
 
+    }
+
+    private void populateGui(){
+        setChanged();
+        notifyObservers(new RequestAllPlayerIdsEvent());
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        if(o instanceof DatabaseUpdateCompleteEvent){
+            populateGui();
+        } else if(o instanceof AllPlayerIdsEvent){
+            addPlayersToPlayerDashWidgetPlayersTable(((AllPlayerIdsEvent) o).getAllNflPlayerIds());
+        }
+    }
+
+    private void addPlayersToPlayerDashWidgetPlayersTable(List<NflPlayer> allPlayers){
+        playerDashWidget.addPlayersToPlayerSelectTable(allPlayers);
     }
 }

@@ -1,11 +1,14 @@
 package com.briantanabe.fd.dg.gui;
 
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
+
+import java.util.List;
 
 /**
  * Created by Brian on 10/3/2014.
@@ -41,7 +44,10 @@ public class PlayerDashWidget extends Composite {
         playerSelectTableFormData.top = new FormAttachment(100, 0);
         playerSelectTableFormData.bottom = new FormAttachment(100, 0);
         playerSelectTable.setLayoutData(playerSelectTableFormData);
-//        setBackground(new Color(Display.getDefault(), 80, 80, 80));
+    }
+
+    public void addPlayersToPlayerSelectTable(List<NflPlayer> allPlayers){
+        playerSelectTable.addPlayersToTable(allPlayers);
     }
 
     private void addListeners(){

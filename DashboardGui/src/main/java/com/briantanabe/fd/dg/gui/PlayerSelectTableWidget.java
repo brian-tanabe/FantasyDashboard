@@ -1,5 +1,6 @@
 package com.briantanabe.fd.dg.gui;
 
+import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ExpandAdapter;
@@ -8,6 +9,8 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.*;
+
+import java.util.List;
 
 /**
  * Created by Brian on 10/3/2014.
@@ -29,6 +32,7 @@ public class PlayerSelectTableWidget extends Composite {
         createWidget();
         configureWidget();
         addListeners();
+        configureTable();
     }
 
     private void createWidget(){
@@ -89,6 +93,8 @@ public class PlayerSelectTableWidget extends Composite {
         playerSearchTableFormData.bottom = new FormAttachment(100, -7);
         playerSearchTableFormData.left = new FormAttachment(0, 7);
         playerSearchTable.setLayoutData(playerSearchTableFormData);
+        playerSearchTable.setHeaderVisible(true);
+        playerSearchTable.setLinesVisible(true);
     }
 
     private void addListeners(){
@@ -124,5 +130,34 @@ public class PlayerSelectTableWidget extends Composite {
 //                filterBarExpandItem.setHeight(filterBarComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
 //            }
 //        });
+    }
+
+    private void configureTable(){
+        TableColumn nameColumn = new TableColumn(playerSearchTable, SWT.NULL);
+        nameColumn.setText("Name");
+
+        TableColumn espnIdColumn = new TableColumn(playerSearchTable, SWT.NULL);
+        espnIdColumn.setText("ESPN ID");
+
+        TableColumn nfIdColumn = new TableColumn(playerSearchTable, SWT.NULL);
+        nfIdColumn.setText("nF ID");
+    }
+
+    public void addPlayersToTable(final List<NflPlayer> allPlayers){
+        Display.getDefault().asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                for(NflPlayer player : allPlayers) {
+                    TableItem playerRow = new TableItem(playerSearchTable, SWT.NULL);
+                    playerRow.setText(0, player.getName());
+                    playerRow.setText(1, Integer.toString(player.getEspnPlayerId()));
+                    playerRow.setText(2, Integer.toString(player.getNumberFireId()));
+                }
+
+                for(int columnIndex = 0; columnIndex < playerSearchTable.getColumnCount(); columnIndex++){
+                    playerSearchTable.getColumn(columnIndex).pack();
+                }
+            }
+        });
     }
 }
