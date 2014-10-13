@@ -39,4 +39,9 @@ public class NflPlayer {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s - espnId=[%d], nfId=[%d]", name, espnPlayerId, numberFireId);
+    }
 }

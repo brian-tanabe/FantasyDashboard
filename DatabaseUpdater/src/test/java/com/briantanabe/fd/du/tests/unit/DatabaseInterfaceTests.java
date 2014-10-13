@@ -5,16 +5,17 @@ import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
 import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
 import com.briantanabe.fd.du.log.LoggingUtility;
-import com.briantanabe.fd.du.test.fixtures.EspnNflPlayerFixture;
-import com.briantanabe.fd.du.test.fixtures.NflPlayerFixture;
-import com.briantanabe.fd.du.test.fixtures.NumberFireCurrentWeekProjectionFixture;
-import com.briantanabe.fd.du.test.fixtures.NumberFireRemainingSeasonProjectionFixture;
+import com.briantanabe.fd.du.tests.fixtures.EspnNflPlayerFixture;
+import com.briantanabe.fd.du.tests.fixtures.NflPlayerFixture;
+import com.briantanabe.fd.du.tests.fixtures.NumberFireCurrentWeekProjectionFixture;
+import com.briantanabe.fd.du.tests.fixtures.NumberFireRemainingSeasonProjectionFixture;
 import com.briantanabe.fd.du.updater.DatabaseInterface;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 import static com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder.findPlayerByPlayerName;
@@ -28,17 +29,20 @@ public class DatabaseInterfaceTests {
     private static DatabaseInterface updater;
 
     @BeforeClass
+    @Transactional
     public static void turnLoggingOff(){
         LoggingUtility.turnLoggingOff();
         updater = DatabaseInterface.getInstance();
     }
 
     @Before
+    @Transactional
     public void setup(){
 //        updater = DatabaseInterface.getInstance();
     }
 
     @AfterClass
+    @Transactional
     public static void tearDown(){
 //        updater.close();
     }
@@ -46,11 +50,13 @@ public class DatabaseInterfaceTests {
 
 
     @Test
+    @Transactional
     public void shouldBeAbleToReachDatabase(){
         assertTrue("Failed to isConnected to our database", updater.isConnected());
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddOneNflPlayerToDatabase(){
         ArrayList<NflPlayer> playersToAdd = NflPlayerFixture.getSampleNflPlayers(1);
 
@@ -65,6 +71,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddMultipleNflPlayersToDatabase(){
         ArrayList<NflPlayer> playersToAdd = NflPlayerFixture.getSampleNflPlayers(3);
 
@@ -87,6 +94,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddOneEspnNflPlayerToDatabase(){
         ArrayList<EspnNflPlayer> playersToAdd = EspnNflPlayerFixture.getSampleEspnNflPlayers(1, 10);
 
@@ -102,6 +110,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddMultipleEspnNflPlayersToDatabase(){
         ArrayList<EspnNflPlayer> playersToAdd = EspnNflPlayerFixture.getSampleEspnNflPlayers(3, 10);
 
@@ -127,6 +136,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddOneNumberFireCurrentWeekProjectionToDatabase(){
         ArrayList<NumberFireCurrentWeekProjection> playersToAdd = NumberFireCurrentWeekProjectionFixture.getSampleNumberFireCurrentWeekProjections(1);
 
@@ -143,6 +153,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddMultipleNumberFireCurrentWeekProjectionsToDatabase(){
         ArrayList<NumberFireCurrentWeekProjection> playersToAdd = NumberFireCurrentWeekProjectionFixture.getSampleNumberFireCurrentWeekProjections(3);
 
@@ -171,6 +182,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddOneNumberFireRemainingSeasonProjectionToDatabase(){
         ArrayList<NumberFireRemainingSeasonProjection> playersToAdd = NumberFireRemainingSeasonProjectionFixture.getSampleNumberFireRemainingSeasonProjections(1);
         updater.insert(playersToAdd);
@@ -186,6 +198,7 @@ public class DatabaseInterfaceTests {
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToAddMultipleNumberFireRemainingSeasonProjectionsToDatabase(){
         ArrayList<NumberFireRemainingSeasonProjection> playersToAdd = NumberFireRemainingSeasonProjectionFixture.getSampleNumberFireRemainingSeasonProjections(3);
         updater.insert(playersToAdd);

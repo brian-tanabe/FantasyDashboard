@@ -6,3 +6,5 @@ include 'DatabaseUpdater'
 
 include 'DashboardGui'
 
+include 'ActionProcessor'
+

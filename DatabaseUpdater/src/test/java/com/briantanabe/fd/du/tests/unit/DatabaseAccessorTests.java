@@ -14,6 +14,8 @@ import com.briantanabe.fd.du.updater.DatabaseUpdater;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import javax.transaction.Transactional;
+
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -23,33 +25,33 @@ import static org.junit.Assert.assertEquals;
 public class DatabaseAccessorTests {
     final static int TEST_ESPN_LEAGUE_ID = 84978;
 
-    private static DatabaseAccessor databaseAccessor;
+    private static DatabaseAccessor accessor = new DatabaseAccessor();
+    private static DatabaseUpdater updater = new DatabaseUpdater();
+
 
     @BeforeClass
+    @Transactional
     public static void createTestClass(){
         LoggingUtility.turnLoggingOff();
 
         try {
-            DatabaseInterface databaseInterface = DatabaseInterface.getInstance();
-
             PlayerIdProvider playerIdProvider = new PlayerIdProvider();
             playerIdProvider.scrapeForPlayerIds(MockWebRequest.getMockWebRequestForPlayerIdProviderTests());
-            DatabaseUpdater.createPlayerIdTable(playerIdProvider);
+            updater.insert(playerIdProvider.getAllPlayersAsArrayList());
 
             EspnLeaguePlayerOwnershipProvider espnLeaguePlayerOwnershipProvider = new EspnLeaguePlayerOwnershipProvider(MockWebRequest.getMockSecureWebRequestForEspnLeaguePlayerOwnershipProviderTests(TEST_ESPN_LEAGUE_ID));
             espnLeaguePlayerOwnershipProvider.login(new TestableCredentialProvider());
             espnLeaguePlayerOwnershipProvider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
-            DatabaseUpdater.createEspnLeaguePlayerOwnershipTable(espnLeaguePlayerOwnershipProvider);
+            updater.insert(espnLeaguePlayerOwnershipProvider.getPlayerOwnershipInfo());
 
             NumberFireCurrentWeekProjectionsProvider numberFireCurrentWeekProjectionsProvider = new NumberFireCurrentWeekProjectionsProvider();
             numberFireCurrentWeekProjectionsProvider.scrapeForNumberFiresCurrentWeekProjections(MockWebRequest.getMockWebRequestForNumberFireCurrentWeekProjectionsProvider());
-            DatabaseUpdater.createNumberFireCurrentWeekProjectionsTable(numberFireCurrentWeekProjectionsProvider);
+            updater.insert(numberFireCurrentWeekProjectionsProvider.getPlayerProjections());
 
             NumberFireRemainingSeasonProjectionsProvider numberFireRemainingSeasonProjectionsProvider = new NumberFireRemainingSeasonProjectionsProvider();
             numberFireRemainingSeasonProjectionsProvider.scrapeForNumberFiresRemainingSeasonProjections(MockWebRequest.getMockWebRequestForNumberFireRemainingSeasonProjectionsProvider());
-            DatabaseUpdater.createNumberFireRemainingSeasonProjectionsTable(numberFireRemainingSeasonProjectionsProvider);
+            updater.insert(numberFireRemainingSeasonProjectionsProvider.getPlayerProjections());
 
-//            databaseInterface.close();
         } catch (Exception ex){
             fail("Failed to create test database environment");
             ex.printStackTrace();
@@ -57,16 +59,18 @@ public class DatabaseAccessorTests {
     }
 
     @Test
+    @Transactional
     public void shouldHaveCreatedTablesWithTheCorrectNumberOfRows(){
-        assertEquals("The PlayerId table has an incorrect number of players", 549, databaseAccessor.getAllNflPlayersFromThePlayerIdTable().size());
-        assertEquals("The EspnPlayerOwnershipTable has an incorrect number of rows", 1535, databaseAccessor.getAllEspnPlayerOwnershipInfosFromTheEspnPlayerOwnershipTable().size());
-        assertEquals("The NumberFireCurrentWeekProjections table has an incorrect number of rows", 543, databaseAccessor.getAllNumberFireCurrentWeekProjectionsFromTheDatabase().size());
-        assertEquals("The NumberFireRemainingSeasonProjections table has an incorrect number of rows", 549, databaseAccessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase().size());
+        assertEquals("The EspnPlayerOwnershipTable has an incorrect number of rows", 1535, accessor.getAllEspnPlayerOwnershipInfosFromTheEspnPlayerOwnershipTable().size());
+        assertEquals("The NumberFireCurrentWeekProjections table has an incorrect number of rows", 543, accessor.getAllNumberFireCurrentWeekProjectionsFromTheDatabase().size());
+        assertEquals("The NumberFireRemainingSeasonProjections table has an incorrect number of rows", 549, accessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase().size());
+        assertEquals("The PlayerId table has an incorrect number of players", 549, accessor.getAllNflPlayersFromThePlayerIdTable().size());
     }
 
     @Test
+    @Transactional
     public void shouldBeAbleToFindANflPlayerObjectByTheirEspnPlayerId(){
-        NflPlayer playerFromDatabase = databaseAccessor.getNflPlayerFromThePlayerIdTableByTheirEspnPlayerId(1428);
+        NflPlayer playerFromDatabase = accessor.getNflPlayerFromThePlayerIdTableByTheirEspnPlayerId(1428);
 //        assertEquals(0, databaseInterface.getAllNflPlayersFromDatabase().size());
 //        assertEquals("Was not able to find Peyton Manning by his ESPN player ID", playerFromDatabase.getEspnPlayerId(), 1428);
 

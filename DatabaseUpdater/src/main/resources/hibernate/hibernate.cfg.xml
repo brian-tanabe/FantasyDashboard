@@ -27,6 +27,9 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
 
+        <!-- Records commited before a flush -->
+        <property name="hibernate.jdbc.batch_size">20</property>
+
         <!-- Table-class mappings -->
         <mapping resource="./hibernate/mappings/PlayerId.hbm.xml"/>
         <mapping resource="./hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml" />

@@ -1,6 +1,6 @@
 package com.briantanabe.fd.dg.application;
 
-import com.briantanabe.fd.dg.actionProcessor.ActionProcessor;
+import com.briantanabe.fd.ap.actionProcessor.ActionProcessor;
 import com.briantanabe.fd.dg.gui.MainGui;
 
 /**
@@ -15,7 +15,6 @@ public class Application {
             ActionProcessor actionProcessor = new ActionProcessor();
             Thread actionProcessorThread = new Thread(actionProcessor);
             actionProcessorThread.start();
-            actionProcessor.createPlayerDatabase();
 
             System.out.println("Reached past gui thread");
             mainGui.open();

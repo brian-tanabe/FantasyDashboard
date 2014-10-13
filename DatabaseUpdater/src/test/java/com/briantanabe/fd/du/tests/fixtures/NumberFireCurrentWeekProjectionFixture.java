@@ -1,4 +1,4 @@
-package com.briantanabe.fd.du.test.fixtures;
+package com.briantanabe.fd.du.tests.fixtures;
 
 import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
 
