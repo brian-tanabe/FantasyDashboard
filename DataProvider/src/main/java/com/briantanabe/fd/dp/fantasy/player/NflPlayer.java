@@ -42,6 +42,6 @@ public class NflPlayer {
 
     @Override
     public String toString() {
-        return String.format("%s - espnId=[%d], nfId=[%d]", name, espnPlayerId, numberFireId);
+        return String.format("name=[%s]; espnId=[%d]; nfId=[%d]", name, espnPlayerId, numberFireId);
     }
 }

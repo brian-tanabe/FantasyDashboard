@@ -35,4 +35,9 @@ public class NflPlayerPositionAndTeam extends NflPlayer {
     public NflTeam getNflTeam(){
         return nflTeam;
     }
+
+    @Override
+    public String toString() {
+        return String.format("name=[%s]; espnId=[%d]; team=[%s]; position=%s", getName(), getEspnPlayerId(), getNflTeam(), getAllEligiblePositions());
+    }
 }
