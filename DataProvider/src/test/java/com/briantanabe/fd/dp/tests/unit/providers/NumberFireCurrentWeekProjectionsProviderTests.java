@@ -1,8 +1,8 @@
 package com.briantanabe.fd.dp.tests.unit.providers;
 
 import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
-import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
+import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -47,7 +47,7 @@ public class NumberFireCurrentWeekProjectionsProviderTests {
             kickerProjection = findPlayerByPlayerName(kickerPlayerName, playerProjections);
         } catch(Exception ex){
             ex.printStackTrace();
-            fail("Failed to scrape for all numberFire's quarterbackProjection remaining season projections");
+            fail("Failed to scrapeForPlayerIdsAndOwnershipInfo for all numberFire's quarterbackProjection remaining season projections");
         }
     }
 

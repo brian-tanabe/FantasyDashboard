@@ -1,14 +1,15 @@
 package com.briantanabe.fd.dp.tests.unit.providers;
 
 import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
-import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
+import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static com.briantanabe.fd.dp.tests.fixtures.WebConstants.TEST_ESPN_LEAGUE_ID;
 import static com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
@@ -18,8 +19,6 @@ import static org.junit.Assert.fail;
  * Created by Brian on 9/28/14.
  */
 public class EspnLeaguePlayerOwnershipProviderTests {
-    private static final int TEST_ESPN_LEAGUE_ID = 84978;
-
     private static ArrayList<EspnNflPlayer> players;
 
     @BeforeClass
@@ -30,7 +29,7 @@ public class EspnLeaguePlayerOwnershipProviderTests {
             provider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
             players = provider.getPlayerOwnershipInfo();
         } catch(Exception ex){
-            fail("Failed to scrape for the ESPN league ownership info");
+            fail("Failed to scrapeForPlayerIdsAndOwnershipInfo for the ESPN league ownership info");
         }
     }
 
@@ -47,8 +46,8 @@ public class EspnLeaguePlayerOwnershipProviderTests {
 
         EspnNflPlayer player = findPlayerByPlayerName(playerName, players);
         assertNotNull(player);
-        assertEquals(String.format("Did not scrape %s's ESPN player ID correctly", player.getName()), espnPlayerId, player.getEspnPlayerId());
-        assertEquals(String.format("Did not scrape %s's owner info correctly", player.getName()), owner, player.getOwner());
+        assertEquals(String.format("Did not scrapeForPlayerIdsAndOwnershipInfo %s's ESPN player ID correctly", player.getName()), espnPlayerId, player.getEspnPlayerId());
+        assertEquals(String.format("Did not scrapeForPlayerIdsAndOwnershipInfo %s's owner info correctly", player.getName()), owner, player.getOwner());
     }
 
     @Test
@@ -59,8 +58,8 @@ public class EspnLeaguePlayerOwnershipProviderTests {
 
         EspnNflPlayer player = findPlayerByPlayerName(playerName, players);
         assertNotNull(player);
-        assertEquals(String.format("Did not scrape %s's ESPN player ID correctly", player.getName()), espnPlayerId, player.getEspnPlayerId());
-        assertEquals(String.format("Did not scrape %s's owner info correctly", player.getName()), owner, player.getOwner());
+        assertEquals(String.format("Did not scrapeForPlayerIdsAndOwnershipInfo %s's ESPN player ID correctly", player.getName()), espnPlayerId, player.getEspnPlayerId());
+        assertEquals(String.format("Did not scrapeForPlayerIdsAndOwnershipInfo %s's owner info correctly", player.getName()), owner, player.getOwner());
     }
 
     @Test

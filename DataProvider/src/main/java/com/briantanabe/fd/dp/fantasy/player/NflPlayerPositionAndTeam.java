@@ -13,6 +13,13 @@ public class NflPlayerPositionAndTeam extends NflPlayer {
     private NflTeam nflTeam;
     private List<Position> positions = new ArrayList<Position>(2);
 
+    public NflPlayerPositionAndTeam(String name, int espnId, NflTeam nflTeam, Position position){
+        setName(name);
+        setEspnPlayerId(espnId);
+        this.nflTeam = nflTeam;
+        positions.add(position);
+    }
+
     public void setNflTeam(NflTeam nflTeam){
         this.nflTeam = nflTeam;
     }

@@ -33,6 +33,10 @@ public class WebPage {
         return String.format("http://games.espn.go.com/ffl/tools/projections?&leagueId=%d&seasonTotals=true&seasonId=2014&startIndex=0", leagueId);
     }
 
+    public static String getEspnPlayersPage(){
+        return "http://games.espn.go.com/ffl/tools/projections?&seasonTotals=true&seasonId=2014&startIndex=0";
+    }
+
     public static String getNextEspnPlayersPageFromJavascriptAction(String javascript){
         return String.format("http://games.espn.go.com/ffl/tools/projections?%s", javascript);
     }

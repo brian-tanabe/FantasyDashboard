@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.briantanabe.fd.dp.web.WebPage.getEspnPlayersPageFromLeagueId;
 
@@ -27,6 +28,7 @@ public class EspnLeaguePlayerOwnershipProvider {
         webRequest.login(credentials);
     }
 
+    // TODO mostly copied from PlayerPositionAndTeamProvider; can be refactored into a base class
     public void scrapeForOwnershipInfo(int leagueId) throws IOException {
         String nextPageLink = getEspnPlayersPageFromLeagueId(leagueId);
         Document playerPageDocument = null;
@@ -36,11 +38,13 @@ public class EspnLeaguePlayerOwnershipProvider {
         } while((nextPageLink = getLinkToNextPage(playerPageDocument)) != null);
     }
 
-    private ArrayList<EspnNflPlayer> getAllPlayerOwnershipInformationOnPage(Document document, int leagueId){
+    private List<EspnNflPlayer> getAllPlayerOwnershipInformationOnPage(Document document, int leagueId){
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
-        return scraper.scrape(leagueId, document);
+        return scraper.scrapeForPlayerIdsAndOwnershipInfo(leagueId, document);
     }
 
+    // TODO test with other league's pages
+    // TODO copied from PlayerPositionAndTeamProvider; can be refactored into a base class
     private String getLinkToNextPage(Document document){
         String nextPageLink = null;
 

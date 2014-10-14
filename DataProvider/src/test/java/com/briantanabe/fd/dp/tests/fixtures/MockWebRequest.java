@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.briantanabe.fd.dp.tests.fixtures.FileDocumentor.getDocumentFromFileHtml;
+import static com.briantanabe.fd.dp.tests.fixtures.WebConstants.TEST_ESPN_LEAGUE_ID;
 import static com.briantanabe.fd.dp.web.WebPage.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -63,6 +64,21 @@ public class MockWebRequest {
         urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_TIGHT_END_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekTightEndProjectionDocument());
         urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_KICKER_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekKickerProjectionDocument());
         urlToDocumentMap.put(NUMBER_FIRE_CURRENT_WEEK_DEFENSE_PROJECTIONS_URL, NumberFireCurrentWeekProjectionFixture.getCurrentWeekDefenseProjectionDocument());
+
+        return MockWebRequest.getMockWebRequest(urlToDocumentMap);
+    }
+
+    public static WebRequest getMockWebRequestForPlayerPositionAndTeamProvider() throws IOException {
+        Map<String, Document> urlToDocumentMap = new LinkedHashMap<String, Document>();
+        for(int index = 1; index < 40; index++){
+            String requestUrl = String.format("http://games.espn.go.com/ffl/tools/projections?&leagueId=%d&seasonTotals=true&seasonId=2014&startIndex=%d", TEST_ESPN_LEAGUE_ID, (index - 1) * 40);
+            String htmlDocumentPath = String.format("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage%d.html", index);
+            Document testPage = getDocumentFromFileHtml(htmlDocumentPath);
+            urlToDocumentMap.put(requestUrl, testPage);
+        }
+
+        // Place the fist page in the hash map; this will be fed to the scraper without the league ID:
+        urlToDocumentMap.put("http://games.espn.go.com/ffl/tools/projections?&seasonTotals=true&seasonId=2014&startIndex=0", getDocumentFromFileHtml(String.format("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage%d.html", 2)));
 
         return MockWebRequest.getMockWebRequest(urlToDocumentMap);
     }

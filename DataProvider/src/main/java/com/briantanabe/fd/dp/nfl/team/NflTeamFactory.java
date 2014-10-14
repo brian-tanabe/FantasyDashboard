@@ -27,7 +27,7 @@ public class NflTeamFactory {
             return NflTeam.TEXANS;
         else if(cleanTeamName.contains("indianapolis") || cleanTeamName.contains("colts") || cleanTeamName.contains("ind"))
             return NflTeam.COLTS;
-        else if(cleanTeamName.contains("jacksonville") || cleanTeamName.contains("jaguars") || cleanTeamName.contains("jax") || cleanTeamName.contains("jag"))
+        else if(cleanTeamName.contains("jacksonville") || cleanTeamName.contains("jaguars") || cleanTeamName.contains("jax") || cleanTeamName.contains("jag") || cleanTeamName.contains("jac"))
             return NflTeam.JAGUARS;
         else if(cleanTeamName.contains("tennessee") || cleanTeamName.contains("titans") || cleanTeamName.contains("ten"))
             return NflTeam.TITANS;
@@ -45,7 +45,7 @@ public class NflTeamFactory {
             return NflTeam.GIANTS;
         else if(cleanTeamName.contains("philadelphia") || cleanTeamName.contains("eagles") || cleanTeamName.contains("phi"))
             return NflTeam.EAGLES;
-        else if(cleanTeamName.contains("washington") || cleanTeamName.contains("redskins") || cleanTeamName.contains("was"))
+        else if(cleanTeamName.contains("washington") || cleanTeamName.contains("redskins") || cleanTeamName.contains("was") || cleanTeamName.contains("wsh"))
             return NflTeam.REDSKINS;
         else if(cleanTeamName.contains("chicago") || cleanTeamName.contains("bears") || cleanTeamName.contains("chi"))
             return NflTeam.BEARS;
