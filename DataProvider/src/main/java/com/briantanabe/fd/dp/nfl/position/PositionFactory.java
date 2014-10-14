@@ -4,7 +4,7 @@ package com.briantanabe.fd.dp.nfl.position;
  * Created by Brian on 10/13/14.
  */
 public class PositionFactory {
-    
+
     public static Position whatPosition(String positionString) {
         positionString = positionString.toLowerCase();
         if (positionString.contains("qb") || positionString.contains("quarterback"))
