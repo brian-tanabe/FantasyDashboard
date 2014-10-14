@@ -7,9 +7,10 @@
         <meta attribute="class-description">
             This class contains player ESPN and NumberFire IDs as well as their name.
         </meta>
-        <id name="espnPlayerId" column="espn_id" type="java.lang.Integer">
+        <id name="id" column="id" type="java.lang.Integer">
             <generator class="native" />
         </id>
+        <property name="espnPlayerId" column="espn_id" type="java.lang.Integer" />
         <property name="numberFireId" column="number_fire_id" type="java.lang.Integer" />
         <property name="name" column="player_name" type="java.lang.String" />
     </class>

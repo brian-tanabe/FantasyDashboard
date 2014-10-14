@@ -35,5 +35,6 @@
         <mapping resource="./hibernate/mappings/EspnLeaguePlayerOwnership.hbm.xml" />
         <mapping resource="./hibernate/mappings/NumberFireCurrentWeekProjections.hbm.xml" />
         <mapping resource="./hibernate/mappings/NumberFireRemainingSeasonProjections.hbm.xml" />
+        <mapping resource="./hibernate/mappings/PlayerPositionsAndTeam.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

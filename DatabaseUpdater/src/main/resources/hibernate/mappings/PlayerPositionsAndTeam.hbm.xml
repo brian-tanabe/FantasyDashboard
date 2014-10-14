@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam" table="PlayerPositionsAndTeam">
+        <meta attribute="class-description">
+            This class is a subclass of NflPlayer and contains a list of NFL positions the player is ESPN fantasy
+            eligible at as well as what NFL team they currently play for.
+        </meta>
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="native" />
+        </id>
+
+        <property name="espnPlayerId" column="espn_id" type="java.lang.Integer" />
+        <property name="name" column="name" type="java.lang.String" />
+        <!--<property name="nflTeam" column="nfl_team" type="org.hibernate.type.EnumType" />-->
+        <!--<property name="positions" column="position_eligibility_list" />-->
+    </class>
+
+</hibernate-mapping>

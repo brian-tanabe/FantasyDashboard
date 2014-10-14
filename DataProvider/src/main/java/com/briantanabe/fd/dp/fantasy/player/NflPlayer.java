@@ -4,6 +4,7 @@ package com.briantanabe.fd.dp.fantasy.player;
  * Created by BTanabe on 9/26/2014.
  */
 public class NflPlayer {
+    private int id;
     private int espnPlayerId;
     private int numberFireId;
     private String name;
@@ -15,6 +16,8 @@ public class NflPlayer {
         this.numberFireId = numberFireId;
         this.name = name;
     }
+
+    public int getId(){ return id; }
 
     public int getEspnPlayerId(){
         return espnPlayerId;
@@ -28,6 +31,8 @@ public class NflPlayer {
         return name;
     }
 
+    public void setId(int id){ this.id = id; }
+
     public void setEspnPlayerId(int espnPlayerId) {
         this.espnPlayerId = espnPlayerId;
     }
@@ -39,6 +44,9 @@ public class NflPlayer {
     public void setName(String name) {
         this.name = name;
     }
+
+
+
 
     @Override
     public String toString() {

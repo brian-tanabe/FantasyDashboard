@@ -1,11 +1,7 @@
 package com.briantanabe.fd.du.updater;
 
-import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
-import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
-import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
-import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
+import com.briantanabe.fd.dp.fantasy.player.*;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +41,13 @@ public class DatabaseAccessor extends DatabaseI {
     public List<NumberFireRemainingSeasonProjection> getAllNumberFireRemainingWeekProjectionsFromTheDatabase() {
         Session session = startSession(sessionFactory);
         ArrayList<NumberFireRemainingSeasonProjection> players = new ArrayList<NumberFireRemainingSeasonProjection>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection").list());
+        closeSession(session);
+        return players;
+    }
+
+    public List<NflPlayerPositionAndTeam> getAllPlayerPositionAndTeamObjectsFromTheDatabase() {
+        Session session = startSession(sessionFactory);
+        ArrayList<NflPlayerPositionAndTeam> players = new ArrayList<NflPlayerPositionAndTeam>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam").list());
         closeSession(session);
         return players;
     }

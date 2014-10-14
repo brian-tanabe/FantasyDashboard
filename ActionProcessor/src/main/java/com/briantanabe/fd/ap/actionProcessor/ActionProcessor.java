@@ -27,6 +27,7 @@ public class ActionProcessor extends Observable implements Runnable, Observer {
     }
 
     public void buildDatabase() throws IOException {
+        // PlayerId table:
         PlayerIdProvider playerIdProvider = new PlayerIdProvider();
         playerIdProvider.scrapeForPlayerIds(espnWebRequest);
         databaseUpdater.insert(playerIdProvider.getAllPlayersAsArrayList());

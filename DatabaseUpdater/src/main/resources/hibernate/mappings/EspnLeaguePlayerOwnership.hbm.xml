@@ -7,9 +7,10 @@
         <meta attribute="class-description">
             This class contains player ownership data for each league.
         </meta>
-        <id name="espnPlayerId" column="espn_id" type="java.lang.Integer">
+        <id name="id" column="id" type="java.lang.Integer">
             <generator class="native" />
         </id>
+        <property name="espnPlayerId" column="espn_id" type="java.lang.Integer">
         <property name="name" column="player_name" type="java.lang.String" />
         <property name="leagueId" column="espn_league_id" type="java.lang.Integer" />
         <property name="owner" column="owner_id" type="java.lang.Integer" />

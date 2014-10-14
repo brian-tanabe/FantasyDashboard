@@ -1,19 +1,16 @@
 package com.briantanabe.fd.du.tests.unit;
 
-import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
-import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
-import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
-import com.briantanabe.fd.dp.providers.PlayerIdProvider;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam;
+import com.briantanabe.fd.dp.providers.*;
 import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
-import com.briantanabe.fd.du.log.LoggingUtility;
 import com.briantanabe.fd.du.updater.DatabaseAccessor;
-import com.briantanabe.fd.du.updater.DatabaseInterface;
 import com.briantanabe.fd.du.updater.DatabaseUpdater;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -27,7 +24,7 @@ public class DatabaseUpdaterTests {
 
     @BeforeClass
     public static void setupTests() {
-        LoggingUtility.turnLoggingOff();
+//        LoggingUtility.turnLoggingOff();
     }
 
     @Test
@@ -87,6 +84,24 @@ public class DatabaseUpdaterTests {
             assertEquals("Did not find the correct number of rows in the NumberFireRemainingSeasonProjections table", provider.getPlayerProjections().size(), accessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase().size());
         } catch (Exception ex) {
             fail("Unable to create the NumberFireCurrentWeekProjection table");
+            ex.printStackTrace();
+        }
+    }
+
+    @Test
+    @Transactional
+    public void shouldBeAbleToCreateThePlayerPositionAndTeamTable(){
+        try {
+            PlayerPositionAndTeamProvider provider = new PlayerPositionAndTeamProvider(MockWebRequest.getMockWebRequestForPlayerPositionAndTeamProvider());
+            provider.scrapeForPlayerPositionsAndTeams();
+            List<NflPlayerPositionAndTeam> playersToAdd = provider.getAllPlayerPositionsAndTeams();
+            updater.insert(playersToAdd);
+
+            List<NflPlayerPositionAndTeam> playersFromDatabase = accessor.getAllPlayerPositionAndTeamObjectsFromTheDatabase();
+
+            assertEquals("Did not find the correct number of player rows in the PlayerPositionAndTeam table", playersToAdd.size(), accessor.getAllPlayerPositionAndTeamObjectsFromTheDatabase().size());
+        } catch (Exception ex){
+            fail("Unable to create the PlayerPositionAndTeam table");
             ex.printStackTrace();
         }
     }
