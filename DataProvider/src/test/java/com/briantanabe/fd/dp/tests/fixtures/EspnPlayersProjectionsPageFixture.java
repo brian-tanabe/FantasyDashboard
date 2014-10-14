@@ -14,4 +14,12 @@ public class EspnPlayersProjectionsPageFixture {
     public static Document getAllPlayersProjectionPageTwoAsDocument(){
         return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage2.html");
     }
+
+    public static Document getAllPlayersProjectionPageFourAsDocument(){
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage4.html");
+    }
+
+    public static Document getAllPlayersProjectionPageFiveAsDocument(){
+        return FileDocumentor.getDocumentFromFileHtml("./DataProvider/src/test/resources/WebPages/espnProjectionsPage/espnPlayersSeasonProjectionPage5.html");
+    }
 }

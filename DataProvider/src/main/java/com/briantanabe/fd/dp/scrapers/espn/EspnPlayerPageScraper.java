@@ -2,7 +2,9 @@ package com.briantanabe.fd.dp.scrapers.espn;
 
 import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam;
+import com.briantanabe.fd.dp.nfl.position.Position;
 import com.briantanabe.fd.dp.nfl.position.PositionFactory;
+import com.briantanabe.fd.dp.nfl.team.NflTeam;
 import com.briantanabe.fd.dp.nfl.team.NflTeamFactory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -42,13 +44,10 @@ public class EspnPlayerPageScraper {
             String playerId = playerIdAndNameElement.attr("playerid");
             String name = playerIdAndNameElement.text();
             String positionAndTeamString = playerElement.select("td.playertablePlayerName").text().replace(name, "").replace(",", "").replace("\u00a0"," ").replaceAll("[^a-zA-Z /]", "").trim();
+            List<Position> positions = getAllEligiblePositionsFromTeamAndPositionString(positionAndTeamString);
+            NflTeam team = PositionFactory.whatPosition(positionAndTeamString) == Position.DEFENSE ? NflTeamFactory.whatTeam(name) : NflTeamFactory.whatTeam(positionAndTeamString);
 
-            if(name.equalsIgnoreCase("Ray Rice")){
-                System.out.println("");
-            }
-
-            System.out.println(String.format("name=[%s]; id=[%s]; team=[%s]; position=[%s]", name, playerId, NflTeamFactory.whatTeam(positionAndTeamString), PositionFactory.whatPosition(positionAndTeamString)));
-            players.add(new NflPlayerPositionAndTeam(name, Integer.parseInt(playerId), NflTeamFactory.whatTeam(positionAndTeamString), PositionFactory.whatPosition(positionAndTeamString)));
+            players.add(new NflPlayerPositionAndTeam(name, Integer.parseInt(playerId), team, positions));
         }
 
         return players;
@@ -60,6 +59,20 @@ public class EspnPlayerPageScraper {
 
     private Elements extractPlayerIdAndNameElement(Element playerElement){
         return playerElement.select("td.playertablePlayerName").select("a:not(a:has(img))");
+    }
+
+    private List<Position> getAllEligiblePositionsFromTeamAndPositionString(String teamAndPositionString){
+        String[] positionString = teamAndPositionString.toUpperCase().split(" ");
+        ArrayList<Position> positions = new ArrayList<>();
+        for(int index = 1; index < positionString.length; index++){
+            if(PositionFactory.whatPosition(positionString[index]) != Position.UNKNOWN)
+                positions.add(PositionFactory.whatPosition(positionString[index]));
+        }
+
+        if(positions.size() == 0)
+            positions.add(PositionFactory.whatPosition(teamAndPositionString));
+
+        return positions;
     }
 
     private int getOwnersTeamIdFromElement(Element ownerElement){
