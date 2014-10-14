@@ -42,7 +42,7 @@ public class PlayerSelectTableWidget extends Composite {
         filterBarComposite = new Composite(filterExpandBar, SWT.NONE);
         quarterbackPositionFilterButton = new Button(filterBarComposite, SWT.CHECK);
         runningBackPositionFilterButton = new Button(filterBarComposite, SWT.CHECK);
-        playerSearchTable = new Table(this, SWT.BORDER_SOLID);
+        playerSearchTable = new Table(this, SWT.BORDER_SOLID | SWT.FULL_SELECTION);
     }
 
     private void configureWidget(){
