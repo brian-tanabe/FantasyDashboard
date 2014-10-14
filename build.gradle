@@ -3,6 +3,18 @@ apply plugin: 'idea'
 
 version = '1.0'
 
+apply from: 'DashboardGui/gradle/swt.gradle'
+
+public String getPlatform(String platform) {
+    switch (platform.replaceAll(' ', '').toLowerCase()) {
+        case ~/.*linux.*/:  return 'linux'
+        case ~/.*darwin.*/: return 'darwin'
+        case ~/.*osx.*/:    return 'darwin'
+        case ~/.*win.*/:    return 'windows'
+        default:            return null
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -11,4 +23,11 @@ dependencies {
 
 }
 
-setProperty("org.gradle.jvmargs", "-XstartOnFirstThread")
+ext {
+    platform = getPlatform(System.properties['os.name'])
+}
+
+if (platform == 'darwin') {
+    jvmArgs '-XstartOnFirstThread'
+    setProperty("org.gradle.jvmargs", "-XstartOnFirstThread")
+}
