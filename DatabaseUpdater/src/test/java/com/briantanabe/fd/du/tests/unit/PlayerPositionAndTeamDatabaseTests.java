@@ -65,6 +65,6 @@ public class PlayerPositionAndTeamDatabaseTests {
 
     @Test
     public void shouldBeAbleToStoreAndRecallPlayersPositionCorrectly(){
-        assertTrue(String.format("Unable to find %s by name", PLAYER_NAME), playerFromDatabase.getPositions().contains(PLAYER_POSITION));
+        assertTrue(String.format("Unable to find %s by name", PLAYER_NAME), playerFromDatabase.getPositionEligibility().contains(PLAYER_POSITION));
     }
 }

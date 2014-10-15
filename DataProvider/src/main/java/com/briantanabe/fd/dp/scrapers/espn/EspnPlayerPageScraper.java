@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,7 +46,7 @@ public class EspnPlayerPageScraper {
             String playerId = playerIdAndNameElement.attr("playerid");
             String name = playerIdAndNameElement.text();
             String positionAndTeamString = playerElement.select("td.playertablePlayerName").text().replace(name, "").replace(",", "").replace("\u00a0"," ").replaceAll("[^a-zA-Z /]", "").trim();
-            EnumSet<Position> positions = getAllEligiblePositionsFromTeamAndPositionString(positionAndTeamString);
+            Set<Position> positions = getAllEligiblePositionsFromTeamAndPositionString(positionAndTeamString);
             NflTeam team = PositionFactory.whatPosition(positionAndTeamString) == Position.DEFENSE ? NflTeamFactory.whatTeam(name) : NflTeamFactory.whatTeam(positionAndTeamString);
 
             players.add(new NflPlayerPositionAndTeam(name, Integer.parseInt(playerId), team, positions));

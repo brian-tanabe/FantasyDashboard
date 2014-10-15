@@ -26,7 +26,7 @@ public class PlayerPositionAndTeamProvider {
     // TODO mostly copied from EspnLeaguePlayerOwnershipProvider; can be refactored into a base class
     public void scrapeForPlayerPositionsAndTeams() throws IOException {
         String nextPageLink = getEspnPlayersPage();
-        Document playerPageDocument = null;
+        Document playerPageDocument;
         do {
             playerPageDocument = webRequest.getPageAsDocument(nextPageLink);
             playerPositionsAndTeams.addAll(getAllPlayerPositionsAndNflTeamsOnPage(playerPageDocument));

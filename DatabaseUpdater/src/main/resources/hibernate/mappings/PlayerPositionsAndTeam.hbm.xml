@@ -3,9 +3,6 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <typedef name="position" class="org.hibernate.type.EnumType">
-        <param name="enumClassName">com.briantanabe.fd.dp.nfl.position.Position</param>
-    </typedef>
     <class name="com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam" table="PlayerPositionsAndTeam">
         <meta attribute="class-description">
             This class is a subclass of NflPlayer and contains a list of NFL positions the player is ESPN fantasy
@@ -22,9 +19,9 @@
                 <param name="enumClass">com.briantanabe.fd.dp.nfl.team.NflTeam</param>
             </type>
         </property>
-        <set name="positions" table="PositionsTable">
+        <set name="positionSet">
             <key column="id" not-null="true" />
-            <element type="position" column="position_eligibility" />
+            <element type="java.lang.String" column="position_eligibility" />
         </set>
     </class>
 

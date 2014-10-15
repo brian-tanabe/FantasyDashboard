@@ -38,7 +38,7 @@ public class PlayerFinder {
     public static List<NflPlayerPositionAndTeam> findAllPlayersByPosition(Position position, List<NflPlayerPositionAndTeam> players){
         ArrayList<NflPlayerPositionAndTeam> playerAtPosition = new ArrayList<>();
         for(NflPlayerPositionAndTeam player : players) {
-            if(player.getPositions().contains(position))
+            if(player.getPositionEligibility().contains(position))
                 playerAtPosition.add(player);
         }
 

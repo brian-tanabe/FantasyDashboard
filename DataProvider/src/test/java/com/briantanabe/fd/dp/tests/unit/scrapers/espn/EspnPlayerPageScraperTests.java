@@ -133,7 +133,7 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositions()) && positionList.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositionEligibility()) && positionList.size() == player.getPositionEligibility().size());
     }
 
     @Test
@@ -152,7 +152,7 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositions()) && positionList.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositionEligibility()) && positionList.size() == player.getPositionEligibility().size());
     }
 
     @Test
@@ -171,7 +171,7 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositions()) && positionList.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositionEligibility()) && positionList.size() == player.getPositionEligibility().size());
     }
 
     @Test
@@ -190,7 +190,7 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositions()) && positionList.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositionEligibility()) && positionList.size() == player.getPositionEligibility().size());
     }
 
     @Test
@@ -209,7 +209,7 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositions()) && positionList.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositionEligibility()) && positionList.size() == player.getPositionEligibility().size());
     }
 
     @Test
@@ -228,7 +228,7 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositions()) && positionList.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionList.containsAll(player.getPositionEligibility()) && positionList.size() == player.getPositionEligibility().size());
     }
 
     @Test
@@ -248,6 +248,6 @@ public class EspnPlayerPageScraperTests {
         assertEquals(String.format("%s's name was not parsed correctly", playerToTest), playerToTest, player.getName());
         assertEquals(String.format("%s's espnId was parsed incorrectly", playerToTest), espnId, player.getEspnPlayerId());
         assertEquals(String.format("%s's NFL team was parsed incorrectly", playerToTest), team, player.getNflTeam());
-        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionSet.containsAll(player.getPositions()) && positionSet.size() == player.getPositions().size());
+        assertTrue(String.format("%s's position was parsed incorrectly", playerToTest), positionSet.containsAll(player.getPositionEligibility()) && positionSet.size() == player.getPositionEligibility().size());
     }
 }
