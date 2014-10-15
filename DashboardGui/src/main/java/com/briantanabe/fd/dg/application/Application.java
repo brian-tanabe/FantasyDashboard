@@ -26,9 +26,8 @@ public class Application {
             mainGui.addObserver(actionProcessor);
 
             System.out.println("Reached past gui thread");
+
             mainGui.open();
-
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
