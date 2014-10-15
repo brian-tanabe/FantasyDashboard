@@ -1,20 +1,24 @@
 package com.briantanabe.fd.du.tests.unit;
 
+import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
+import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
 import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
 import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
 import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
 import com.briantanabe.fd.dp.providers.PlayerIdProvider;
 import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
+import com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
 import com.briantanabe.fd.du.log.LoggingUtility;
 import com.briantanabe.fd.du.updater.DatabaseAccessor;
-import com.briantanabe.fd.du.updater.DatabaseInterface;
 import com.briantanabe.fd.du.updater.DatabaseUpdater;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -37,20 +41,26 @@ public class DatabaseAccessorTests {
         try {
             PlayerIdProvider playerIdProvider = new PlayerIdProvider();
             playerIdProvider.scrapeForPlayerIds(MockWebRequest.getMockWebRequestForPlayerIdProviderTests());
-            updater.insert(playerIdProvider.getAllPlayersAsArrayList());
+            List<NflPlayer> playerIdRows = playerIdProvider.getAllPlayersAsArrayList();
+            updater.insert(playerIdRows);
 
             EspnLeaguePlayerOwnershipProvider espnLeaguePlayerOwnershipProvider = new EspnLeaguePlayerOwnershipProvider(MockWebRequest.getMockSecureWebRequestForEspnLeaguePlayerOwnershipProviderTests(TEST_ESPN_LEAGUE_ID));
             espnLeaguePlayerOwnershipProvider.login(new TestableCredentialProvider());
             espnLeaguePlayerOwnershipProvider.scrapeForOwnershipInfo(TEST_ESPN_LEAGUE_ID);
-            updater.insert(espnLeaguePlayerOwnershipProvider.getPlayerOwnershipInfo());
+            List<EspnNflPlayer> leagueOwnershipRows = espnLeaguePlayerOwnershipProvider.getPlayerOwnershipInfo();
+            updater.insert(leagueOwnershipRows);
 
             NumberFireCurrentWeekProjectionsProvider numberFireCurrentWeekProjectionsProvider = new NumberFireCurrentWeekProjectionsProvider();
             numberFireCurrentWeekProjectionsProvider.scrapeForNumberFiresCurrentWeekProjections(MockWebRequest.getMockWebRequestForNumberFireCurrentWeekProjectionsProvider());
-            updater.insert(numberFireCurrentWeekProjectionsProvider.getPlayerProjections());
+            List<NumberFireCurrentWeekProjection> numberFireCurrentWeekProjectionRows = numberFireCurrentWeekProjectionsProvider.getPlayerProjections();
+            updater.insert(numberFireCurrentWeekProjectionRows);
 
             NumberFireRemainingSeasonProjectionsProvider numberFireRemainingSeasonProjectionsProvider = new NumberFireRemainingSeasonProjectionsProvider();
             numberFireRemainingSeasonProjectionsProvider.scrapeForNumberFiresRemainingSeasonProjections(MockWebRequest.getMockWebRequestForNumberFireRemainingSeasonProjectionsProvider());
-            updater.insert(numberFireRemainingSeasonProjectionsProvider.getPlayerProjections());
+            List<NumberFireRemainingSeasonProjection> numberFireRemainingSeasonProjectionsRows = numberFireRemainingSeasonProjectionsProvider.getPlayerProjections();
+            updater.insert(numberFireRemainingSeasonProjectionsRows);
+
+            System.out.print("");
 
         } catch (Exception ex){
             fail("Failed to create test database environment");
@@ -59,16 +69,33 @@ public class DatabaseAccessorTests {
     }
 
     @Test
-    @Transactional
-    public void shouldHaveCreatedTablesWithTheCorrectNumberOfRows(){
-        assertEquals("The EspnPlayerOwnershipTable has an incorrect number of rows", 1535, accessor.getAllEspnPlayerOwnershipInfosFromTheEspnPlayerOwnershipTable().size());
-        assertEquals("The NumberFireCurrentWeekProjections table has an incorrect number of rows", 543, accessor.getAllNumberFireCurrentWeekProjectionsFromTheDatabase().size());
-        assertEquals("The NumberFireRemainingSeasonProjections table has an incorrect number of rows", 549, accessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase().size());
+    public void shouldHaveCreatedThePlayerIdTableWithTheProperNumberOfRows(){
         assertEquals("The PlayerId table has an incorrect number of players", 549, accessor.getAllNflPlayersFromThePlayerIdTable().size());
     }
 
     @Test
-    @Transactional
+    public void shouldHaveCreatedTheEspnPlayerOwnershipTableWithTheProperNumberOfRows(){
+        assertEquals("The EspnPlayerOwnershipTable has an incorrect number of rows", 1535, accessor.getAllEspnPlayerOwnershipInfosFromTheEspnPlayerOwnershipTable().size());
+    }
+
+    @Test
+    public void shouldHaveCreatedTheNumberFireCurrentWeekProjectionsTableWithTheProperNumberOfRows(){
+        assertEquals("The NumberFireCurrentWeekProjections table has an incorrect number of rows", 543, accessor.getAllNumberFireCurrentWeekProjectionsFromTheDatabase().size());
+    }
+
+    @Test
+    public void shouldHaveCreatedTheNumberFireRemainingSeasonProjectionsTableWithTheProperNumberOfRows(){
+        assertEquals("The NumberFireRemainingSeasonProjections table has an incorrect number of rows", 549, accessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase().size());
+    }
+
+    @Test
+    public void shouldOnlyFindOnePeytonManning(){
+        List<NumberFireRemainingSeasonProjection> allPlayersFromDatabase = accessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase();
+        List<NumberFireRemainingSeasonProjection> peytonMannings = PlayerFinder.findAllPlayersByPlayerName("Peyton Manning", allPlayersFromDatabase);
+        assertEquals("There can't be more than 1 Peyton Mannings!", 1, peytonMannings.size());
+    }
+
+    @Test
     public void shouldBeAbleToFindANflPlayerObjectByTheirEspnPlayerId(){
         NflPlayer playerFromDatabase = accessor.getNflPlayerFromThePlayerIdTableByTheirEspnPlayerId(1428);
 //        assertEquals(0, databaseInterface.getAllNflPlayersFromDatabase().size());

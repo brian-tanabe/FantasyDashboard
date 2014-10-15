@@ -14,6 +14,17 @@ import java.util.List;
  */
 public class PlayerFinder {
 
+    public static <T extends NflPlayer> List<T> findAllPlayersByPlayerName(String name, List<T> players){
+        List<T> playersWithMatchingName = new ArrayList<T>();
+
+        for(T player : players){
+            if(player.getName().contains(name))
+                playersWithMatchingName.add(player);
+        }
+
+        return playersWithMatchingName;
+    }
+
     public static <T extends NflPlayer> T findPlayerByPlayerName(String name, List<T> players){
         T playerToFind = null;
         for(T player : players){
