@@ -8,9 +8,9 @@ import com.briantanabe.fd.dp.providers.PlayerIdProvider;
 import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
+import com.briantanabe.fd.du.datastore.DatabaseAccessor;
+import com.briantanabe.fd.du.datastore.DatabaseUpdater;
 import com.briantanabe.fd.du.log.LoggingUtility;
-import com.briantanabe.fd.du.updater.DatabaseAccessor;
-import com.briantanabe.fd.du.updater.DatabaseUpdater;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

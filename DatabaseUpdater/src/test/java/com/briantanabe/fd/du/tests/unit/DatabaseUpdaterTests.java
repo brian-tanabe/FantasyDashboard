@@ -4,8 +4,8 @@ import com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam;
 import com.briantanabe.fd.dp.providers.*;
 import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
-import com.briantanabe.fd.du.updater.DatabaseAccessor;
-import com.briantanabe.fd.du.updater.DatabaseUpdater;
+import com.briantanabe.fd.du.datastore.DatabaseAccessor;
+import com.briantanabe.fd.du.datastore.DatabaseUpdater;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

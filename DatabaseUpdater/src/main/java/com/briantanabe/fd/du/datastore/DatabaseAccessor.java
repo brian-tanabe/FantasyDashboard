@@ -1,4 +1,4 @@
-package com.briantanabe.fd.du.updater;
+package com.briantanabe.fd.du.datastore;
 
 import com.briantanabe.fd.dp.fantasy.player.*;
 import org.hibernate.Session;

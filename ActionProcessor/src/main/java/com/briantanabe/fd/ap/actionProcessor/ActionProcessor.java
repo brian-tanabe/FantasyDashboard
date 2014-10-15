@@ -5,9 +5,9 @@ import com.briantanabe.fd.ap.events.DatabaseUpdateCompleteEvent;
 import com.briantanabe.fd.ap.events.RequestAllPlayerIdsEvent;
 import com.briantanabe.fd.dp.providers.PlayerIdProvider;
 import com.briantanabe.fd.dp.web.WebRequest;
+import com.briantanabe.fd.du.datastore.DatabaseAccessor;
+import com.briantanabe.fd.du.datastore.DatabaseUpdater;
 import com.briantanabe.fd.du.log.LoggingUtility;
-import com.briantanabe.fd.du.updater.DatabaseAccessor;
-import com.briantanabe.fd.du.updater.DatabaseUpdater;
 
 import java.io.IOException;
 import java.util.Observable;
