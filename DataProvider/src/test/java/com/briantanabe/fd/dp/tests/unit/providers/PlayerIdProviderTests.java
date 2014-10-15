@@ -1,8 +1,9 @@
 package com.briantanabe.fd.dp.tests.unit.providers;
 
 import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
-import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
+import com.briantanabe.fd.dp.fantasy.player.NflPlayerId;
 import com.briantanabe.fd.dp.providers.PlayerIdProvider;
+import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import static org.junit.Assert.fail;
  * Created by Brian on 9/28/14.
  */
 public class PlayerIdProviderTests {
-    private static ArrayList<NflPlayer> players;
+    private static ArrayList<NflPlayerId> players;
 
     @BeforeClass
     public static void setup(){
