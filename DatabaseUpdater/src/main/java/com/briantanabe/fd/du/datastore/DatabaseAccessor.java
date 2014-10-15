@@ -19,7 +19,7 @@ public class DatabaseAccessor extends DatabaseInterface {
         return players;
     }
 
-    public static NflPlayer getNflPlayerFromThePlayerIdTableByTheirEspnPlayerId(int playerId) {
+    public NflPlayer getNflPlayerFromThePlayerIdTableByTheirEspnPlayerId(int playerId) {
 
         return null;
     }
