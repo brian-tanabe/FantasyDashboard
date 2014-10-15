@@ -1,9 +1,6 @@
 package com.briantanabe.fd.du.tests.unit;
 
-import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
-import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
-import com.briantanabe.fd.dp.fantasy.player.NumberFireCurrentWeekProjection;
-import com.briantanabe.fd.dp.fantasy.player.NumberFireRemainingSeasonProjection;
+import com.briantanabe.fd.dp.fantasy.player.*;
 import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
 import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
 import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
@@ -41,7 +38,7 @@ public class DatabaseAccessorTests {
         try {
             PlayerIdProvider playerIdProvider = new PlayerIdProvider();
             playerIdProvider.scrapeForPlayerIds(MockWebRequest.getMockWebRequestForPlayerIdProviderTests());
-            List<NflPlayer> playerIdRows = playerIdProvider.getAllPlayersAsArrayList();
+            List<NflPlayerId> playerIdRows = playerIdProvider.getAllPlayersAsArrayList();
             updater.insert(playerIdRows);
 
             EspnLeaguePlayerOwnershipProvider espnLeaguePlayerOwnershipProvider = new EspnLeaguePlayerOwnershipProvider(MockWebRequest.getMockSecureWebRequestForEspnLeaguePlayerOwnershipProviderTests(TEST_ESPN_LEAGUE_ID));

@@ -7,7 +7,7 @@ import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder.findPlayerByPlayerName;
 import static org.junit.Assert.assertEquals;
@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
  * Created by Brian on 9/28/14.
  */
 public class PlayerIdProviderTests {
-    private static ArrayList<NflPlayerId> players;
+    private static List<NflPlayerId> players;
 
     @BeforeClass
     public static void setup(){

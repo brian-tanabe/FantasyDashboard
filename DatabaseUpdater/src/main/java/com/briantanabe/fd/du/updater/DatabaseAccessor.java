@@ -13,7 +13,7 @@ public class DatabaseAccessor extends DatabaseI {
 
     public List<NflPlayer> getAllNflPlayersFromThePlayerIdTable() {
         Session session = startSession(sessionFactory);
-        ArrayList<NflPlayer> players = new ArrayList<NflPlayer>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NflPlayer").list());
+        ArrayList<NflPlayer> players = new ArrayList<NflPlayer>(session.createQuery("from com.briantanabe.fd.dp.fantasy.player.NflPlayerId").list());
         closeSession(session);
 
         return players;

@@ -7,7 +7,7 @@ public class NflPlayerId extends NflPlayer {
 
     protected NflPlayerId() {}      // for hibernate
 
-    protected NflPlayerId(int espnId, int numberFireId, String name){
+    public NflPlayerId(int espnId, int numberFireId, String name){
         super(espnId, numberFireId, name);
     }
 }
