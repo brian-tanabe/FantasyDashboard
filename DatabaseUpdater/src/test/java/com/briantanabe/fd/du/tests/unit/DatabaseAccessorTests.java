@@ -1,10 +1,7 @@
 package com.briantanabe.fd.du.tests.unit;
 
 import com.briantanabe.fd.dp.fantasy.player.*;
-import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
-import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
-import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
-import com.briantanabe.fd.dp.providers.PlayerIdProvider;
+import com.briantanabe.fd.dp.providers.*;
 import com.briantanabe.fd.dp.tests.fixtures.MockWebRequest;
 import com.briantanabe.fd.dp.tests.unit.scrapers.PlayerFinder;
 import com.briantanabe.fd.dp.web.auth.TestableCredentialProvider;
@@ -57,8 +54,10 @@ public class DatabaseAccessorTests {
             List<NumberFireRemainingSeasonProjection> numberFireRemainingSeasonProjectionsRows = numberFireRemainingSeasonProjectionsProvider.getPlayerProjections();
             updater.insert(numberFireRemainingSeasonProjectionsRows);
 
-            System.out.print("");
-
+            PlayerPositionAndTeamProvider playerPositionAndTeamProvider = new PlayerPositionAndTeamProvider(MockWebRequest.getMockWebRequestForPlayerPositionAndTeamProvider());
+            playerPositionAndTeamProvider.scrapeForPlayerPositionsAndTeams();
+            List<NflPlayerPositionAndTeam> playerPositionAndTeamRows = playerPositionAndTeamProvider.getAllPlayerPositionsAndTeams();
+            updater.insert(playerPositionAndTeamRows);
         } catch (Exception ex){
             fail("Failed to create test database environment");
             ex.printStackTrace();
@@ -83,6 +82,11 @@ public class DatabaseAccessorTests {
     @Test
     public void shouldHaveCreatedTheNumberFireRemainingSeasonProjectionsTableWithTheProperNumberOfRows(){
         assertEquals("The NumberFireRemainingSeasonProjections table has an incorrect number of rows", 549, accessor.getAllNumberFireRemainingWeekProjectionsFromTheDatabase().size());
+    }
+
+    @Test
+    public void shouldHaveCreatedThePlayerPositionAndTeamTableWithTheProperNumberOfRows(){
+        assertEquals("The PlayerPositionAndTeam table has an incorrect number of rows", 1495, accessor.getAllPlayerPositionAndTeamObjectsFromTheDatabase().size());
     }
 
     @Test
