@@ -4,33 +4,30 @@ import com.briantanabe.fd.dp.nfl.position.Position;
 import com.briantanabe.fd.dp.nfl.team.NflTeam;
 
 import javax.persistence.Entity;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.EnumSet;
 
 /**
  * Created by Brian on 10/13/14.
  */
 @Entity
 public class NflPlayerPositionAndTeam extends NflPlayer {
-    private int id;
     private NflTeam nflTeam;
-    private Set<Position> positions = new HashSet<>(2);
+    private EnumSet<Position> positions = EnumSet.noneOf(Position.class);
 
     protected NflPlayerPositionAndTeam() {}     // for hibernate
 
-    public NflPlayerPositionAndTeam(String name, int espnId, NflTeam nflTeam, List<Position> positions){
+    public NflPlayerPositionAndTeam(String name, int espnId, NflTeam nflTeam, EnumSet<Position> positions){
         setName(name);
         setEspnPlayerId(espnId);
         this.nflTeam = nflTeam;
-        this.positions = new HashSet<>(positions);
+        this.positions = positions;
     }
 
     public void setNflTeam(NflTeam nflTeam){
         this.nflTeam = nflTeam;
     }
 
-    public void setPositions(Set<Position> positions) {
+    public void setPositions(EnumSet<Position> positions) {
         this.positions = positions;
     }
 
@@ -38,7 +35,7 @@ public class NflPlayerPositionAndTeam extends NflPlayer {
         return nflTeam;
     }
 
-    public Set<Position> getPositions() {
+    public EnumSet<Position> getPositions() {
         return positions;
     }
 

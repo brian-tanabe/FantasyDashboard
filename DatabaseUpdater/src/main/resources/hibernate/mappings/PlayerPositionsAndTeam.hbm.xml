@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <typedef name="PositionEnum" class="com.briantanabe.fd.dp.nfl.position.Position">
+    <typedef name="position" class="org.hibernate.type.EnumType">
         <param name="enumClassName">com.briantanabe.fd.dp.nfl.position.Position</param>
     </typedef>
     <class name="com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam" table="PlayerPositionsAndTeam">
@@ -24,7 +24,7 @@
         </property>
         <set name="positions" table="PositionsTable">
             <key column="id" not-null="true" />
-            <element type="PositionEnum" column="position_eligibility" />
+            <element type="position" column="position_eligibility" />
         </set>
     </class>
 

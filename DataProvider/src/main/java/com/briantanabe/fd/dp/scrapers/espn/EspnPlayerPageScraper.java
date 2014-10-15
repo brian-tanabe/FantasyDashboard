@@ -11,6 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +45,7 @@ public class EspnPlayerPageScraper {
             String playerId = playerIdAndNameElement.attr("playerid");
             String name = playerIdAndNameElement.text();
             String positionAndTeamString = playerElement.select("td.playertablePlayerName").text().replace(name, "").replace(",", "").replace("\u00a0"," ").replaceAll("[^a-zA-Z /]", "").trim();
-            List<Position> positions = getAllEligiblePositionsFromTeamAndPositionString(positionAndTeamString);
+            EnumSet<Position> positions = getAllEligiblePositionsFromTeamAndPositionString(positionAndTeamString);
             NflTeam team = PositionFactory.whatPosition(positionAndTeamString) == Position.DEFENSE ? NflTeamFactory.whatTeam(name) : NflTeamFactory.whatTeam(positionAndTeamString);
 
             players.add(new NflPlayerPositionAndTeam(name, Integer.parseInt(playerId), team, positions));
@@ -61,9 +62,9 @@ public class EspnPlayerPageScraper {
         return playerElement.select("td.playertablePlayerName").select("a:not(a:has(img))");
     }
 
-    private List<Position> getAllEligiblePositionsFromTeamAndPositionString(String teamAndPositionString){
+    private EnumSet<Position> getAllEligiblePositionsFromTeamAndPositionString(String teamAndPositionString){
         String[] positionString = teamAndPositionString.toUpperCase().split(" ");
-        ArrayList<Position> positions = new ArrayList<>();
+        EnumSet<Position> positions = EnumSet.noneOf(Position.class);
         for(int index = 1; index < positionString.length; index++){
             if(PositionFactory.whatPosition(positionString[index]) != Position.UNKNOWN)
                 positions.add(PositionFactory.whatPosition(positionString[index]));
