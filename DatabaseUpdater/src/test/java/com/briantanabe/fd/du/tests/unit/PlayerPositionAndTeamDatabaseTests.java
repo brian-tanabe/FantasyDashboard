@@ -16,6 +16,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Brian on 10/14/14.
@@ -64,6 +65,6 @@ public class PlayerPositionAndTeamDatabaseTests {
 
     @Test
     public void shouldBeAbleToStoreAndRecallPlayersPositionCorrectly(){
-        assertEquals(String.format("Unable to find %s by name", PLAYER_NAME), PLAYER_POSITION, playerFromDatabase.getAllEligiblePositions().get(0));
+        assertTrue(String.format("Unable to find %s by name", PLAYER_NAME), playerFromDatabase.getPositions().contains(PLAYER_POSITION));
     }
 }

@@ -70,7 +70,7 @@ public class PlayerPositionAndTeamProviderTests {
     public void shouldBeAbleToProperlyParsePlayersWithMultiplePositions(){
         ArrayList<NflPlayerPositionAndTeam> superAthletes = new ArrayList<>();
         for(NflPlayerPositionAndTeam player : dataProvider.getAllPlayerPositionsAndTeams()){
-            if(player.getAllEligiblePositions().size() > 1){
+            if(player.getPositions().size() > 1){
                 superAthletes.add(player);
             }
         }
