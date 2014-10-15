@@ -14,12 +14,7 @@ import java.util.Set;
 @Entity
 public class NflPlayerPositionAndTeam extends NflPlayer {
     private int id;
-
-//    @Enumerated(EnumType.STRING)
     private NflTeam nflTeam;
-
-//    @ElementCollection
-//    @Enumerated(EnumType.STRING)
     private Set<Position> positions = new HashSet<>(2);
 
     protected NflPlayerPositionAndTeam() {}     // for hibernate

@@ -17,7 +17,7 @@ public class NflPlayer {
         this.name = name;
     }
 
-    public int getId(){ return id; }
+    protected int getId(){ return id; }     // for hibernate
 
     public int getEspnPlayerId(){
         return espnPlayerId;
@@ -31,7 +31,7 @@ public class NflPlayer {
         return name;
     }
 
-    public void setId(int id){ this.id = id; }
+    protected void setId(int id){ this.id = id; }   // for hibernate
 
     public void setEspnPlayerId(int espnPlayerId) {
         this.espnPlayerId = espnPlayerId;
