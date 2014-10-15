@@ -24,8 +24,8 @@ import static org.junit.Assert.assertTrue;
 public class PlayerPositionAndTeamDatabaseTests {
     private static DatabaseAccessor accessor = new DatabaseAccessor();
     private static DatabaseUpdater updater = new DatabaseUpdater();
-    private static NflPlayerPositionAndTeam playerFromDatabase;
 
+    private static NflPlayerPositionAndTeam playerFromDatabase;
     private static final String PLAYER_NAME = "Andrew Luck";
     private static final int PLAYER_ESPN_ID = 14874;
     private static final NflTeam PLAYER_NFL_TEAM = NflTeam.COLTS;
