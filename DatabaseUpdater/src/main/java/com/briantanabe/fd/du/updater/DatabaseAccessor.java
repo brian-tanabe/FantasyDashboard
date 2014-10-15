@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by btanabe on 10/9/2014.
  */
-public class DatabaseAccessor extends DatabaseI {
+public class DatabaseAccessor extends DatabaseInterface {
 
     public List<NflPlayer> getAllNflPlayersFromThePlayerIdTable() {
         Session session = startSession(sessionFactory);

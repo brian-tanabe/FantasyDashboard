@@ -1,22 +1,14 @@
 package com.briantanabe.fd.du.updater;
 
-import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
-import com.briantanabe.fd.dp.providers.EspnLeaguePlayerOwnershipProvider;
-import com.briantanabe.fd.dp.providers.NumberFireCurrentWeekProjectionsProvider;
-import com.briantanabe.fd.dp.providers.NumberFireRemainingSeasonProjectionsProvider;
-import com.briantanabe.fd.dp.providers.PlayerIdProvider;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by btanabe on 10/9/2014.
  */
-public class DatabaseUpdater extends DatabaseI {
+public class DatabaseUpdater extends DatabaseInterface {
 
     public <T> void insert(List<T> objectsToAdd){
         Session session = startSession(sessionFactory);

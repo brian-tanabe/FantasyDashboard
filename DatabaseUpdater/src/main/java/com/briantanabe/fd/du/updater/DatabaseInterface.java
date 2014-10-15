@@ -11,11 +11,11 @@ import java.io.File;
 /**
  * Created by Brian on 10/11/14.
  */
-public class DatabaseI {
+public class DatabaseInterface {
     protected static int BATCH_SIZE;
     protected static SessionFactory sessionFactory;
 
-    protected DatabaseI(){
+    protected DatabaseInterface(){
         sessionFactory = createSessionFactory();
     }
 
