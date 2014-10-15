@@ -51,4 +51,9 @@ public class DatabaseAccessor extends DatabaseInterface {
         closeSession(session);
         return players;
     }
+
+    public List<PlayerSearchTableRow> getAllPlayerSearchTableRowsFromDatabase(){
+
+        return new ArrayList<PlayerSearchTableRow>();
+    }
 }

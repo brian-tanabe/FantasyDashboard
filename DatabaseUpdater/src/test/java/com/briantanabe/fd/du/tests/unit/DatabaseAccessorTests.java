@@ -14,6 +14,7 @@ import org.junit.Test;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static com.briantanabe.fd.dp.tests.fixtures.WebConstants.TEST_ESPN_LEAGUE_ID;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -21,8 +22,6 @@ import static org.junit.Assert.assertEquals;
  * Created by btanabe on 10/9/2014.
  */
 public class DatabaseAccessorTests {
-    final static int TEST_ESPN_LEAGUE_ID = 84978;
-
     private static DatabaseAccessor accessor = new DatabaseAccessor();
     private static DatabaseUpdater updater = new DatabaseUpdater();
 
