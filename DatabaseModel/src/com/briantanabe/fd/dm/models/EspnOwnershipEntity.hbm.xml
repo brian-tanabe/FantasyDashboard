@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.briantanabe.fd.dm.models.EspnOwnershipEntity" table="ESPN_OWNERSHIP" schema="PUBLIC"
+           catalog="FANTASYDATABASE">
+        <property name="espnId" column="ESPN_ID"/>
+        <property name="leagueId" column="LEAGUE_ID"/>
+        <property name="ownerId" column="OWNER_ID"/>
+    </class>
+</hibernate-mapping>

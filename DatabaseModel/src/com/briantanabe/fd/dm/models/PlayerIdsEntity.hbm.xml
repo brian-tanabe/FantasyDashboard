@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.briantanabe.fd.dm.models.PlayerIdsEntity" table="PLAYER_IDS" schema="PUBLIC"
+           catalog="FANTASYDATABASE">
+        <composite-id mapped="true" class="com.briantanabe.fd.dm.models.PlayerIdsEntityPK">
+            <key-property name="espnId" column="ESPN_ID"/>
+            <key-property name="numberFireId" column="NUMBER_FIRE_ID"/>
+        </composite-id>
+        <property name="name" column="NAME"/>
+    </class>
+</hibernate-mapping>

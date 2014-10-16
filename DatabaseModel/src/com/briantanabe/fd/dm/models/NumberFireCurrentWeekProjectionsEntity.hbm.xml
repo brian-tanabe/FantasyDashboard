@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.briantanabe.fd.dm.models.NumberFireCurrentWeekProjectionsEntity"
+           table="NUMBER_FIRE_CURRENT_WEEK_PROJECTIONS" schema="PUBLIC" catalog="FANTASYDATABASE">
+        <id name="numberFireId" column="NUMBER_FIRE_ID"/>
+        <property name="ranking" column="RANKING"/>
+        <property name="firePoints" column="FIRE_POINTS"/>
+    </class>
+</hibernate-mapping>
