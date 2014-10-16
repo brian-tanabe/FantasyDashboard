@@ -12,10 +12,9 @@
             INT     number_fire_ranking
             DOUBLE  fire_points
         </meta>
-        <id name="id" column="id" type="java.lang.Integer">
-            <generator class="native" />
+        <id name="numberFireId" column="number_fire_id" type="java.lang.Integer">
+            <generator class="identity" />
         </id>
-        <property name="numberFireId" column="number_fire_id" type="java.lang.Integer" />
         <property name="name" column="player_name" type="java.lang.String" />
         <property name="ranking" column="number_fire_ranking" type="java.lang.Integer" />
         <property name="firePoints" column="fire_points" type="java.lang.Double" />

@@ -3,12 +3,15 @@ package com.briantanabe.fd.dp.fantasy.player;
 import com.briantanabe.fd.dp.nfl.position.Position;
 import com.briantanabe.fd.dp.nfl.team.NflTeam;
 
+import javax.persistence.Entity;
 import java.util.Set;
 
 /**
  * Created by btanabe on 10/13/2014.
  */
+@Entity
 public class PlayerSearchTableRow {
+    protected int id;   // for hibernate
     protected NflPlayerPositionAndTeam nflPlayerPositionAndTeam;
     protected NumberFireCurrentWeekProjection numberFireCurrentWeekProjection;
     protected NumberFireRemainingSeasonProjection numberFireRemainingSeasonProjection;
@@ -35,6 +38,16 @@ public class PlayerSearchTableRow {
 
     protected NflPlayerPositionAndTeam getNflPlayerPositionAndTeam() {
         return nflPlayerPositionAndTeam;
+    }
+
+    // for hibernate
+    protected void setId(int id){
+        this.id = id;
+    }
+
+    // for hibernate
+    protected int getId(){
+        return id;
     }
 
     protected void setNflPlayerPositionAndTeam(NflPlayerPositionAndTeam nflPlayerPositionAndTeam) {
