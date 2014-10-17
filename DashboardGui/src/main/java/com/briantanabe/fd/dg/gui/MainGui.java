@@ -6,6 +6,8 @@ import com.briantanabe.fd.ap.events.RequestAllPlayerIdsEvent;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -30,10 +32,9 @@ public class MainGui extends Observable implements Observer {
     private FantasyTeamDashWidget fantasyTeamDashWidget;
 
     public void open() {
-        createGui();
         configureGui();
         addListeners();
-
+        populateGui();
         shell.open();
         shell.layout();
         while (!shell.isDisposed()) {
@@ -44,7 +45,7 @@ public class MainGui extends Observable implements Observer {
         display.dispose();
     }
 
-    private void createGui() {
+    public void createGui() {
         display = Display.getDefault();
         shell = new Shell(display, SWT.SHELL_TRIM | SWT.DIALOG_TRIM);
         parent = new Composite(shell, SWT.NONE);
@@ -96,24 +97,29 @@ public class MainGui extends Observable implements Observer {
     }
 
     private void addListeners() {
-
+        shell.addDisposeListener(new DisposeListener() {
+            @Override
+            public void widgetDisposed(DisposeEvent e) {
+                System.exit(0);
+            }
+        });
     }
 
-    private void populateGui(){
+    private void populateGui() {
         setChanged();
         notifyObservers(new RequestAllPlayerIdsEvent());
     }
 
     @Override
     public void update(Observable observable, Object o) {
-        if(o instanceof DatabaseUpdateCompleteEvent){
+        if (o instanceof DatabaseUpdateCompleteEvent) {
             populateGui();
-        } else if(o instanceof AllPlayerIdsEvent){
+        } else if (o instanceof AllPlayerIdsEvent) {
             addPlayersToPlayerDashWidgetPlayersTable(((AllPlayerIdsEvent) o).getAllNflPlayerIds());
         }
     }
 
-    private void addPlayersToPlayerDashWidgetPlayersTable(List<NflPlayer> allPlayers){
+    private void addPlayersToPlayerDashWidgetPlayersTable(List<NflPlayer> allPlayers) {
         playerDashWidget.addPlayersToPlayerSelectTable(allPlayers);
     }
 }

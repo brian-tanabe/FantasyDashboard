@@ -28,5 +28,5 @@ ext {
 }
 
 if (platform == 'darwin') {
-    setProperty("org.gradle.jvmargs", "-XstartOnFirstThread")
+//    setProperty("org.gradle.jvmargs", "-XstartOnFirstThread")
 }

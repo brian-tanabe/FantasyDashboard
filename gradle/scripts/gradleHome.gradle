@@ -1,0 +1,7 @@
+public String getGradleHome(){
+    return gradle.gradleHomeDir;
+}
+
+ext {
+    println String.format("GRADLE HOME: %s", getGradleHome());
+}

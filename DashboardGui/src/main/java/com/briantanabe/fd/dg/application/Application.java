@@ -13,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             final MainGui mainGui = new MainGui();
+            mainGui.createGui();
 
             // Replace this with logged on information:
             SecureWebRequest secureWebRequest = new SecureWebRequest();
@@ -20,13 +21,11 @@ public class Application {
 
             ActionProcessor actionProcessor = new ActionProcessor(secureWebRequest);
             Thread actionProcessorThread = new Thread(actionProcessor);
-            actionProcessorThread.start();
 
             actionProcessor.addObserver(mainGui);
             mainGui.addObserver(actionProcessor);
 
-            System.out.println("Reached past gui thread");
-
+            actionProcessorThread.start();
             mainGui.open();
         } catch (Exception ex) {
             ex.printStackTrace();

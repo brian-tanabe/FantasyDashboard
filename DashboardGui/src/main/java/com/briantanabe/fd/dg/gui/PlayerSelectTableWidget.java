@@ -144,19 +144,16 @@ public class PlayerSelectTableWidget extends Composite {
     }
 
     public void addPlayersToTable(final List<NflPlayer> allPlayers){
-        Display.getDefault().asyncExec(new Runnable() {
-            @Override
-            public void run() {
-                for(NflPlayer player : allPlayers) {
-                    TableItem playerRow = new TableItem(playerSearchTable, SWT.NULL);
-                    playerRow.setText(0, player.getName());
-                    playerRow.setText(1, Integer.toString(player.getEspnPlayerId()));
-                    playerRow.setText(2, Integer.toString(player.getNumberFireId()));
-                }
+        Display.getDefault().asyncExec(() -> {
+            for(NflPlayer player : allPlayers) {
+                TableItem playerRow = new TableItem(playerSearchTable, SWT.NULL);
+                playerRow.setText(0, player.getName());
+                playerRow.setText(1, Integer.toString(player.getEspnPlayerId()));
+                playerRow.setText(2, Integer.toString(player.getNumberFireId()));
+            }
 
-                for(int columnIndex = 0; columnIndex < playerSearchTable.getColumnCount(); columnIndex++){
-                    playerSearchTable.getColumn(columnIndex).pack();
-                }
+            for(int columnIndex = 0; columnIndex < playerSearchTable.getColumnCount(); columnIndex++){
+                playerSearchTable.getColumn(columnIndex).pack();
             }
         });
     }
