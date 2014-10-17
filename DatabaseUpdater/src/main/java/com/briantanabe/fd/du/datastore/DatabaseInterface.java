@@ -38,7 +38,7 @@ public class DatabaseInterface {
         session.close();
     }
 
-    public void close(SessionFactory sessionFactory){
+    protected void close(SessionFactory sessionFactory){
         sessionFactory.close();
     }
 }

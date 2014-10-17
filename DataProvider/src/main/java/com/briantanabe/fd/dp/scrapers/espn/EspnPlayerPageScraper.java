@@ -1,5 +1,6 @@
 package com.briantanabe.fd.dp.scrapers.espn;
 
+import com.briantanabe.fd.dm.models.EspnOwnershipEntity;
 import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam;
 import com.briantanabe.fd.dp.nfl.position.Position;
@@ -22,6 +23,7 @@ import java.util.regex.Pattern;
  */
 public class EspnPlayerPageScraper {
 
+    @Deprecated
     public List<EspnNflPlayer> scrapeForPlayerIdsAndOwnershipInfo(int leagueId, Document document){
         Elements playerElements = findAllPlayerElementsInDocument(document);
 
@@ -33,6 +35,21 @@ public class EspnPlayerPageScraper {
             int teamId = getOwnersTeamIdFromElement(playerElement.select("td[style$=text-align: center;]").get(0));
 
             players.add(new EspnNflPlayer(leagueId, Integer.parseInt(playerId), name, teamId));
+        }
+
+        return players;
+    }
+
+    public List<EspnOwnershipEntity> scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(int leagueId, Document document){
+        Elements playerElements = findAllPlayerElementsInDocument(document);
+
+        List<EspnOwnershipEntity> players = new ArrayList<EspnOwnershipEntity>(playerElements.size());
+        for(Element playerElement : playerElements){
+            Elements playerIdAndNameElement = extractPlayerIdAndNameElement(playerElement);
+            String playerId = playerIdAndNameElement.attr("playerid");
+            int teamId = getOwnersTeamIdFromElement(playerElement.select("td[style$=text-align: center;]").get(0));
+
+            players.add(new EspnOwnershipEntity(Integer.parseInt(playerId), leagueId, teamId));
         }
 
         return players;

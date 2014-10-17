@@ -1,5 +1,6 @@
 package com.briantanabe.fd.dp.tests.unit.scrapers.espn;
 
+import com.briantanabe.fd.dm.models.EspnOwnershipEntity;
 import com.briantanabe.fd.dp.fantasy.player.EspnNflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam;
 import com.briantanabe.fd.dp.nfl.position.Position;
@@ -23,6 +24,7 @@ public class EspnPlayerPageScraperTests {
     private static final int TEST_ESPN_LEAGUE_ID = 84978;
 
     @Test
+    @Deprecated
     public void testCanFindFortyPlayers(){
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
@@ -31,6 +33,15 @@ public class EspnPlayerPageScraperTests {
     }
 
     @Test
+    public void shouldBeAbleToFindFortyPlayersOnTheFirstPage(){
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
+
+        assertEquals("Did not find 40 players on page one", 40, players.size());
+    }
+
+    @Test
+    @Deprecated
     public void testCanFindTheFirstPlayerOnPageOne(){
         String playerToTest = "Adrian Peterson";
 
@@ -42,79 +53,154 @@ public class EspnPlayerPageScraperTests {
     }
 
     @Test
+    public void shouldBeAbleToFindTheFirstPlayerOnThePage(){
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
+        EspnOwnershipEntity player = players.get(0);
+
+        assertNotNull("Unable to find the first player", player);
+    }
+
+    @Test
+    @Deprecated
     public void testFirstPlayerHasProperEspnId(){
         String playerToTest = "Adrian Peterson";
         int espnId = 10452;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
-
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
+
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
         assertEquals(String.format("%s's ESPN ID was not parsed correctly", playerToTest), espnId, player.getEspnPlayerId());
     }
 
     @Test
+    public void shouldBeAbleToScrapeTheFirstPlayersPlayerIdCorrectly(){
+        int espnId = 10452;
+
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
+        EspnOwnershipEntity player = players.get(0);
+
+        assertNotNull("Unable to find the first player", player);
+        assertEquals("The first player's ESPN ID was not parsed correctly", espnId, player.getEspnId());
+    }
+
+    @Test
+    @Deprecated
     public void testFirstPlayerHasProperOwnerId(){
         String playerToTest = "Adrian Peterson";
         int teamId = 7;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
-
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
+
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
         assertEquals(String.format("%s's teamId was not parsed correctly", playerToTest), teamId, player.getOwner());
     }
 
     @Test
+    public void shouldBeAbleToParseTheFirstPlayersOwnerIdCorrectly(){
+        int teamId = 7;
+
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
+        EspnOwnershipEntity player = players.get(0);
+
+        assertNotNull("Unable to find the first player", player);
+        assertEquals("The first player's teamId was not parsed correctly", teamId, player.getTeamId());
+    }
+
+    @Test
+    @Deprecated
     public void testCanFindTheLastPlayerOnPageOne(){
         String playerToTest = "C.J. Spiller";
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
-
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
+
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
     }
 
     @Test
+    @Deprecated
     public void testLastPlayerHasProperEspnId(){
         String playerToTest = "C.J. Spiller";
         int espnId = 13203;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
-
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
+
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
         assertEquals(String.format("%s's ESPN ID was not parsed correctly", playerToTest), espnId, player.getEspnPlayerId());
     }
 
     @Test
+    public void shouldBeAbleToParseTheLastPlayersEspnIdCorrectly(){
+        int espnId = 13203;
+
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
+        EspnOwnershipEntity player = players.get(players.size() - 1);
+
+        assertNotNull("Unable to find the last player", player);
+        assertEquals("The last player's ESPN ID was not parsed correctly", espnId, player.getEspnId());
+    }
+
+    @Test
+    @Deprecated
     public void testLastPlayerHasProperOwnerId(){
         String playerToTest = "C.J. Spiller";
         int teamId = 10;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
-
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
+
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
         assertEquals(String.format("%s's teamId was not parsed correctly", playerToTest), teamId, player.getOwner());
     }
 
     @Test
+    public void shouldBeAbleToParseTheLastPlayersOwnerIdCorrectly(){
+        int teamId = 10;
+
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageOneAsDocument());
+        EspnOwnershipEntity player = players.get(players.size() - 1);
+
+        assertNotNull("Unable to find the last player", player);
+        assertEquals("The last player's owner ID was not parsed correctly", teamId, player.getTeamId());
+    }
+
+    @Test
+    @Deprecated
     public void freeAgentsShouldHaveAnOwnerIdOfNegativeOne(){
         String playerToTest = "Ray Rice";
         int teamId = -1;
 
         EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
         List<EspnNflPlayer> players = scraper.scrapeForPlayerIdsAndOwnershipInfo(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageTwoAsDocument());
-
         EspnNflPlayer player = findPlayerByPlayerName(playerToTest, players);
+
         assertNotNull(String.format("Unable to find %s", playerToTest), player);
         assertEquals(String.format("%s's teamId was not parsed correctly", playerToTest), teamId, player.getOwner());
+    }
+
+    @Test
+    public void shouldBeAbleToIdentifyFreeAgentsByTheirOwnerNegativeOwnerId(){
+        int teamId = -1;
+        
+        EspnPlayerPageScraper scraper = new EspnPlayerPageScraper();
+        List<EspnOwnershipEntity> players = scraper.scrapeForPlayerIdsAndOwnershipInfoUsingEntityObject(TEST_ESPN_LEAGUE_ID, getAllPlayersProjectionPageTwoAsDocument());
+        EspnOwnershipEntity player = players.get(11);
+
+        assertNotNull("Did not find at least 12 players on the scraped page", player);
+        assertEquals("The 12th player was not Ray Rice (FA)", teamId, player.getTeamId());
     }
 
     @Test

@@ -87,17 +87,6 @@ public class PlayerIdsEntity {
         this.playersNumberFireRemainingSeasonProjection = getNumberFireRemainingSeasonProjection;
     }
 
-    private List<EspnOwnershipEntity> playersEspnOwnershipInfo;
-
-    @OneToMany
-    public List<EspnOwnershipEntity> getPlayersEspnOwnershipInfo() {
-        return playersEspnOwnershipInfo;
-    }
-
-    public void setPlayersEspnOwnershipInfo(List<EspnOwnershipEntity> playersEspnOwnershipInfo) {
-        this.playersEspnOwnershipInfo = playersEspnOwnershipInfo;
-    }
-
     private NflPositionsAndTeamEntity playersPositionAndTeam;
 
     @OneToOne
@@ -107,5 +96,16 @@ public class PlayerIdsEntity {
 
     public void setPlayersPositionAndTeam(NflPositionsAndTeamEntity playersPositionAndTeam) {
         this.playersPositionAndTeam = playersPositionAndTeam;
+    }
+
+    @OneToMany
+    private List<EspnOwnershipEntity> espnOwnershipForPlayer;
+
+    public List<EspnOwnershipEntity> getEspnOwnershipForPlayer() {
+        return espnOwnershipForPlayer;
+    }
+
+    public void setEspnOwnershipForPlayer(List<EspnOwnershipEntity> espnOwnershipForPlayer) {
+        this.espnOwnershipForPlayer = espnOwnershipForPlayer;
     }
 }

@@ -6,8 +6,10 @@
 
     <class name="com.briantanabe.fd.dm.models.EspnOwnershipEntity" table="ESPN_OWNERSHIP" schema="PUBLIC"
            catalog="FANTASYDATABASE">
-        <property name="espnId" column="ESPN_ID"/>
-        <property name="leagueId" column="LEAGUE_ID"/>
-        <property name="ownerId" column="OWNER_ID"/>
+        <composite-id mapped="true" class="com.briantanabe.fd.dm.models.EspnOwnershipEntityPK">
+            <key-property name="espnId" column="ESPN_ID"/>
+            <key-property name="leagueId" column="LEAGUE_ID"/>
+            <key-property name="teamId" column="TEAM_ID"/>
+        </composite-id>
     </class>
 </hibernate-mapping>

@@ -9,11 +9,9 @@
         <property name="connection.url">jdbc:h2:file:~/db/fantasydatabase</property>
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
+        <property name="hibernate.jdbc.batch_size">20</property>
 
         <!-- Records committed before a flush -->
-        <property name="hibernate.jdbc.batch_size">20</property>
-        <mapping class="com.briantanabe.fd.dm.models.EspnOwnershipEntity"/>
-        <mapping resource="com/briantanabe/fd/dm/models/EspnOwnershipEntity.hbm.xml"/>
         <mapping class="com.briantanabe.fd.dm.models.NflPositionsAndTeamEntity"/>
         <mapping resource="com/briantanabe/fd/dm/models/NflPositionsAndTeamEntity.hbm.xml"/>
         <mapping class="com.briantanabe.fd.dm.models.NumberFireCurrentWeekProjectionsEntity"/>
@@ -22,6 +20,8 @@
         <mapping resource="com/briantanabe/fd/dm/models/NumberFireRemainingSeasonProjectionsEntity.hbm.xml"/>
         <mapping class="com.briantanabe.fd.dm.models.PlayerIdsEntity"/>
         <mapping resource="com/briantanabe/fd/dm/models/PlayerIdsEntity.hbm.xml"/>
+        <mapping resource="com/briantanabe/fd/dm/models/EspnOwnershipEntity.hbm.xml"/>
+        <mapping class="com.briantanabe.fd.dm.models.EspnOwnershipEntity"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

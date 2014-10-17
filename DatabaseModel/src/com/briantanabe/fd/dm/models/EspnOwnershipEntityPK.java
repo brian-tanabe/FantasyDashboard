@@ -1,28 +1,19 @@
 package com.briantanabe.fd.dm.models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Brian on 10/16/2014.
  */
-@Entity
-@Table(name = "ESPN_OWNERSHIP", schema = "PUBLIC", catalog = "FANTASYDATABASE")
-@IdClass(EspnOwnershipEntityPK.class)
-public class EspnOwnershipEntity {
+public class EspnOwnershipEntityPK implements Serializable {
     private int espnId;
     private int leagueId;
     private int teamId;
 
-    protected EspnOwnershipEntity(){}
-
-    public EspnOwnershipEntity(int espnId, int leagueId, int teamId){
-        this.espnId = espnId;
-        this.leagueId = leagueId;
-        this.teamId = teamId;
-    }
-
-    @Id
     @Column(name = "ESPN_ID")
+    @Id
     public int getEspnId() {
         return espnId;
     }
@@ -31,8 +22,8 @@ public class EspnOwnershipEntity {
         this.espnId = espnId;
     }
 
-    @Id
     @Column(name = "LEAGUE_ID")
+    @Id
     public int getLeagueId() {
         return leagueId;
     }
@@ -41,8 +32,8 @@ public class EspnOwnershipEntity {
         this.leagueId = leagueId;
     }
 
-    @Id
     @Column(name = "TEAM_ID")
+    @Id
     public int getTeamId() {
         return teamId;
     }
@@ -56,7 +47,7 @@ public class EspnOwnershipEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EspnOwnershipEntity that = (EspnOwnershipEntity) o;
+        EspnOwnershipEntityPK that = (EspnOwnershipEntityPK) o;
 
         if (espnId != that.espnId) return false;
         if (leagueId != that.leagueId) return false;
