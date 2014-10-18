@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by Brian on 10/15/2014.
+ * Created by Brian on 10/17/2014.
  */
 public class PlayerIdsEntityPK implements Serializable {
     private int espnId;

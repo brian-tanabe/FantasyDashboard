@@ -1,5 +1,6 @@
 package com.briantanabe.fd.dp.tests.unit.providers;
 
+import com.briantanabe.fd.dm.models.PlayerIdsEntity;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayerId;
 import com.briantanabe.fd.dp.providers.PlayerIdProvider;
@@ -18,6 +19,7 @@ import static org.junit.Assert.fail;
  */
 public class PlayerIdProviderTests {
     private static List<NflPlayerId> players;
+    private static List<PlayerIdsEntity> playerEntities;
 
     @BeforeClass
     public static void setup(){
@@ -25,15 +27,20 @@ public class PlayerIdProviderTests {
             PlayerIdProvider idProvider = new PlayerIdProvider();
             idProvider.scrapeForPlayerIds(MockWebRequest.getMockWebRequestForPlayerIdProviderTests());
             players = idProvider.getAllPlayersAsArrayList();
+            playerEntities = idProvider.getAllPlayerIdEntities();
         } catch (Exception ex){
             ex.printStackTrace();
             fail("Failed to reach numberFire.com's projection page");
         }
     }
 
-    @Test
     public void testCanFindTheCorrectNumberOfPlayers(){
         assertEquals("Failed to find the correct number of players", 549, players.size());
+    }
+
+    @Test
+    public void shouldBeAbleToFindTheCorrectNumberOfPlayers(){
+        assertEquals("Failed to find the correct number of players", 549, playerEntities.size());
     }
 
     @Test

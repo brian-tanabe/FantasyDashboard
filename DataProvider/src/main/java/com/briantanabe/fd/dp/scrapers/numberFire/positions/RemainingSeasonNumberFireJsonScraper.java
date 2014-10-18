@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by Brian on 9/24/14.
@@ -68,5 +69,15 @@ public class RemainingSeasonNumberFireJsonScraper implements NumberFirePositionS
             ranking.setRanking(rank);
             ranking.setFirePoints(firePoints);
         }
+    }
+
+    @Override
+    public void scrape(Document document) {
+
+    }
+
+    @Override
+    public List getPlayerProjections() {
+        return null;
     }
 }

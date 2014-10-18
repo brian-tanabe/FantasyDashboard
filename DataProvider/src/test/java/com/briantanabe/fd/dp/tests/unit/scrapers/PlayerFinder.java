@@ -1,5 +1,6 @@
 package com.briantanabe.fd.dp.tests.unit.scrapers;
 
+import com.briantanabe.fd.dm.models.PlayerIdsEntity;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayer;
 import com.briantanabe.fd.dp.fantasy.player.NflPlayerPositionAndTeam;
 import com.briantanabe.fd.dp.nfl.position.Position;
@@ -63,5 +64,16 @@ public class PlayerFinder {
         }
 
         return playerAtPosition;
+    }
+
+    public static PlayerIdsEntity findPlayerIdEntityByPlayerName(String name, List<PlayerIdsEntity> players){
+        PlayerIdsEntity playerToFind = null;
+        for(PlayerIdsEntity player : players){
+            if(player.getName().equalsIgnoreCase(name)){
+                return player;
+            }
+        }
+
+        return playerToFind;
     }
 }

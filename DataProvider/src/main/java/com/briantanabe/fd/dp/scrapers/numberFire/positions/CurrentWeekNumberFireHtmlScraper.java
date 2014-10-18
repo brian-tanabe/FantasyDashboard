@@ -7,11 +7,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Brian on 9/25/14.
  */
 public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScraperI {
+
+    @Override
+    public void scrape(Document document) {}
 
     public ArrayList<NumberFireProjection> getPlayerRankings(Document document) {
         ArrayList<NumberFireProjection> playerRankings = new ArrayList<NumberFireProjection>(32);
@@ -32,5 +36,11 @@ public class CurrentWeekNumberFireHtmlScraper implements NumberFirePositionScrap
 
     private String removePositionAndNflTeamFromName(String dirtyName){
         return dirtyName.replaceAll("\\(.+", "").trim();
+    }
+
+
+    @Override
+    public List getPlayerProjections() {
+        return null;
     }
 }
