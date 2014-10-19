@@ -9,9 +9,15 @@
         <property name="connection.username">sa</property>
         <property name="connection.password"></property>
         <property name="hibernate.jdbc.batch_size">20</property>
-        
+
         <mapping class="com.briantanabe.fd.dm.models.PlayerIdsEntity"/>
+        <mapping class="com.briantanabe.fd.dm.models.NflTeamsEntity"/>
+        <mapping class="com.briantanabe.fd.dm.models.PlayerProfileEntity"/>
+        <mapping class="com.briantanabe.fd.dm.models.PositionEligibilityEntity"/>
         <mapping resource="hibernate/PlayerIdsEntity.hbm.xml"/>
+        <mapping resource="hibernate/NflTeamsEntity.hbm.xml"/>
+        <mapping resource="hibernate/PlayerProfileEntity.hbm.xml"/>
+        <mapping resource="hibernate/PositionEligibilityEntity.hbm.xml"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

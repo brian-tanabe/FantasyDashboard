@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.briantanabe.fd.dm.models.PlayerProfileEntity" table="PLAYER_PROFILE" schema="PUBLIC"
+           catalog="FANTAYDB">
+        <id name="playerId" column="PLAYER_ID" />
+        <property name="nflTeamId" column="NFL_TEAM_ID"/>
+        <property name="birthday" column="BIRTHDAY"/>
+        <property name="experience" column="EXPERIENCE"/>
+    </class>
+</hibernate-mapping>

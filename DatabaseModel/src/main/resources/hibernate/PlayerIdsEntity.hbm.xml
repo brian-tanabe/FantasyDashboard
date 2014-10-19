@@ -5,10 +5,11 @@
 <hibernate-mapping>
 
     <class name="com.briantanabe.fd.dm.models.PlayerIdsEntity" table="PLAYER_IDS" schema="PUBLIC" catalog="FANTAYDB">
-        <composite-id mapped="true" class="com.briantanabe.fd.dm.models.PlayerIdsEntityPK">
-            <key-property name="espnId" column="ESPN_ID"/>
-            <key-property name="numberFireId" column="NUMBER_FIRE_ID"/>
-        </composite-id>
+        <id name="id" column="ID">
+            <generator class="increment"/>
+        </id>
+        <property name="espnId" column="ESPN_ID"/>
+        <property name="numberFireId" column="NUMBER_FIRE_ID"/>
         <property name="name" column="NAME"/>
     </class>
 </hibernate-mapping>
