@@ -13,7 +13,7 @@ public class PlayerIdsEntity {
     private int numberFireId;
     private String name;
 
-    protected PlayerIdsEntity(){}   // for hibernate:
+    public PlayerIdsEntity(){}   // for hibernate:
 
     public PlayerIdsEntity(int espnId, int numberFireId, String name){
         this.espnId = espnId;
